@@ -1,12 +1,18 @@
+import { Outlet } from 'react-router-dom';
+
 import { useEffect } from 'react';
 
 import { useApp } from '../context/AppContext';
 
-function Deal() {
+function Settings() {
   const { setPageTitle } = useApp();
   useEffect(() => setPageTitle('Dashboard'));
 
-  return <div>Deal</div>;
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
 }
 
-export default Deal;
+export default Settings;

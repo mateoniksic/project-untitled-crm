@@ -1,10 +1,12 @@
+import { useEffect } from 'react';
+
+import { useApp } from '../context/AppContext';
 
 function Deals() {
-  return (
-    <div>
-      Deals
-    </div>
-  )
+  const { setPageTitle } = useApp();
+  useEffect(() => setPageTitle('Dashboard'));
+
+  return <div>Deals</div>;
 }
 
-export default Deals
+export default Deals;

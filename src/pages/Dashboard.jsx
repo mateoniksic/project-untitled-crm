@@ -1,10 +1,12 @@
+import { useEffect } from 'react';
+
+import { useApp } from '../context/AppContext';
 
 function Dashboard() {
-  return (
-    <div>
-      Dashboard
-    </div>
-  )
+  const { setPageTitle } = useApp();
+  useEffect(() => setPageTitle('Dashboard'));
+
+  return <div>Dashboard</div>;
 }
 
-export default Dashboard
+export default Dashboard;

@@ -1,10 +1,12 @@
+import { useEffect } from 'react';
+
+import { useApp } from '../context/AppContext';
 
 function Contacts() {
-  return (
-    <div>
-      Contacts
-    </div>
-  )
+  const { setPageTitle } = useApp();
+  useEffect(() => setPageTitle('Dashboard'));
+
+  return <div>Contacts</div>;
 }
 
-export default Contacts
+export default Contacts;
