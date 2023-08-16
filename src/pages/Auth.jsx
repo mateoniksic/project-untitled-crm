@@ -15,7 +15,7 @@ const StyledSignIn = styled.div`
   height: 100dvh;
 `;
 
-const FormDiv = styled.div`
+const AuthFormDiv = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: start;
@@ -40,7 +40,7 @@ const AuthHeroDiv = styled.div`
 function SignIn() {
   return (
     <StyledSignIn>
-      <FormDiv>
+      <AuthFormDiv>
         <Logo to="/" />
         <Tabs>
           <TabList>
@@ -54,7 +54,7 @@ function SignIn() {
             <SignUpForm />
           </TabPanel>
         </Tabs>
-      </FormDiv>
+      </AuthFormDiv>
       <AuthHeroDiv />
     </StyledSignIn>
   );
