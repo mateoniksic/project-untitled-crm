@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Users, CircleDollarSign, Settings, LogOut } from 'lucide-react';
+import {
+  LayoutDashboard,
+  Users,
+  CircleDollarSign,
+  Settings,
+  LogOut,
+} from 'lucide-react';
 
 const StyledNav = styled.nav`
   flex: 1;
@@ -23,6 +29,9 @@ const StyledNavLink = styled(NavLink)`
     gap: 0.8rem;
     padding: 0.8rem;
     transition: all 0.3s;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2rem;
   }
 
   &:hover,
@@ -53,19 +62,19 @@ function SidebarNav() {
     <StyledNav>
       <NavList>
         <li>
-          <StyledNavLink to='/workspace/dashboard'>
+          <StyledNavLink to="/workspace/dashboard">
             <LayoutDashboard />
             <span>Dashboard</span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to='/workspace/contacts'>
+          <StyledNavLink to="/workspace/contacts">
             <Users />
             <span>Contacts</span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to='/workspace/deals'>
+          <StyledNavLink to="/workspace/deals">
             <CircleDollarSign />
             <span>Deals</span>
           </StyledNavLink>
@@ -74,13 +83,13 @@ function SidebarNav() {
 
       <NavList>
         <li>
-          <StyledNavLink to='/workspace/settings'>
+          <StyledNavLink to="/workspace/settings">
             <Settings />
             <span>Settings</span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to='/'>
+          <StyledNavLink to="/">
             <LogOut />
             <span>Sign out</span>
           </StyledNavLink>

@@ -6,7 +6,7 @@ import { useApp } from '../context/AppContext';
 
 function Settings() {
   const { setPageTitle } = useApp();
-  useEffect(() => setPageTitle('Dashboard'));
+  useEffect(() => setPageTitle('Settings'));
 
   return (
     <div>

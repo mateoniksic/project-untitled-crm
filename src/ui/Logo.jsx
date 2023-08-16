@@ -9,17 +9,13 @@ const StyledLogo = styled(Link)`
   justify-content: start;
   align-items: center;
   gap: 0.4rem;
-  padding: 0 0.8rem;
 `;
 
-function Logo() {
+function Logo({ className, to }) {
   return (
-    <StyledLogo to='/workspace'>
-      <img
-        src='../../public/logo/logo-wrapper.svg'
-        alt='UntitledCRM logo'
-      />
-      <Text size='large'>UntitledCRM</Text>
+    <StyledLogo className={className} to={to}>
+      <img src="../../public/logo/logo-wrapper.svg" alt="UntitledCRM logo" />
+      <Text size="large">UntitledCRM</Text>
     </StyledLogo>
   );
 }

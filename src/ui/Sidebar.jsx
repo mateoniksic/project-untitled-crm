@@ -1,25 +1,29 @@
 import { styled } from 'styled-components';
 
 import Logo from './Logo';
-import SidebarNav from './SidebarNav'
+import SidebarNav from './SidebarNav';
 
 const StyledSidebar = styled.aside`
+  grid-row: 1 / -1;
   display: flex;
   flex-flow: column nowrap;
   gap: 2.4rem;
   justify-content: space-between;
-  background: var(--bg-normal);
   padding: 1.6rem;
+  background: var(--bg-normal);
   border-right: 1px solid var(--border-non-interactive);
+  overflow-y: auto;
+`;
 
-  grid-row: 1 / -1;
+const SidebarLogo = styled(Logo)`
+  padding: 0 0.8rem;
 `;
 
 function Sidebar() {
   return (
     <StyledSidebar>
-      <Logo />
-      <SidebarNav/>
+      <SidebarLogo to="/workspace" />
+      <SidebarNav />
     </StyledSidebar>
   );
 }

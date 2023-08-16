@@ -4,8 +4,6 @@ import { styled } from 'styled-components';
 import Sidebar from './Sidebar';
 import Header from './Header';
 
-import { useApp } from '../context/AppContext';
-
 const StyledAppLayout = styled.div`
   display: grid;
   grid-template-columns: 23.5rem 1fr;
@@ -15,15 +13,14 @@ const StyledAppLayout = styled.div`
 
 const Main = styled.main`
   background-color: var(--bg-subtle);
+  overflow: auto;
 `;
 
 function AppLayout() {
-  const { pageTitle } = useApp();
-
   return (
     <StyledAppLayout>
       <Sidebar />
-      <Header pageTitle={pageTitle} />
+      <Header />
       <Main>
         <Outlet />
       </Main>

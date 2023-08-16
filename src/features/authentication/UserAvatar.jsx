@@ -29,7 +29,7 @@ function UserAvatar() {
       <span>John Doe</span>
       <Avatar
         src={avatar || '../../../public/user/default-avatar.svg'}
-        alt='User avatar'
+        alt="User avatar"
       />
     </StyledUserAvatar>
   );

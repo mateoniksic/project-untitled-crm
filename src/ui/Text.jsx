@@ -24,6 +24,15 @@ const Heading = styled.span`
     css`
       font-size: 1.8rem;
       font-weight: 600;
+      line-height: 100%;
+    `}
+
+  ${(props) =>
+    props.size === 'normal' &&
+    css`
+      font-size: 1.6rem;
+      font-weight: 400;
+      line-height: 2.8rem;
     `}
 
   ${(props) =>

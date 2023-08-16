@@ -4,7 +4,7 @@ import { useApp } from '../context/AppContext';
 
 function Contact() {
   const { setPageTitle } = useApp();
-  useEffect(() => setPageTitle('Dashboard'));
+  useEffect(() => setPageTitle('Contact'));
 
   return <div>Contact</div>;
 }
