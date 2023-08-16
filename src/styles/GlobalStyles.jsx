@@ -127,8 +127,14 @@ const GlobalStyles = createGlobalStyle`
   --component-hovered: var(--mint-4);
   --component-selected: var(--mint-5);
 
+  --component-normal-danger: var(--tomato-3);
+  --component-hovered-danger: var(--tomato-4);
+  --component-selected-danger: var(--tomato-5);
+
   --text-lc: var(--mint-11);
   --text-hc: var(--mint-12);
+
+  --text-hc-danger: var(--tomato-10);
 
   --border-radius-sm: .8rem;
 

@@ -37,20 +37,14 @@ function UserAvatar({ variation }) {
         <Text as="span" size="subtle-medium">
           John Doe
         </Text>
-        <Avatar
-          src={avatar || '../../../public/user/default-avatar.svg'}
-          alt="User avatar"
-        />
+        <Avatar src={avatar || '/user/default-avatar.svg'} alt="User avatar" />
         <UserDetails></UserDetails>
       </StyledUserAvatar>
     );
 
   return (
     <StyledUserAvatar>
-      <Avatar
-        src={avatar || '../../../public/user/default-avatar.svg'}
-        alt="User avatar"
-      />
+      <Avatar src={avatar || '/user/default-avatar.svg'} alt="User avatar" />
       <UserDetails>
         <Text as="span" size="subtle-medium">
           John Doe

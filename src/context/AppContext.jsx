@@ -12,11 +12,11 @@ function AppProvider({ children }) {
   );
 }
 
-function useApp() {
-  const context = useContext(AppContext);
-  if (context === undefined)
-    throw new Error('PageTitleContext was used outside of PageTitleProvider');
-  return context;
-}
+// function useApp() {
+//   const context = useContext(AppContext);
+//   if (context === undefined)
+//     throw new Error('PageTitleContext was used outside of PageTitleProvider');
+//   return context;
+// }
 
-export { AppProvider, useApp };
+export { AppProvider, AppContext };

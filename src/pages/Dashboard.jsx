@@ -5,7 +5,7 @@ import DashboardHeader from '../features/dashboard/DashboardHeader';
 import RowStats from '../features/dashboard/RowStats';
 import RowPipeline from '../features/dashboard/RowPipeline';
 
-import { useApp } from '../context/AppContext';
+import { useApp } from '../hooks/useApp';
 
 const StyledDashboard = styled.div`
   display: grid;

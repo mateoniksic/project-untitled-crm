@@ -9,7 +9,7 @@ const StyledRowStats = styled.div`
   gap: 2.4rem;
   grid-column: 1 / -1;
   grid-row: 2/3;
-  grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
 `;
 
 function RowStats() {

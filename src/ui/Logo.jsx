@@ -14,7 +14,7 @@ const StyledLogo = styled(Link)`
 function Logo({ className, to }) {
   return (
     <StyledLogo className={className} to={to}>
-      <img src="../../public/logo/logo-wrapper.svg" alt="UntitledCRM logo" />
+      <img src="/logo/logo-wrapper.svg" alt="UntitledCRM logo" />
       <Text size="large">UntitledCRM</Text>
     </StyledLogo>
   );

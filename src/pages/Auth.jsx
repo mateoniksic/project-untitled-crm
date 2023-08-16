@@ -17,6 +17,7 @@ const StyledSignIn = styled.div`
 `;
 
 const AuthFormDiv = styled.div`
+  align-items: start;
   display: flex;
   flex-flow: column nowrap;
   gap: 3.2rem;
@@ -27,7 +28,7 @@ const AuthFormDiv = styled.div`
 const AuthHeroDiv = styled.div`
   align-items: center;
   background-color: var(--bg-subtle);
-  background-image: url(../../public/auth/dashboard.png);
+  background-image: url(/auth/dashboard.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;

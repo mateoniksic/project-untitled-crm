@@ -3,8 +3,7 @@ import { styled } from 'styled-components';
 import Text from './Text';
 import UserAvatar from '../features/auth/UserAvatar';
 
-import { useApp } from '../context/AppContext';
-import { useEffect } from 'react';
+import { useApp } from '../hooks/useApp';
 
 const StyledHeader = styled.header`
   align-items: center;

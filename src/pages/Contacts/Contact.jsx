@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 
-import { useApp } from '../../context/AppContext';
+import MainContainer from '../../ui/MainContainer';
+
+import { useApp } from '../../hooks/useApp';
 
 function Contact() {
   const { setPageTitle } = useApp();
   useEffect(() => setPageTitle('Contact'));
 
-  return <div>Contact</div>;
+  return <MainContainer>Contact</MainContainer>;
 }
 
 export default Contact;
