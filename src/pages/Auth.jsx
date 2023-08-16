@@ -7,6 +7,7 @@ import SignUpForm from '../features/auth/SignUpForm';
 import Logo from '../ui/Logo';
 
 const StyledSignIn = styled.div`
+  background-color: var(--bg-normal);
   align-items: center;
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -29,14 +29,33 @@ const GlobalStyles = createGlobalStyle`
   --mint-11: hsl(172, 50.0%, 30.5%);
   --mint-12: hsl(171, 50.0%, 17.5%);
 
+  --tomato-1: hsl(10, 100%, 99.4%);
+  --tomato-2: hsl(8, 100%, 98.4%);
+  --tomato-3: hsl(8, 100%, 96.6%);
+  --tomato-4: hsl(8, 100%, 94.3%);
+  --tomato-5: hsl(8, 92.8%, 91.0%);
+  --tomato-6: hsl(9, 84.7%, 86.3%);
+  --tomato-7: hsl(10, 77.3%, 79.5%);
+  --tomato-8: hsl(10, 71.6%, 71.0%);
+  --tomato-9: hsl(10, 78.0%, 54.0%);
+  --tomato-10: hsl(10, 71.4%, 49.4%);
+  --tomato-11: hsl(10, 82.0%, 42.0%);
+  --tomato-12: hsl(8, 50.0%, 24.0%);
+
+  --indigo-1: hsl(225, 60.0%, 99.4%);
+  --indigo-2: hsl(223, 100%, 98.6%);
+  --indigo-3: hsl(223, 98.4%, 97.1%);
+  --indigo-4: hsl(223, 92.9%, 95.0%);
+  --indigo-5: hsl(224, 87.1%, 92.0%);
+  --indigo-6: hsl(224, 81.9%, 87.8%);
+  --indigo-7: hsl(225, 77.4%, 82.1%);
+  --indigo-8: hsl(226, 75.4%, 74.5%);
+  --indigo-9: hsl(226, 70.0%, 55.5%);
+  --indigo-10: hsl(226, 58.6%, 51.3%);
+  --indigo-11: hsl(226, 55.0%, 45.0%);
+  --indigo-12: hsl(226, 50.0%, 24.0%);
+
   --backdrop-color: rgba(255, 255, 255, 0.1);
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.12);
-
-  --image-grayscale: 0;
-  --image-opacity: 100%;
   }
   
   &.dark-mode {
@@ -66,17 +85,35 @@ const GlobalStyles = createGlobalStyle`
     --mint-11: hsla(167, 99.8%, 65.8%, 0.862);
     --mint-12: hsla(156, 99.7%, 89.9%, 0.957);
 
+    --tomato-1: hsl(10, 23.0%, 9.4%);
+    --tomato-2: hsl(10, 39.0%, 11.6%);
+    --tomato-3: hsl(9, 48.3%, 15.5%);
+    --tomato-4: hsl(9, 53.0%, 18.1%);
+    --tomato-5: hsl(9, 57.0%, 20.7%);
+    --tomato-6: hsl(9, 61.8%, 24.5%);
+    --tomato-7: hsl(9, 68.4%, 31.1%);
+    --tomato-8: hsl(10, 80.4%, 43.9%);
+    --tomato-9: hsl(10, 78.0%, 54.0%);
+    --tomato-10: hsl(10, 88.4%, 64.1%);
+    --tomato-11: hsl(10, 100%, 72.0%);
+    --tomato-12: hsl(10, 85.0%, 89.0%);
+
+    --indigo-1: hsl(229, 24.0%, 10.0%);
+    --indigo-2: hsl(230, 36.4%, 12.9%);
+    --indigo-3: hsl(228, 42.7%, 18.1%);
+    --indigo-4: hsl(227, 45.6%, 21.4%);
+    --indigo-5: hsl(227, 47.8%, 24.4%);
+    --indigo-6: hsl(226, 50.3%, 28.8%);
+    --indigo-7: hsl(226, 53.3%, 36.6%);
+    --indigo-8: hsl(226, 60.0%, 52.0%);
+    --indigo-9: hsl(226, 70.0%, 55.5%);
+    --indigo-10: hsl(230, 73.9%, 63.3%);
+    --indigo-11: hsl(235, 100%, 80.0%);
+    --indigo-12: hsl(235, 93.0%, 93.0%);
+
     --backdrop-color: rgba(0, 0, 0, 0.3);
-
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-    --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.4);
-
-    --image-grayscale: 10%;
-    --image-opacity: 90%;
   }
 
-  --bg-light: #ffffff;
   --bg-normal: var(--sage-1);
   --bg-subtle: var(--sage-2);
   --bg-solid-normal: var(--mint-9);
@@ -94,6 +131,10 @@ const GlobalStyles = createGlobalStyle`
   --text-hc: var(--mint-12);
 
   --border-radius-sm: .8rem;
+
+  --component-sage-normal: var(--sage-3);
+  --component-indigo-normal: var(--indigo-3);
+  --component-tomato-normal: var(--tomato-3);
 }
 
 *,
