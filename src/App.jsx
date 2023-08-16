@@ -5,11 +5,14 @@ import GlobalStyles from './styles/GlobalStyles';
 import AppLayout from './ui/AppLayout';
 import Auth from './pages/Auth';
 import Dashboard from './pages/Dashboard';
-import Contacts from './pages/Contacts';
-import Contact from './pages/Contact';
-import Deal from './pages/Deal';
-import Deals from './pages/Deals';
-import SettingsLayout from './pages/SettingsLayout';
+import Contacts from './pages/Contacts/Contacts';
+import Contact from './pages/Contacts/Contact';
+import Deals from './pages/Deals/Deals';
+import Deal from './pages/Deals/Deal';
+import SettingsLayout from './ui/SettingsLayout';
+import SettingsWorkspace from './pages/Settings/SettingsWorkspace';
+import SettingsProfile from './pages/Settings/SettingsProfile';
+import SettingsAccount from './pages/Settings/SettingsAccount';
 import PageNotFound from './pages/PageNotFound';
 
 import { AppProvider } from './context/AppContext';
@@ -33,10 +36,9 @@ function App() {
               <Route path="deals" element={<Deals />} />
               <Route path="deals/:dealId" element={<Deal />} />
               <Route path="settings" element={<SettingsLayout />}>
-                <Route index element={'Workspace'} />
-
-                <Route path="profile" element={'Profile'} />
-                <Route path="account" element={'Account'} />
+                <Route index element={<SettingsWorkspace />} />
+                <Route path="profile" element={<SettingsProfile />} />
+                <Route path="account" element={<SettingsAccount />} />
               </Route>
             </Route>
             <Route path="*" element={<PageNotFound />} />

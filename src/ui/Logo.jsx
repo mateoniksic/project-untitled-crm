@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import Text from './Text';
 
 const StyledLogo = styled(Link)`
+  align-items: center;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: start;
-  align-items: center;
   gap: 0.4rem;
+  justify-content: start;
 `;
 
 function Logo({ className, to }) {

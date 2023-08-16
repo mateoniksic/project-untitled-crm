@@ -6,8 +6,8 @@ const Heading = styled.span`
     css`
       font-size: 3rem;
       font-weight: 600;
-      line-height: 3.6rem;
       letter-spacing: -0.75%;
+      line-height: 3.6rem;
     `}
 
   ${(props) =>
@@ -15,8 +15,8 @@ const Heading = styled.span`
     css`
       font-size: 2.4rem;
       font-weight: 600;
-      line-height: 3.2rem;
       letter-spacing: -0.6%;
+      line-height: 3.2rem;
     `}
 
   ${(props) =>
@@ -43,7 +43,7 @@ const Heading = styled.span`
       line-height: 2rem;
     `}
 
-      ${(props) =>
+  ${(props) =>
     props.size === 'subtle-medium' &&
     css`
       font-size: 1.4rem;
@@ -51,10 +51,18 @@ const Heading = styled.span`
       line-height: 2rem;
     `}
 
-      ${(props) =>
+  ${(props) =>
     props.size === 'subtle-semibold' &&
     css`
       font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 2rem;
+    `}
+
+  ${(props) =>
+    props.size === 'detail' &&
+    css`
+      font-size: 1.2rem;
       font-weight: 600;
       line-height: 2rem;
     `}

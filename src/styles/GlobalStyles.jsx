@@ -100,10 +100,8 @@ const GlobalStyles = createGlobalStyle`
 *::before,
 *::after {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
-
-  /* Creating animations for dark mode */
+  padding: 0;
   transition: background-color 0.3s, border 0.3s;
 }
 
@@ -112,14 +110,13 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
   color: var(--text-hc);
-
-  transition: color 0.3s, background-color 0.3s;
-  min-height: 100vh;
-  line-height: 1.5;
+  font-family: "Inter", sans-serif;
   font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.5;
+  min-height: 100vh;
+  transition: color 0.3s, background-color 0.3s;
 }
 
 input,

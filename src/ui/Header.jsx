@@ -1,19 +1,19 @@
 import { styled } from 'styled-components';
 
 import Text from './Text';
-import UserAvatar from '../features/authentication/UserAvatar';
+import UserAvatar from '../features/auth/UserAvatar';
 
 import { useApp } from '../context/AppContext';
 import { useEffect } from 'react';
 
 const StyledHeader = styled.header`
+  align-items: center;
+  background: var(--bg-normal);
+  border-bottom: 1px solid var(--border-non-interactive);
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  align-items: center;
   padding: 0.8rem 3.2rem;
-  background: var(--bg-normal);
-  border-bottom: 1px solid var(--border-non-interactive);
 `;
 
 function Header() {
@@ -26,7 +26,7 @@ function Header() {
           {pageTitle}
         </Text>
       </div>
-      <UserAvatar />
+      <UserAvatar variation="reversed-small" />
     </StyledHeader>
   );
 }

@@ -1,16 +1,21 @@
+import { styled } from 'styled-components';
+
 import Text from '../../ui/Text';
 
-function SignUp() {
+const StyledSignUpForm = styled.div`
+  padding: 3.2rem 0;
+`;
+function SignUpForm() {
   return (
-    <div>
+    <StyledSignUpForm>
       <Text as="h1" size="xlarge">
         Create an account.
       </Text>
       <Text as="p" size="normal">
         And start scaling your business to the next level.
       </Text>
-    </div>
+    </StyledSignUpForm>
   );
 }
 
-export default SignUp;
+export default SignUpForm;
