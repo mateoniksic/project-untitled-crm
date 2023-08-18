@@ -4,23 +4,28 @@ import { User2 } from 'lucide-react';
 import Text from '../../ui/Text';
 
 const StyledUserAvatar = styled.div`
-  display: flex;
-  gap: 1.2rem;
   align-items: center;
-  font-weight: 500;
-  font-size: 1.4rem;
   color: var(--color-grey-600);
+  display: flex;
+  font-size: 1.4rem;
+  font-weight: 500;
+  gap: 1.2rem;
+`;
+
+const UserAvatarWrapper = styled.div`
+  border-radius: 100%;
+  border: 1px solid var(--border-non-interactive);
+  display: inline-block;
+  height: ${(props) => (props.$size ? `${props.$size}rem` : '4rem')};
+  overflow: hidden;
+  width: ${(props) => (props.$size ? `${props.$size}rem` : '4rem')};
 `;
 
 const Avatar = styled.img`
-  display: block;
-  height: 4rem;
-  width: 4.1rem;
-  aspect-ratio: 1;
+  height: 100%;
   object-fit: cover;
   object-position: center;
-  border-radius: 50%;
-  outline: 2px solid var(--color-grey-100);
+  width: 100%;
 `;
 
 const UserDetails = styled.div`
@@ -28,29 +33,66 @@ const UserDetails = styled.div`
   flex-flow: column nowrap;
 `;
 
-function UserAvatar({ variation }) {
-  const avatar = '';
+function UserAvatar({
+  firstName,
+  lastName,
+  email,
+  avatarUrl,
+  variation,
+  size,
+}) {
+  const fallbackAvatarBg = '86ead4';
+  const fallbackAvatarColor = '86e16433cad4';
+  const fallbackAvatarUrl = `https://ui-avatars.com/api/?name=${firstName}+${lastName}&uppercase=true&bold=true&color=${fallbackAvatarColor}&background=${fallbackAvatarBg}&format=svg&rounded=true`;
 
-  if (variation === 'reversed-small')
+  if (variation === 'full')
     return (
       <StyledUserAvatar>
-        <Text as="span" size="subtle-medium">
-          John Doe
-        </Text>
-        <Avatar src={avatar || '/user/default-avatar.svg'} alt="User avatar" />
-        <UserDetails></UserDetails>
+        <UserAvatarWrapper $size={size}>
+          <Avatar
+            src={avatarUrl || fallbackAvatarUrl}
+            alt={`${firstName} ${lastName}'s avatar`}
+          />
+        </UserAvatarWrapper>
+        <UserDetails>
+          <Text as="span" size="subtle-medium">
+            {`${firstName} ${lastName}`}
+          </Text>
+          <Text as="span" size="detail">
+            {email}
+          </Text>
+        </UserDetails>
+      </StyledUserAvatar>
+    );
+
+  if (variation === 'reversed')
+    return (
+      <StyledUserAvatar>
+        <UserDetails>
+          <Text as="span" size="subtle-medium">
+            {`${firstName} ${lastName}`}
+          </Text>
+        </UserDetails>
+        <UserAvatarWrapper $size={size}>
+          <Avatar
+            src={avatarUrl || fallbackAvatarUrl}
+            alt={`${firstName} ${lastName}'s avatar`}
+          />
+        </UserAvatarWrapper>
       </StyledUserAvatar>
     );
 
   return (
     <StyledUserAvatar>
-      <Avatar src={avatar || '/user/default-avatar.svg'} alt="User avatar" />
+      <UserAvatarWrapper $size={size}>
+        <Avatar
+          src={avatarUrl || fallbackAvatarUrl}
+          alt={`${firstName} ${lastName}'s avatar`}
+        />
+      </UserAvatarWrapper>
       <UserDetails>
         <Text as="span" size="subtle-medium">
-          John Doe
-        </Text>
-        <Text as="span" size="detail">
-          john.doe@gmail.com
+          {`${firstName} ${lastName}`}
         </Text>
       </UserDetails>
     </StyledUserAvatar>

@@ -25,7 +25,12 @@ function Header() {
           {pageTitle}
         </Text>
       </div>
-      <UserAvatar variation="reversed-small" />
+      <UserAvatar
+        firstName={'John'}
+        lastName={'Doe'}
+        email={'john.doe@example.com'}
+        variation="reversed"
+      />
     </StyledHeader>
   );
 }

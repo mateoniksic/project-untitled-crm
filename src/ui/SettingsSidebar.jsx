@@ -29,7 +29,12 @@ function SettingsSidebar() {
   return (
     <StyledSettingsSidebar>
       <SettingsSidebarHeader>
-        <UserAvatar />
+        <UserAvatar
+          firstName={'John'}
+          lastName={'Doe'}
+          email={'john.doe@example.com'}
+          variation="full"
+        />
       </SettingsSidebarHeader>
       <SettingsSidebarMain>
         <Nav>

@@ -31,7 +31,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools />
+      <ReactQueryDevtools position="bottom-right" />
       <GlobalStyles />
       <AppProvider>
         <BrowserRouter>
