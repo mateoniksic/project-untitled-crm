@@ -1,4 +1,5 @@
 import { styled, css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const variations = {
   primary: css`
@@ -6,6 +7,13 @@ const variations = {
 
     &:hover {
       background-color: var(--component-hovered);
+    }
+  `,
+  neutral: css`
+    background-color: var(--component-normal-neutral);
+
+    &:hover {
+      background-color: var(--component-hovered-neutral);
     }
   `,
   danger: css`
@@ -18,7 +26,7 @@ const variations = {
   `,
 };
 
-const Button = styled.button`
+const StyledButton = styled.button`
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -33,5 +41,36 @@ const Button = styled.button`
 
   ${(props) => (props.$variation ? variations[props.$variation] : 'primary')}
 `;
+
+const StyledLink = styled(Link)`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  border-radius: 0.6rem;
+  border: none;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 2rem;
+  padding: 0.8rem 1.6rem;
+
+  ${(props) => (props.$variation ? variations[props.$variation] : 'primary')}
+`;
+
+function Button({ to, variation, onClick, disabled, children }) {
+  if (to)
+    return (
+      <StyledLink $variation={variation} to={to}>
+        {children}
+      </StyledLink>
+    );
+
+  return (
+    <StyledButton $variation={variation} onClick={onClick} disabled={disabled}>
+      {children}
+    </StyledButton>
+  );
+}
 
 export default Button;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Trash2Icon, PenBoxIcon } from 'lucide-react';
+import { Trash2Icon, PenBoxIcon, EyeIcon } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 import { useState } from 'react';
@@ -91,10 +91,13 @@ function ContactRow({ contactPacked }) {
           {new Date(contact.contact_created_at).toLocaleString('hr-HR')}
         </div>
         <Actions>
-          <Button $variation="primary" onClick={() => setShowForm(!showForm)}>
+          <Button variation="neutral" to={`${contact.contact_id}`}>
+            <EyeIcon size="16" />
+          </Button>
+          <Button variation="primary" onClick={() => setShowForm(!showForm)}>
             <PenBoxIcon size="16" />
           </Button>
-          <Button $variation="danger" onClick={mutate} disabled={isDeleting}>
+          <Button variation="danger" onClick={mutate} disabled={isDeleting}>
             <Trash2Icon size="16" />
           </Button>
         </Actions>

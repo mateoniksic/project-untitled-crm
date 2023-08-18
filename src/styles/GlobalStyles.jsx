@@ -123,6 +123,10 @@ const GlobalStyles = createGlobalStyle`
   --border-interactive: var(--sage-6);
   --border-interactive-focus: var(--sage-6);
 
+  --component-normal-neutral: var(--sage-3);
+  --component-hovered-neutral: var(--sage-4);
+  --component-selected-neutral: var(--sage-5);
+
   --component-normal: var(--mint-3);
   --component-hovered: var(--mint-4);
   --component-selected: var(--mint-5);
