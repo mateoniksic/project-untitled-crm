@@ -6,6 +6,7 @@ const StyledMainContainer = styled.div`
   border: 1px solid var(--border-non-interactive);
   margin: 3.2rem;
   padding: 3.2rem;
+  overflow-y: auto;
 `;
 
 function MainContainer({ children }) {

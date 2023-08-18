@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { PlusCircleIcon } from 'lucide-react';
 import MainContainer from '../../ui/MainContainer';
 import Button from '../../ui/Button';
+import ContactsTable from '../../features/contacts/ContactsTable';
 
 import { useApp } from '../../hooks/useApp';
 
@@ -12,10 +13,7 @@ function Contacts() {
   return (
     <MainContainer>
       <span>Contacts</span>
-      <Button $variation="primary">
-        <PlusCircleIcon size="16" />
-        New Deal
-      </Button>
+      <ContactsTable />
     </MainContainer>
   );
 }

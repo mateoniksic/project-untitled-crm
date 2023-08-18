@@ -1,4 +1,6 @@
 import { styled } from 'styled-components';
+import { useQuery } from '@tanstack/react-query';
+
 import { useEffect } from 'react';
 
 import DashboardHeader from '../features/dashboard/DashboardHeader';
@@ -6,6 +8,7 @@ import RowStats from '../features/dashboard/RowStats';
 import RowPipeline from '../features/dashboard/RowPipeline';
 
 import { useApp } from '../hooks/useApp';
+import { getDeals } from '../services/apiDeals';
 
 const StyledDashboard = styled.div`
   display: grid;
