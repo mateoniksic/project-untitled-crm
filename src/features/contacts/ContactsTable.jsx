@@ -19,7 +19,6 @@ const Table = styled.div`
   background-color: var(--color-grey-0);
   border-radius: 0.6rem;
   border: 1px solid var(--border-non-interactive);
-  border: 1px solid var(--color-grey-200);
   font-size: 1.4rem;
   min-width: 120rem;
   overflow: hidden;
