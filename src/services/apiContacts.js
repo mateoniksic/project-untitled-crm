@@ -17,14 +17,18 @@ export async function getContacts() {
   return data;
 }
 
-export async function createOrEditContact(contact, id) {
+export async function updateContact(contact, id) {
   // 1. Check and set avatar
   const hasAvatar = Boolean(contact.contact_avatar);
+  const avatarFile =
+    hasAvatar &&
+    contact.contact_avatar instanceof File &&
+    contact.contact_avatar;
 
   let avatarFileName = '';
   let avatarUrlPath = '';
 
-  if (hasAvatar) {
+  if (hasAvatar && avatarFile) {
     avatarFileName = `${
       contact.contact_avatar?.name
     }-${crypto.randomUUID()}`.replaceAll('/', '');
@@ -32,25 +36,74 @@ export async function createOrEditContact(contact, id) {
     avatarUrlPath = contact.contact_avatar?.startsWith?.(supabaseUrl)
       ? contact.contact_avatar
       : `${supabaseUrl}/storage/v1/object/public/avatars/${avatarFileName}`;
+  } else if (hasAvatar) {
+    avatarUrlPath = contact.contact_avatar;
+  } else {
+    avatarUrlPath = null;
   }
 
-  avatarUrlPath = hasAvatar ? avatarUrlPath : null;
+  // 2. Run query
+  const { data, error } = await supabase
+    .from('contact')
+    .update({ ...contact, contact_avatar: avatarUrlPath })
+    .eq('contact_id', id)
+    .select()
+    .single();
 
-  // 2. Create query
-  let query = supabase.from('contact');
-
-  if (!id) {
-    query = query.insert([{ ...contact, contact_avatar: avatarUrlPath }]);
+  if (error) {
+    console.log(error);
+    throw new Error(
+      `There was a problem while updating a contact (${[
+        contact.contact_first_name,
+        contact.contact_last_name,
+      ].join(' ')}).`,
+    );
   }
 
-  if (id) {
-    query = query
-      .update({ ...contact, contact_avatar: avatarUrlPath })
-      .eq('contact_id', id);
+  // 3. Upload avatar image in storage bucket if there's a new file.
+  if (avatarFile) {
+    const { data: storageData, error: storageError } = await supabase.storage
+      .from('avatars')
+      .upload(avatarFileName, avatarFile);
+
+    if (storageError) {
+      await supabase.from('contact').delete().eq('contact_id', data.contact_id);
+      console.log(storageError);
+      throw new Error(
+        'There was a problem while uploading avatar image. Contact was not created or updated.',
+      );
+    }
+  }
+
+  return data;
+}
+
+export async function createContact(contact) {
+  // 1. Check and set avatar
+  const avatarFile =
+    contact.contact_avatar instanceof File && contact.contact_avatar;
+
+  let avatarFileName = '';
+  let avatarUrlPath = '';
+
+  if (avatarFile) {
+    avatarFileName = `${
+      contact.contact_avatar?.name
+    }-${crypto.randomUUID()}`.replaceAll('/', '');
+
+    avatarUrlPath = contact.contact_avatar?.startsWith?.(supabaseUrl)
+      ? contact.contact_avatar
+      : `${supabaseUrl}/storage/v1/object/public/avatars/${avatarFileName}`;
+  } else {
+    avatarUrlPath = null;
   }
 
   // 3. Run query
-  const { data, error } = await query.select().single();
+  const { data, error } = await supabase
+    .from('contact')
+    .insert([{ ...contact, contact_avatar: avatarUrlPath }])
+    .select()
+    .single();
 
   if (error) {
     console.log(error);
@@ -63,10 +116,10 @@ export async function createOrEditContact(contact, id) {
   }
 
   // 4. Upload avatar image in storage bucket.
-  if (hasAvatar) {
+  if (avatarFile) {
     const { data: storageData, error: storageError } = await supabase.storage
       .from('avatars')
-      .upload(avatarFileName, contact.contact_avatar);
+      .upload(avatarFileName, avatarFile);
 
     if (storageError) {
       await supabase.from('contact').delete().eq('contact_id', data.contact_id);
@@ -76,6 +129,8 @@ export async function createOrEditContact(contact, id) {
       );
     }
   }
+
+  return data;
 }
 
 export async function deleteContact(id) {
@@ -87,13 +142,14 @@ export async function deleteContact(id) {
 
   const avatarFilePath = contactAvatar.at(0).contact_avatar
     ? contactAvatar.at(0).contact_avatar.split('/').at(-1)
-    : null;
+    : false;
 
   // 2. Delete contact.
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from('contact')
     .delete()
-    .eq('contact_id', id);
+    .eq('contact_id', id)
+    .single();
 
   if (error) {
     console.log(error);

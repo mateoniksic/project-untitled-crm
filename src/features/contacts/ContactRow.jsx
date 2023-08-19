@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 import { Trash2Icon, PenBoxIcon, EyeIcon } from 'lucide-react';
-import { toast } from 'react-hot-toast';
 
 import { useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import Button from '../../ui/Button';
-import ContactForm from './ContactForm';
 import UserAvatar from '../auth/UserAvatar';
+import ContactForm from './ContactForm';
+import Button from '../../ui/Button';
 
-import { deleteContact } from '../../services/apiContacts';
+import { useDeleteContact } from './hooks/useDeleteContact';
 
 const TableRow = styled.div`
   font-size: 1.4rem;
@@ -46,23 +44,7 @@ function ContactRow({ contactPacked }) {
   const { user_profile, ...contact } = contactPacked;
 
   const [showForm, setShowForm] = useState(false);
-
-  const queryClient = useQueryClient();
-  const { isLoading: isDeleting, mutate } = useMutation({
-    mutationFn: () => deleteContact(contact.contact_id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['contacts'],
-      });
-      toast.success(
-        `Contact (${[
-          contact.contact_first_name,
-          contact.contact_last_name,
-        ].join(' ')}) deleted successfully.`,
-      );
-    },
-    onError: (err) => toast.error(err.message),
-  });
+  const { isDeleting, deleteContact } = useDeleteContact();
 
   return (
     <>
@@ -97,7 +79,10 @@ function ContactRow({ contactPacked }) {
           <Button variation="primary" onClick={() => setShowForm(!showForm)}>
             <PenBoxIcon size="16" />
           </Button>
-          <Button variation="danger" onClick={mutate} disabled={isDeleting}>
+          <Button
+            variation="danger"
+            onClick={() => deleteContact(contact.contact_id)}
+            disabled={isDeleting}>
             <Trash2Icon size="16" />
           </Button>
         </Actions>

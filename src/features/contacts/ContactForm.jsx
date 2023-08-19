@@ -1,17 +1,20 @@
 import { useForm } from 'react-hook-form';
 import { PlusCircleIcon, Save, SaveIcon } from 'lucide-react';
-import { toast } from 'react-hot-toast';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import Button from '../../ui/Button';
 import FormRow from '../../ui/FormRow';
 import { FileInput } from '../../ui/FileInput';
 
-import { createOrEditContact } from '../../services/apiContacts';
+import { useCreateContact } from './hooks/useCreateContact';
+import { useUpdateContact } from './hooks/useUpdateContact';
 
 function ContactForm({ contactToEdit = {} }) {
-  const { contact_id: editId, ...editValues } = contactToEdit;
-  const isEditSession = Boolean(editId);
+  const { contact_id: updateId, ...editValues } = contactToEdit;
+  const isUpdateSession = Boolean(updateId);
+
+  const { isCreating, createContact } = useCreateContact();
+  const { isUpdating, updateContact } = useUpdateContact();
+  const isProcessing = isCreating || isUpdating;
 
   const {
     register,
@@ -19,29 +22,7 @@ function ContactForm({ contactToEdit = {} }) {
     reset,
     formState: { errors },
   } = useForm({
-    defaultValues: isEditSession ? editValues : {},
-  });
-
-  const queryClient = useQueryClient();
-
-  const { isLoading: isCreating, mutate: createContact } = useMutation({
-    mutationFn: createOrEditContact,
-    onSuccess: () => {
-      toast.success('New contact created successfully.');
-      queryClient.invalidateQueries({ queryKey: ['contacts'] });
-      reset();
-    },
-    onError: (err) => toast.error(err),
-  });
-
-  const { isLoading: isEditing, mutate: editContact } = useMutation({
-    mutationFn: ({ contact, id }) => createOrEditContact(contact, id),
-    onSuccess: () => {
-      toast.success('Contact updated successfully.');
-      queryClient.invalidateQueries({ queryKey: ['contacts'] });
-      reset();
-    },
-    onError: (err) => toast.error(err),
+    defaultValues: isUpdateSession ? editValues : {},
   });
 
   function onSubmit(data) {
@@ -51,28 +32,31 @@ function ContactForm({ contactToEdit = {} }) {
         : data.contact_avatar[0]
       : null;
 
-    if (isEditSession) {
-      editContact({
+    if (isUpdateSession) {
+      updateContact({
         contact: {
           ...data,
           contact_avatar: avatar,
           contact_created_by: 2,
           workspace_id: 1,
         },
-        id: editId,
+        id: updateId,
       });
     } else {
-      createContact({
-        ...data,
-        contact_avatar: avatar,
-        contact_created_by: 2,
-        workspace_id: 1,
-      });
+      createContact(
+        {
+          ...data,
+          contact_avatar: avatar,
+          contact_created_by: 2,
+          workspace_id: 1,
+        },
+        { onSuccess: () => reset() },
+      );
     }
   }
 
   function onError(errors) {
-    console.log(errors);
+    console.log('ContactForm errors: ', errors);
   }
 
   return (
@@ -125,8 +109,8 @@ function ContactForm({ contactToEdit = {} }) {
         />
       </FormRow>
 
-      <Button $variation="primary" disabled={isCreating}>
-        {isEditSession ? (
+      <Button $variation="primary" disabled={isProcessing}>
+        {isUpdateSession ? (
           <>
             <SaveIcon size="16" />
             Save changes
