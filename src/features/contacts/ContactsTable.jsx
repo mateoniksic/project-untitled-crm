@@ -6,6 +6,7 @@ import ContactRow from './ContactRow';
 
 import { getContacts } from '../../services/apiContacts';
 import { useEffect } from 'react';
+import { useContacts } from './hooks/useContacts';
 
 const TableWrapper = styled.div`
   align-items: start;
@@ -40,14 +41,7 @@ const TableHeader = styled.header`
 `;
 
 function ContactsTable({ setTotalContacts }) {
-  const {
-    data: contacts,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ['contacts'],
-    queryFn: getContacts,
-  });
+  const { isLoading, contacts } = useContacts();
 
   useEffect(() => setTotalContacts(contacts?.length));
 

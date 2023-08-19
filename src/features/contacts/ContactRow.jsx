@@ -24,14 +24,6 @@ const TableRow = styled.div`
   }
 `;
 
-const CreatedBy = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: start;
-  align-items: center;
-  gap: 0.8rem;
-`;
-
 const Actions = styled.div`
   display: flex;
   flex-flow: row nowrap;
@@ -59,16 +51,14 @@ function ContactRow({ contactPacked }) {
         </div>
         <div>{contact.contact_email}</div>
         <div>{contact.contact_phone}</div>
-        <CreatedBy>
-          <div>
-            <UserAvatar
-              firstName={user_profile.user_first_name}
-              lastName={user_profile.user_last_name}
-              avatarUrl={user_profile.user_avatar_url}
-              size="3.2"
-            />
-          </div>
-        </CreatedBy>
+        <div>
+          <UserAvatar
+            firstName={user_profile.user_first_name}
+            lastName={user_profile.user_last_name}
+            avatarUrl={user_profile.user_avatar_url}
+            size="3.2"
+          />
+        </div>
         <div>
           {new Date(contact.contact_created_at).toLocaleString('hr-HR')}
         </div>
