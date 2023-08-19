@@ -71,7 +71,7 @@ function ContactRow({ contactPacked }) {
           <UserAvatar
             firstName={contact.contact_first_name}
             lastName={contact.contact_last_name}
-            avatarUrl={contact.contact_avatar_url}
+            avatarUrl={contact.contact_avatar}
             size="3.2"
           />
         </div>

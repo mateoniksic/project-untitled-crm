@@ -29,7 +29,7 @@ function Contacts() {
     <MainContainer>
       <ContactsHeader>
         <Text>Total contacts ({totalContacts})</Text>
-        <Button $variation="primary" onClick={() => setShowForm(!showForm)}>
+        <Button variation="primary" onClick={() => setShowForm(!showForm)}>
           <PlusCircleIcon size="16" />
           New contact
         </Button>
