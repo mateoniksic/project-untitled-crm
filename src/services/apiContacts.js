@@ -18,27 +18,23 @@ export async function getContacts() {
 }
 
 export async function createOrEditContact(contact, id) {
-  // 1. Set avatar
+  // 1. Check and set avatar
   const hasAvatar = Boolean(contact.contact_avatar);
 
   let avatarFileName = '';
   let avatarUrlPath = '';
 
-  console.log('1:', contact, hasAvatar);
   if (hasAvatar) {
-    const hasAvatarPath = contact.contact_avatar?.startsWith?.(supabaseUrl);
-
     avatarFileName = `${
       contact.contact_avatar?.name
     }-${crypto.randomUUID()}`.replaceAll('/', '');
 
-    avatarUrlPath = hasAvatarPath
+    avatarUrlPath = contact.contact_avatar?.startsWith?.(supabaseUrl)
       ? contact.contact_avatar
       : `${supabaseUrl}/storage/v1/object/public/avatars/${avatarFileName}`;
   }
 
   avatarUrlPath = hasAvatar ? avatarUrlPath : null;
-  console.log('2:', contact, avatarUrlPath);
 
   // 2. Create query
   let query = supabase.from('contact');
@@ -66,8 +62,8 @@ export async function createOrEditContact(contact, id) {
     );
   }
 
+  // 4. Upload avatar image in storage bucket.
   if (hasAvatar) {
-    // 4. Upload avatar image in storage bucket.
     const { data: storageData, error: storageError } = await supabase.storage
       .from('avatars')
       .upload(avatarFileName, contact.contact_avatar);
@@ -84,12 +80,14 @@ export async function createOrEditContact(contact, id) {
 
 export async function deleteContact(id) {
   // 1. Fetch contact avatar url and create file path.
-  // const { data: contactAvatar, error: contactAvatarError } = await supabase
-  //   .from('contact')
-  //   .select('contact_avatar')
-  //   .eq('contact_id', id);
+  const { data: contactAvatar, error: contactAvatarError } = await supabase
+    .from('contact')
+    .select('contact_avatar')
+    .eq('contact_id', id);
 
-  // const avatarFilePath = contactAvatar.at(0).contact_avatar.split('/').at(-1);
+  const avatarFilePath = contactAvatar.at(0).contact_avatar
+    ? contactAvatar.at(0).contact_avatar.split('/').at(-1)
+    : null;
 
   // 2. Delete contact.
   const { error } = await supabase
@@ -103,12 +101,14 @@ export async function deleteContact(id) {
   }
 
   // 3. Delete avatar image from storage bucket.
-  // const { data: storageData, error: StorageError } = await supabase.storage
-  //   .from('avatars')
-  //   .remove([avatarFilePath]);
+  if (avatarFilePath) {
+    const { data: storageData, error: StorageError } = await supabase.storage
+      .from('avatars')
+      .remove([avatarFilePath]);
 
-  // if (StorageError) {
-  //   console.log(error);
-  //   throw new Error('There was a problem while deleting contact avatar.');
-  // }
+    if (StorageError) {
+      console.log(error);
+      throw new Error('There was a problem while deleting contact avatar.');
+    }
+  }
 }

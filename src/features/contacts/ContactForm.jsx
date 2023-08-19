@@ -45,8 +45,6 @@ function ContactForm({ contactToEdit = {} }) {
   });
 
   function onSubmit(data) {
-    console.log('On submit form:', data);
-
     const avatar = data.contact_avatar
       ? typeof data.contact_avatar === 'string'
         ? data.contact_avatar
