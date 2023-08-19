@@ -5,14 +5,14 @@ import { Toaster } from 'react-hot-toast';
 
 import GlobalStyles from './styles/GlobalStyles';
 
-import AppLayout from './ui/AppLayout';
+import AppLayout from './components/layout/AppLayout';
+import SettingsLayout from './components/layout/SettingsLayout';
 import Auth from './pages/Auth';
 import Dashboard from './pages/Dashboard';
 import Contacts from './pages/Contacts/Contacts';
 import Contact from './pages/Contacts/Contact';
 import Deals from './pages/Deals/Deals';
 import Deal from './pages/Deals/Deal';
-import SettingsLayout from './ui/SettingsLayout';
 import SettingsWorkspace from './pages/Settings/SettingsWorkspace';
 import SettingsProfile from './pages/Settings/SettingsProfile';
 import SettingsAccount from './pages/Settings/SettingsAccount';
@@ -62,18 +62,27 @@ function App() {
         gutter={16}
         toastOptions={{
           success: {
+            iconTheme: {
+              primary: 'var(--component-normal)',
+              secondary: 'var(--text-hc)',
+            },
             duration: 3000,
           },
           error: {
+            iconTheme: {
+              primary: 'var(--component-normal-danger)',
+              secondary: 'var(--text-hc-danger)',
+            },
             duration: 3000,
           },
           style: {
+            background: 'var(--bg-normal)',
+            border: '1px solid var(--border-non-interactive)',
+            boxShadow: '-0.6rem 0.6rem 0.1rem var(--bg-subtle)',
+            color: 'var(--text-hc)',
             fontSize: '1.4rem',
             maxWidth: '32rem',
             padding: '1.6rem',
-            background: 'white',
-            border: '1px solid var(--border-non-interactive)',
-            boxShadow: '-0.6rem 0.6rem 0.1rem var(--bg-subtle)',
           },
         }}
       />

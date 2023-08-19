@@ -1,10 +1,10 @@
 import { styled } from 'styled-components';
 
-import { Tab, Tabs, TabList, TabPanel } from '../ui/Tabs';
+import { Tab, Tabs, TabList, TabPanel } from '../components/common/Tabs';
 
 import SignInForm from '../features/auth/SignInForm';
 import SignUpForm from '../features/auth/SignUpForm';
-import Logo from '../ui/Logo';
+import Logo from '../components/layout/Logo';
 
 const StyledSignIn = styled.div`
   background-color: var(--bg-normal);

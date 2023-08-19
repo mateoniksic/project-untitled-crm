@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 
 import Logo from './Logo';
-import { Nav, NavList, NavLink } from '../ui/VerticalNav';
+import { Nav, NavList, NavLink } from './VerticalNav';
 
 const StyledSidebar = styled.aside`
   background: var(--bg-normal);

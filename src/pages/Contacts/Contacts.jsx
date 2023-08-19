@@ -2,9 +2,9 @@ import { styled } from 'styled-components';
 import { useEffect, useState } from 'react';
 import { PlusCircleIcon } from 'lucide-react';
 
-import MainContainer from '../../ui/MainContainer';
-import Button from '../../ui/Button';
-import Text from '../../ui/Text';
+import MainContainer from '../../components/layout/MainContainer';
+import Button from '../../components/common/Button';
+import Text from '../../components/common/Text';
 import ContactsTable from '../../features/contacts/ContactsTable';
 import ContactForm from '../../features/contacts/ContactForm';
 

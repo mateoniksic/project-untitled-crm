@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
 
-import Spinner from '../../ui/Spinner';
+import Spinner from '../../components/common/Spinner';
 import ContactRow from './ContactRow';
 
 import { getContacts } from '../../services/apiContacts';

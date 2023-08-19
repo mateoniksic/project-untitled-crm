@@ -140,7 +140,7 @@ export async function deleteContact(id) {
     .select('contact_avatar')
     .eq('contact_id', id);
 
-  const avatarFilePath = contactAvatar.at(0).contact_avatar
+  const avatarFilePath = contactAvatar?.at(0)?.contact_avatar
     ? contactAvatar.at(0).contact_avatar.split('/').at(-1)
     : false;
 

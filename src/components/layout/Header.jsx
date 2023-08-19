@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 
-import Text from './Text';
-import UserAvatar from '../features/auth/UserAvatar';
+import Text from '../common/Text';
+import UserAvatar from '../../features/auth/UserAvatar';
 
-import { useApp } from '../hooks/useApp';
+import { useApp } from '../../hooks/useApp';
 
 const StyledHeader = styled.header`
   align-items: center;

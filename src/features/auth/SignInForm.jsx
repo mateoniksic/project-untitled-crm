@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-import Text from '../../ui/Text';
+import Text from '../../components/common/Text';
 
 const StyledSignInForm = styled.div`
   padding: 3.2rem 0;

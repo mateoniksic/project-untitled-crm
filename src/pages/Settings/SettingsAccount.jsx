@@ -1,6 +1,9 @@
-import { Tab, Tabs, TabList, TabPanel } from '../../ui/Tabs';
-import { SettingsHeader, SettingsHeaderText } from '../../ui/SettingsHeader';
-import Text from '../../ui/Text';
+import { Tab, Tabs, TabList, TabPanel } from '../../components/common/Tabs';
+import {
+  SettingsHeader,
+  SettingsHeaderText,
+} from '../../components/layout/SettingsHeader';
+import Text from '../../components/common/Text';
 
 function SettingsAccount() {
   return (

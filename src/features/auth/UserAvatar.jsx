@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { User2 } from 'lucide-react';
 
-import Text from '../../ui/Text';
+import Text from '../../components/common/Text';
 
 const StyledUserAvatar = styled.div`
   align-items: center;

@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import Text from './Text';
+import Text from '../common/Text';
 
 const StyledLogo = styled(Link)`
   align-items: center;
@@ -18,7 +18,7 @@ const LogoImage = styled.img`
 function Logo({ className, to }) {
   return (
     <StyledLogo className={className} to={to}>
-      <LogoImage src="/logo/logo-wrapper.svg" alt="UntitledCRM logo" />
+      <LogoImage src="/logo/logo.svg" alt="UntitledCRM logo" />
       <Text size="large">UntitledCRM</Text>
     </StyledLogo>
   );

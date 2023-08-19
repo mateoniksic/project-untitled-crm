@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import MainContainer from '../../ui/MainContainer';
+import MainContainer from '../../components/layout/MainContainer';
 import DealsTable from '../../features/deals/DealsTable';
 
 import { useApp } from '../../hooks/useApp';

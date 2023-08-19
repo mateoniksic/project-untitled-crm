@@ -1,12 +1,35 @@
+import { styled } from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { PlusCircleIcon, Save, SaveIcon } from 'lucide-react';
 
-import Button from '../../ui/Button';
-import FormRow from '../../ui/FormRow';
-import { FileInput } from '../../ui/FileInput';
+import Button from '../../components/common/Button';
+import FormRow from '../../components/common/FormRow';
+import { FileInput } from '../../components/common/FileInput';
+import { Input } from '../../components/common/Input';
 
 import { useCreateContact } from './hooks/useCreateContact';
 import { useUpdateContact } from './hooks/useUpdateContact';
+
+const StyledContactForm = styled.form`
+  align-items: start;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 2.4rem;
+  justify-content: center;
+  max-width: 62rem;
+  min-width: max-content;
+  padding: 2.4rem;
+  width: 100%;
+`;
+
+const FormActions = styled.div`
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: 1.6rem;
+  width: 100%;
+`;
 
 function ContactForm({ contactToEdit = {} }) {
   const { contact_id: updateId, ...editValues } = contactToEdit;
@@ -60,9 +83,20 @@ function ContactForm({ contactToEdit = {} }) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
+    <StyledContactForm onSubmit={handleSubmit(onSubmit, onError)}>
+      <FormRow
+        label="Click to upload avatar."
+        type="file"
+        error={errors?.contact_avatar?.message}>
+        <FileInput
+          accept=".jpg, .jpeg, .png"
+          id="avatar"
+          {...register('contact_avatar')}
+        />
+      </FormRow>
+
       <FormRow label="First name:" error={errors?.contact_first_name?.message}>
-        <input
+        <Input
           type="text"
           id="fname"
           {...register('contact_first_name', {
@@ -72,7 +106,7 @@ function ContactForm({ contactToEdit = {} }) {
       </FormRow>
 
       <FormRow label="Last name:" error={errors?.contact_last_name?.message}>
-        <input
+        <Input
           type="text"
           id="lname"
           {...register('contact_last_name', {
@@ -82,7 +116,7 @@ function ContactForm({ contactToEdit = {} }) {
       </FormRow>
 
       <FormRow label="Email:" error={errors?.contact_email?.message}>
-        <input
+        <Input
           type="text"
           id="email"
           {...register('contact_email', {
@@ -92,7 +126,7 @@ function ContactForm({ contactToEdit = {} }) {
       </FormRow>
 
       <FormRow label="Phone:" error={errors?.contact_phone?.message}>
-        <input
+        <Input
           type="text"
           id="phone"
           {...register('contact_phone', {
@@ -101,28 +135,25 @@ function ContactForm({ contactToEdit = {} }) {
         />
       </FormRow>
 
-      <FormRow label="Avatar:" error={errors?.contact_avatar?.message}>
-        <FileInput
-          accept=".jpg, .jpeg, .png"
-          id="avatar"
-          {...register('contact_avatar')}
-        />
-      </FormRow>
-
-      <Button $variation="primary" disabled={isProcessing}>
-        {isUpdateSession ? (
-          <>
-            <SaveIcon size="16" />
-            Save changes
-          </>
-        ) : (
-          <>
-            <PlusCircleIcon size="16" />
-            Create contact
-          </>
-        )}
-      </Button>
-    </form>
+      <FormActions>
+        <Button variation="neutral" onClick={(e) => e.preventDefault()}>
+          Cancel
+        </Button>
+        <Button variation="primary" disabled={isProcessing}>
+          {isUpdateSession ? (
+            <>
+              <SaveIcon size="16" />
+              Save changes
+            </>
+          ) : (
+            <>
+              <PlusCircleIcon size="16" />
+              Create contact
+            </>
+          )}
+        </Button>
+      </FormActions>
+    </StyledContactForm>
   );
 }
 

@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 import UserAvatar from '../auth/UserAvatar';
 import ContactForm from './ContactForm';
-import Button from '../../ui/Button';
+import Button from '../../components/common/Button';
 
 import { useDeleteContact } from './hooks/useDeleteContact';
 
