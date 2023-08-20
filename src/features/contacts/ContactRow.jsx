@@ -8,13 +8,17 @@ import ContactForm from './ContactForm';
 import Button from '../../components/common/Button';
 
 import { useDeleteContact } from './hooks/useDeleteContact';
+import UpdateContact from './UpdateContact';
+import DeleteContact from './DeleteContact';
 
 const TableRow = styled.div`
   font-size: 1.4rem;
   font-weight: 500;
   line-height: 2rem;
   display: grid;
-  grid-template-columns: 0.85fr 1fr 0.7fr 0.6fr 0.5fr 0.5fr;
+  grid-template-columns:
+    minmax(20rem, 1fr) minmax(20rem, 1fr) minmax(12.5rem, 0.7fr)
+    minmax(20rem, 1fr) minmax(10.5rem, 0.65fr) minmax(16rem, 0.5fr);
   column-gap: 2.4rem;
   align-items: center;
   padding: 1.4rem 2.4rem;
@@ -66,15 +70,16 @@ function ContactRow({ contactPacked }) {
           <Button variation="neutral" to={`${contact.contact_id}`}>
             <EyeIcon size="16" />
           </Button>
-          <Button variation="primary" onClick={() => setShowForm(!showForm)}>
-            <PenBoxIcon size="16" />
-          </Button>
-          <Button
-            variation="danger"
-            onClick={() => deleteContact(contact.contact_id)}
-            disabled={isDeleting}>
-            <Trash2Icon size="16" />
-          </Button>
+          <UpdateContact contactToUpdate={contact} />
+          <DeleteContact
+            id={contact.contact_id}
+            resourceName={[
+              contact.contact_first_name,
+              contact.contact_last_name,
+            ].join(' ')}
+            disabled={isDeleting}
+            onDelete={deleteContact}
+          />
         </Actions>
       </TableRow>
       {showForm && <ContactForm contactToEdit={contact} />}

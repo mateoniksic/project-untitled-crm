@@ -4,6 +4,7 @@ const GlobalStyles = createGlobalStyle`
   :root {
   &, &.light-mode {
   --sage-1: hsl(155, 30.0%, 98.8%);
+  --sage-1-65: hsla(155, 30.0%, 98.8%,.65);
   --sage-2: hsl(150, 14.3%, 97.3%);
   --sage-3: hsl(150, 8.0%, 94.5%);
   --sage-4: hsl(150, 6.0%, 92.0%);
@@ -60,6 +61,7 @@ const GlobalStyles = createGlobalStyle`
   
   &.dark-mode {
     --sage-1: hsl(155, 7.0%, 9.2%);
+    --sage-1-65: hsla(155, 7.0%, 9.2%, .65);
     --sage-2: hsl(150, 7.7%, 10.2%);
     --sage-3: hsl(151, 5.5%, 15.2%);
     --sage-4: hsl(152, 4.7%, 18.3%);
@@ -115,6 +117,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   --bg-normal: var(--sage-1);
+  --bg-normal-65: var(--sage-1-65);
   --bg-subtle: var(--sage-2);
   --bg-solid-normal: var(--mint-9);
   --bg-solid-hovered: var(--mint-10);
@@ -196,7 +199,7 @@ input:focus,
 button:focus,
 textarea:focus,
 select:focus {
-  outline: 2px solid var(--component-selected);
+  outline: 2px solid var(--border-interactive-focus);
   outline-offset: -1px;
 }
 

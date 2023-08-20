@@ -24,8 +24,7 @@ const labelType = {
     gap: 1.6rem;
     justify-content: start;
     align-items: start;
-    padding: 2rem;
-    height: 8.5rem;
+    padding: 4rem 2.4rem 5rem 2.4rem;
 
     &:hover {
       cursor: pointer;

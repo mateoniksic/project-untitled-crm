@@ -58,7 +58,7 @@ const StyledLink = styled(Link)`
   ${(props) => (props.$variation ? variations[props.$variation] : 'primary')}
 `;
 
-function Button({ to, variation, onClick, disabled, children }) {
+function Button({ to, type, variation, onClick, disabled, children }) {
   if (to)
     return (
       <StyledLink $variation={variation} to={to}>
@@ -67,7 +67,11 @@ function Button({ to, variation, onClick, disabled, children }) {
     );
 
   return (
-    <StyledButton $variation={variation} onClick={onClick} disabled={disabled}>
+    <StyledButton
+      $variation={variation}
+      type={type}
+      onClick={onClick}
+      disabled={disabled}>
       {children}
     </StyledButton>
   );

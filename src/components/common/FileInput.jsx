@@ -6,8 +6,8 @@ const FileInput = styled.input.attrs({ type: 'file' })`
   line-height: 2rem;
   outline: transparent;
   position: absolute;
-  right: 3.3rem;
-  top: 4.5rem;
+  right: 2.9rem;
+  top: 6.4rem;
   width: 100%;
   cursor: pointer;
 

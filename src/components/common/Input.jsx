@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 
 const StyledInput = styled.input`
+  background-color: var(--component-interactive);
   border: 1px solid var(--border-interactive);
   border-radius: 0.6rem;
   font-size: 1.4rem;

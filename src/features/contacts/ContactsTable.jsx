@@ -21,7 +21,7 @@ const Table = styled.div`
   border-radius: 0.6rem;
   border: 1px solid var(--border-non-interactive);
   font-size: 1.4rem;
-  min-width: 120rem;
+  min-width: min-content;
   overflow: hidden;
   width: 100%;
 `;
@@ -34,7 +34,9 @@ const TableHeader = styled.header`
   column-gap: 2.4rem;
   display: grid;
   font-weight: 600;
-  grid-template-columns: 0.85fr 1fr 0.7fr 0.6fr 0.5fr 0.5fr;
+  grid-template-columns:
+    minmax(20rem, 1fr) minmax(20rem, 1fr) minmax(12.5rem, 0.7fr)
+    minmax(20rem, 1fr) minmax(10.5rem, 0.65fr) minmax(16rem, 0.5fr);
   letter-spacing: 0.4px;
   padding: 1.6rem 2.4rem;
   text-transform: uppercase;
