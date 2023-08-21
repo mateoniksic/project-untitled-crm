@@ -17,6 +17,24 @@ export async function getContacts() {
   return data;
 }
 
+export async function getContact(id) {
+  const { data, error } = await supabase
+    .from('contact')
+    .select(
+      `*, 
+    user_profile(*)`,
+    )
+    .eq('contact_id', id)
+    .single();
+
+  if (error) {
+    console.log(error);
+    throw new Error('There was a problem while fetching contact data.');
+  }
+
+  return data;
+}
+
 export async function updateContact(contact, id) {
   // 1. Check and set avatar
   const hasAvatar = Boolean(contact.contact_avatar);

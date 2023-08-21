@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-import Text from '../../components/common/Text';
+import Text from '../../components/Text';
 
 const StyledStat = styled.div`
   align-items: center;

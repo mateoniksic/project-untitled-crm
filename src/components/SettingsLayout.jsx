@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 import SettingsSidebar from './SettingsSidebar';
 
-import { useApp } from '../../hooks/useApp';
+import { useApp } from '../hooks/useApp';
 
 const StyledSettings = styled.div`
   display: grid;

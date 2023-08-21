@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import Text from '../common/Text';
+import Text from './Text';
 
 const StyledLogo = styled(Link)`
   align-items: center;

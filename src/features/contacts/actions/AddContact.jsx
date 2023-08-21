@@ -1,9 +1,8 @@
 import { PlusCircleIcon } from 'lucide-react';
 
-import Modal from '../../components/layout/Modal';
-import Button from '../../components/common/Button';
-
-import ContactForm from './ContactForm';
+import Modal from '../../../components/Modal';
+import Button from '../../../components/Button';
+import ContactForm from '../forms/ContactForm';
 
 function AddContact() {
   return (

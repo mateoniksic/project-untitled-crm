@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { Trash2Icon } from 'lucide-react';
 
 import Button from './Button';
-import Text from '../common/Text';
+import Text from './Text';
 
 const StyledConfirmDelete = styled.div`
   align-items: stretch;

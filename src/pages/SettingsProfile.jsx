@@ -1,9 +1,9 @@
-import { Tab, Tabs, TabList, TabPanel } from '../../components/common/Tabs';
+import { Tab, Tabs, TabList, TabPanel } from '../components/Tabs';
 import {
   SettingsHeader,
   SettingsHeaderText,
-} from '../../components/layout/SettingsHeader';
-import Text from '../../components/common/Text';
+} from '../components/SettingsHeader';
+import Text from '../components/Text';
 
 function SettingsProfile() {
   return (

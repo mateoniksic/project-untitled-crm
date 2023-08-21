@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 import { KeyRoundIcon, BriefcaseIcon, UserIcon } from 'lucide-react';
 
-import UserAvatar from '../../features/auth/UserAvatar';
+import UserAvatar from '../features/auth/UserAvatar';
 import { Nav, NavList, NavLink } from './VerticalNav';
-import Text from '../common/Text';
+import Text from './Text';
 
 const StyledSettingsSidebar = styled.div`
   background-color: var(--bg-subtle);

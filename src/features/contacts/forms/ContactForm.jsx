@@ -4,14 +4,14 @@ import { PlusCircleIcon, Save, SaveIcon } from 'lucide-react';
 
 import { useState } from 'react';
 
-import Button from '../../components/common/Button';
-import FormRow from '../../components/common/FormRow';
-import { FileInput } from '../../components/common/FileInput';
-import { Input } from '../../components/common/Input';
-import Text from '../../components/common/Text';
+import Button from '../../../components/Button';
+import FormRow from '../../../components/FormRow';
+import { FileInput } from '../../../components/InputFile';
+import { Input } from '../../../components/Input';
+import Text from '../../../components/Text';
 
-import { useCreateContact } from './hooks/useCreateContact';
-import { useUpdateContact } from './hooks/useUpdateContact';
+import { useCreateContact } from '../hooks/useCreateContact';
+import { useUpdateContact } from '../hooks/useUpdateContact';
 
 const StyledContactForm = styled.form`
   align-items: stretch;

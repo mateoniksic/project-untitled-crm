@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 
-import Text from '../common/Text';
-import UserAvatar from '../../features/auth/UserAvatar';
+import Text from './Text';
+import UserAvatar from '../features/auth/UserAvatar';
 
-import { useApp } from '../../hooks/useApp';
+import { useApp } from '../hooks/useApp';
 
 const StyledHeader = styled.header`
   align-items: center;
@@ -20,15 +20,13 @@ function Header() {
 
   return (
     <StyledHeader>
-      <div>
-        <Text as="h1" size="large">
-          {pageTitle}
-        </Text>
-      </div>
+      <Text as="h1" size="large">
+        {pageTitle}
+      </Text>
       <UserAvatar
-        firstName={'John'}
-        lastName={'Doe'}
-        email={'john.doe@example.com'}
+        firstName="John"
+        lastName="Doe"
+        email="john.doe@example.com"
         variation="reversed"
       />
     </StyledHeader>

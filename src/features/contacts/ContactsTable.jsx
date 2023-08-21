@@ -1,10 +1,8 @@
 import { styled } from 'styled-components';
-import { useQuery } from '@tanstack/react-query';
 
-import Spinner from '../../components/common/Spinner';
+import Spinner from '../../components/Spinner';
 import ContactRow from './ContactRow';
 
-import { getContacts } from '../../services/apiContacts';
 import { useEffect } from 'react';
 import { useContacts } from './hooks/useContacts';
 
@@ -36,7 +34,7 @@ const TableHeader = styled.header`
   font-weight: 600;
   grid-template-columns:
     minmax(20rem, 1fr) minmax(20rem, 1fr) minmax(12.5rem, 0.7fr)
-    minmax(20rem, 1fr) minmax(10.5rem, 0.65fr) minmax(16rem, 0.5fr);
+    minmax(20rem, 1fr) minmax(10.5rem, 0.65fr) 10rem;
   letter-spacing: 0.4px;
   padding: 1.6rem 2.4rem;
   text-transform: uppercase;

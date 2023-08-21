@@ -1,9 +1,8 @@
 import { Trash2Icon } from 'lucide-react';
 
-import Modal from '../../components/layout/Modal';
-import Button from '../../components/common/Button';
-
-import ConfirmDelete from '../../components/common/ConfirmDelete';
+import Modal from '../../../components/Modal';
+import Button from '../../../components/Button';
+import ConfirmDelete from '../../../components/ConfirmDelete';
 
 function DeleteContact({ id, resourceName, disabled, onDelete }) {
   return (

@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-import Text from '../../components/common/Text';
+import Text from '../../../components/Text';
 
 const StyledSignUpForm = styled.div`
   padding: 3.2rem 0;

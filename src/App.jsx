@@ -5,17 +5,17 @@ import { Toaster } from 'react-hot-toast';
 
 import GlobalStyles from './styles/GlobalStyles';
 
-import AppLayout from './components/layout/AppLayout';
-import SettingsLayout from './components/layout/SettingsLayout';
+import AppLayout from './components/AppLayout';
+import SettingsLayout from './components/SettingsLayout';
 import Auth from './pages/Auth';
 import Dashboard from './pages/Dashboard';
-import Contacts from './pages/Contacts/Contacts';
-import Contact from './pages/Contacts/Contact';
-import Deals from './pages/Deals/Deals';
-import Deal from './pages/Deals/Deal';
-import SettingsWorkspace from './pages/Settings/SettingsWorkspace';
-import SettingsProfile from './pages/Settings/SettingsProfile';
-import SettingsAccount from './pages/Settings/SettingsAccount';
+import Contacts from './pages/Contacts';
+import Contact from './pages/Contact';
+import Deals from './pages/Deals';
+import Deal from './pages/Deal';
+import SettingsWorkspace from './pages/SettingsWorkspace';
+import SettingsProfile from './pages/SettingsProfile';
+import SettingsAccount from './pages/SettingsAccount';
 import PageNotFound from './pages/PageNotFound';
 
 import { AppProvider } from './context/AppContext';

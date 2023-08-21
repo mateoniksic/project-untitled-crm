@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-import MainContainer from '../../components/layout/MainContainer';
+import MainContainer from '../components/MainContainer';
 
-import { useApp } from '../../hooks/useApp';
+import { useApp } from '../hooks/useApp';
 
 function Deal() {
   const { setPageTitle } = useApp();

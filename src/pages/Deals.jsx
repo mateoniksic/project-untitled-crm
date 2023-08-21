@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 
-import MainContainer from '../../components/layout/MainContainer';
-import DealsTable from '../../features/deals/DealsTable';
+import MainContainer from '../components/MainContainer';
+import DealsTable from '../features/deals/DealsTable';
 
-import { useApp } from '../../hooks/useApp';
+import { useApp } from '../hooks/useApp';
 
 function Deals() {
   const { setPageTitle } = useApp();

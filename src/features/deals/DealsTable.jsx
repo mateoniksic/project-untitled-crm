@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getDeals } from '../../services/apiDeals';
 
-import Spinner from '../../components/common/Spinner';
+import Spinner from '../../components/Spinner';
 
 function DealsTable() {
   const {

@@ -1,13 +1,12 @@
 import { styled } from 'styled-components';
 import { useEffect, useState } from 'react';
 
-import MainContainer from '../../components/layout/MainContainer';
+import MainContainer from '../components/MainContainer';
+import ContactsTable from '../features/contacts/ContactsTable';
+import AddContact from '../features/contacts/actions/AddContact';
+import Text from '../components/Text';
 
-import Text from '../../components/common/Text';
-import ContactsTable from '../../features/contacts/ContactsTable';
-
-import { useApp } from '../../hooks/useApp';
-import AddContact from '../../features/contacts/AddContact';
+import { useApp } from '../hooks/useApp';
 
 const ContactsHeader = styled.div`
   align-items: center;
@@ -26,7 +25,9 @@ function Contacts() {
   return (
     <MainContainer>
       <ContactsHeader>
-        <Text>Total contacts ({totalContacts})</Text>
+        <Text size="large" as="h2">
+          Total contacts ({totalContacts})
+        </Text>
         <AddContact />
       </ContactsHeader>
       <ContactsTable setTotalContacts={setTotalContacts} />
