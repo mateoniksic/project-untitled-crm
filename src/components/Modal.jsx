@@ -31,8 +31,11 @@ function Open({ children, windowName }) {
 }
 
 const StyledModal = styled.div`
-  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
   max-width: 62rem;
+  width: 100%;
 `;
 
 const Overlay = styled.div`
