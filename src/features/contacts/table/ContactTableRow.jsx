@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import UserAvatar from '../auth/UserAvatar';
-import DeleteContact from './actions/DeleteContact';
-import UpdateContact from './actions/UpdateContact';
+import UserAvatar from '../../auth/UserAvatar';
+import DeleteContact from '../actions/DeleteContact';
+import UpdateContact from '../actions/UpdateContact';
 
-import { useDeleteContact } from './hooks/useDeleteContact';
+import { useDeleteContact } from '../hooks/useDeleteContact';
+import Menus from '../../../components/MenuContext';
 
 const TableRow = styled.div`
   font-size: 1.4rem;
@@ -14,7 +15,7 @@ const TableRow = styled.div`
   display: grid;
   grid-template-columns:
     minmax(20rem, 1fr) minmax(20rem, 1fr) minmax(12.5rem, 0.7fr)
-    minmax(20rem, 1fr) minmax(10.5rem, 0.65fr) 10rem;
+    minmax(20rem, 1fr) minmax(10.5rem, 0.65fr) 3.6rem;
   column-gap: 2.4rem;
   align-items: center;
   padding: 1.4rem 2.4rem;
@@ -32,8 +33,8 @@ const ActionsColumn = styled.div`
   gap: 0.8rem;
 `;
 
-function ContactRow({ contactPacked }) {
-  const { user_profile, ...contact } = contactPacked;
+function ContactRow({ contactDetails }) {
+  const { user_profile, ...contact } = contactDetails;
   const { isDeleting, deleteContact } = useDeleteContact();
 
   return (
@@ -63,16 +64,25 @@ function ContactRow({ contactPacked }) {
           {new Date(contact.contact_created_at).toLocaleString('hr-HR')}
         </div>
         <ActionsColumn>
-          <UpdateContact contactToUpdate={contact} />
-          <DeleteContact
-            id={contact.contact_id}
-            resourceName={[
-              contact.contact_first_name,
-              contact.contact_last_name,
-            ].join(' ')}
-            disabled={isDeleting}
-            onDelete={deleteContact}
-          />
+          <Menus.Menu>
+            <Menus.Toggle id={contact.contact_id}></Menus.Toggle>
+            <Menus.List id={contact.contact_id}>
+              <Menus.Item>
+                <UpdateContact contactToUpdate={contact} />
+              </Menus.Item>
+              <Menus.Item>
+                <DeleteContact
+                  id={contact.contact_id}
+                  resourceName={[
+                    contact.contact_first_name,
+                    contact.contact_last_name,
+                  ].join(' ')}
+                  disabled={isDeleting}
+                  onDelete={deleteContact}
+                />
+              </Menus.Item>
+            </Menus.List>
+          </Menus.Menu>
         </ActionsColumn>
       </TableRow>
     </>

@@ -10,6 +10,7 @@ function UpdateContact({ contactToUpdate }) {
       <Modal.Open windowName="update-contact-form">
         <Button variation="primary">
           <PenBoxIcon size="16" />
+          Update
         </Button>
       </Modal.Open>
       <Modal.Window name="update-contact-form">

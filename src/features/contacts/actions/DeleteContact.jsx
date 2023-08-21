@@ -10,6 +10,7 @@ function DeleteContact({ id, resourceName, disabled, onDelete }) {
       <Modal.Open windowName="delete-contact-form">
         <Button variation="danger">
           <Trash2Icon size="16" />
+          Delete
         </Button>
       </Modal.Open>
       <Modal.Window name="delete-contact-form">

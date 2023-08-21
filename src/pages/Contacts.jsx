@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { useEffect, useState } from 'react';
 
 import MainContainer from '../components/MainContainer';
-import ContactsTable from '../features/contacts/ContactsTable';
+import ContactsTable from '../features/contacts/table/ContactsTable';
 import AddContact from '../features/contacts/actions/AddContact';
 import Text from '../components/Text';
 
