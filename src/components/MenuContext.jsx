@@ -4,8 +4,6 @@ import { MoreVerticalIcon } from 'lucide-react';
 
 import { createContext, useContext, useState } from 'react';
 
-import { useOutsideClick } from '../hooks/useOutsideClick';
-
 const MenusContext = createContext();
 
 function Menus({ children }) {
@@ -48,6 +46,8 @@ function Toggle({ id }) {
   const { openId, open, close, setPosition } = useContext(MenusContext);
 
   function handleClick(e) {
+    e.stopPropagation();
+
     const rect = e.target.closest('button').getBoundingClientRect();
 
     setPosition({
@@ -85,14 +85,10 @@ const StyledList = styled.ul`
 function List({ id, children }) {
   const { openId, close, position } = useContext(MenusContext);
 
-  const ref = useOutsideClick(close);
-
   if (openId !== id) return null;
 
   return createPortal(
-    <StyledList $position={position} ref={ref}>
-      {children}
-    </StyledList>,
+    <StyledList $position={position}>{children}</StyledList>,
     document.body,
   );
 }
