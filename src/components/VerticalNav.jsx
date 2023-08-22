@@ -39,13 +39,6 @@ const StyledNavLink = styled(NavLink)`
     border-radius: var(--border-radius-sm);
   }
 
-  & svg {
-    color: var(--text-hc);
-    height: 2rem;
-    transition: all 0.3s;
-    width: 2rem;
-  }
-
   &:hover svg,
   &:active svg,
   &.active:link svg,

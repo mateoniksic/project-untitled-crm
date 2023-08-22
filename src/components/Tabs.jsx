@@ -1,6 +1,10 @@
 import { styled } from 'styled-components';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 
+const StyledTabs = styled(Tabs)`
+  width: 100%;
+`;
+
 const StyledTabList = styled(TabList)`
   align-items: center;
   background-color: var(--component-normal);
@@ -25,4 +29,9 @@ const StyledTab = styled(Tab)`
   }
 `;
 
-export { Tabs, StyledTabList as TabList, StyledTab as Tab, TabPanel };
+export {
+  StyledTabs as Tabs,
+  StyledTabList as TabList,
+  StyledTab as Tab,
+  TabPanel,
+};

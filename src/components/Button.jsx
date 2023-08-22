@@ -39,7 +39,7 @@ const StyledButton = styled.button`
   line-height: 2rem;
   padding: 0.8rem 1.6rem;
 
-  ${(props) => (props.$variation ? variations[props.$variation] : 'primary')}
+  ${(props) => (props.$variation ? variations[props.$variation] : 'primary')};
 `;
 
 const StyledLink = styled(Link)`

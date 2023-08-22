@@ -10,7 +10,7 @@ const StyledSignIn = styled.div`
   background-color: var(--bg-normal);
   align-items: center;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(40rem, 1fr) 1fr;
   grid-template-rows: 1fr;
   height: 100dvh;
   justify-content: center;
@@ -23,6 +23,9 @@ const AuthFormDiv = styled.div`
   gap: 3.2rem;
   justify-content: start;
   padding: 4rem;
+  justify-self: center;
+  width: 100%;
+  max-width: 48rem;
 `;
 
 const AuthHeroDiv = styled.div`

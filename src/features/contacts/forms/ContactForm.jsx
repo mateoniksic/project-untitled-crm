@@ -1,8 +1,6 @@
 import { styled } from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { PlusCircleIcon, Save, SaveIcon } from 'lucide-react';
-
-import { useState } from 'react';
+import { PlusCircleIcon, SaveIcon } from 'lucide-react';
 
 import Button from '../../../components/Button';
 import FormRow from '../../../components/FormRow';

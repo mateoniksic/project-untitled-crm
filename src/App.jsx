@@ -17,6 +17,7 @@ import SettingsWorkspace from './pages/SettingsWorkspace';
 import SettingsProfile from './pages/SettingsProfile';
 import SettingsAccount from './pages/SettingsAccount';
 import PageNotFound from './pages/PageNotFound';
+import ProtectedRoute from './components/ProtectedRoute';
 
 import { AppProvider } from './context/AppContext';
 
@@ -40,7 +41,13 @@ function App() {
               <Route index element={<Navigate replace to="auth" />} />
               <Route path="auth" element={<Auth />} />
             </Route>
-            <Route path="workspace/" element={<AppLayout />}>
+            <Route
+              path="workspace/"
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }>
               <Route index element={<Navigate replace to="dashboard" />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="contacts" element={<Contacts />} />
