@@ -7,7 +7,7 @@ import Text from '../../../components/Text';
 import FormRow from '../../../components/FormRow';
 import { Input } from '../../../components/Input';
 import Button from '../../../components/Button';
-import { signIn } from '../../../services/apiAuth';
+
 import { useSignIn } from '../hooks/useSignIn';
 
 const StyledSignInForm = styled.form`
@@ -20,7 +20,6 @@ const StyledSignInForm = styled.form`
   gap: 2.4rem;
 `;
 
-const FormHeader = styled.div``;
 const FormMain = styled.div`
   align-items: start;
   display: flex;
@@ -57,14 +56,14 @@ function SignInForm() {
 
   return (
     <StyledSignInForm onSubmit={handleSubmit}>
-      <FormHeader>
+      <div>
         <Text as="h1" size="xlarge">
           Welcome back!
         </Text>
         <Text as="p" size="normal">
           Sign in to continue.
         </Text>
-      </FormHeader>
+      </div>
       <FormMain>
         <FormRow label="Email">
           <Input

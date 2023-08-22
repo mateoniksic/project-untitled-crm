@@ -1,4 +1,12 @@
-import supabase, { supabaseUrl } from './supabase';
+import supabase from './supabase';
+
+export async function signUp({ email, password }) {
+  const { data, error } = await supabase.auth.signUp({ email, password });
+
+  if (error) throw new Error('There was a problem while signing up a user.');
+
+  return data;
+}
 
 export async function signIn({ email, password }) {
   let { data, error } = await supabase.auth.signInWithPassword({
@@ -28,7 +36,7 @@ export async function getSignedInUser({ email, password }) {
   return data?.user;
 }
 
-export async function signOutUser() {
+export async function signOut() {
   const { error } = await supabase.auth.signOut();
 
   if (error) throw new Error('There was a problem signing out a user.');

@@ -28,10 +28,10 @@ const StyledButton = styled.button`
 `;
 
 function SignOut() {
-  const { signOutUser, isLoadingSignOutUser } = useSignOut();
+  const { signOut, isLoadingSignOut } = useSignOut();
 
   return (
-    <StyledButton onClick={signOutUser} disabled={isLoadingSignOutUser}>
+    <StyledButton onClick={signOut} disabled={isLoadingSignOut}>
       <LogOutIcon size="20" />
       Sign out
     </StyledButton>
