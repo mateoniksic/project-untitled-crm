@@ -20,7 +20,7 @@ export async function signIn({ email, password }) {
   return data;
 }
 
-export async function getSignedInUser({ email, password }) {
+export async function getSignedInUser() {
   const { data: session } = await supabase.auth.getSession();
 
   if (!session.session) return null;
