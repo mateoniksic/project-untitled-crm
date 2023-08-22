@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { Trash2Icon } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 import Button from './Button';
 import Text from './Text';
@@ -44,7 +45,21 @@ const ConfirmDeleteFooter = styled.div`
   padding: 2rem 2.4rem;
 `;
 
-function ConfirmDelete({ id, resourceName, disabled, onDelete, onCloseModal }) {
+function ConfirmDelete({
+  id,
+  resourceName,
+  disabled,
+  onDelete,
+  redirect,
+  onCloseModal,
+}) {
+  const navigate = useNavigate();
+
+  function handleDelete() {
+    onDelete(id);
+    if (redirect) navigate(redirect);
+  }
+
   return (
     <StyledConfirmDelete>
       <ConfirmDeleteHeader>
@@ -63,10 +78,7 @@ function ConfirmDelete({ id, resourceName, disabled, onDelete, onCloseModal }) {
           onClick={() => onCloseModal?.()}>
           Cancel
         </Button>
-        <Button
-          variation="danger"
-          disabled={disabled}
-          onClick={() => onDelete(id)}>
+        <Button variation="danger" disabled={disabled} onClick={handleDelete}>
           <Trash2Icon size="16" />
           Confirm delete
         </Button>

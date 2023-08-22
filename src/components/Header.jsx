@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 import Text from './Text';
-import UserAvatar from '../features/auth/UserAvatar';
+import AvatarCard from './AvatarCard';
 
 import { useApp } from '../hooks/useApp';
 
@@ -23,7 +23,7 @@ function Header() {
       <Text as="h1" size="large">
         {pageTitle}
       </Text>
-      <UserAvatar
+      <AvatarCard
         firstName="John"
         lastName="Doe"
         email="john.doe@example.com"

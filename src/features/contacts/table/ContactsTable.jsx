@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { useContacts } from '../hooks/useContacts';
 
 import Table from '../../../components/Table';
-import Menus from '../../../components/MenuContext';
+import Menus from '../../../components/Menus';
 
 function ContactsTable({ setTotalContacts }) {
   const { isLoading, contacts } = useContacts();
@@ -16,9 +16,9 @@ function ContactsTable({ setTotalContacts }) {
 
   if (isLoading)
     return (
-      <Table.Wrapper>
+      <Spinner.Wrapper>
         <Spinner />
-      </Table.Wrapper>
+      </Spinner.Wrapper>
     );
 
   return (

@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { KeyRoundIcon, BriefcaseIcon, UserIcon } from 'lucide-react';
 
-import UserAvatar from '../features/auth/UserAvatar';
+import AvatarCard from './AvatarCard';
 import { Nav, NavList, NavLink } from './VerticalNav';
 import Text from './Text';
 
@@ -29,7 +29,7 @@ function SettingsSidebar() {
   return (
     <StyledSettingsSidebar>
       <SettingsSidebarHeader>
-        <UserAvatar
+        <AvatarCard
           firstName={'John'}
           lastName={'Doe'}
           email={'john.doe@example.com'}

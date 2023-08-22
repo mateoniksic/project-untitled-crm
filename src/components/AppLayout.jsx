@@ -14,6 +14,7 @@ const StyledAppLayout = styled.div`
 const Main = styled.main`
   background-color: var(--bg-subtle);
   overflow: auto;
+  padding: 3.2rem;
 `;
 
 function AppLayout() {

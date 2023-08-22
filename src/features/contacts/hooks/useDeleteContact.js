@@ -8,11 +8,8 @@ function useDeleteContact() {
   const { isLoading: isDeleting, mutate: deleteContact } = useMutation({
     mutationFn: deleteContactApi,
     onSuccess: () => {
-      console.log();
-      queryClient.invalidateQueries({
-        queryKey: ['contacts'],
-      });
       toast.success(`Contact deleted successfully.`);
+      queryClient.invalidateQueries({ queryKey: ['contacts'] });
     },
     onError: (err) => toast.error(err.message),
   });

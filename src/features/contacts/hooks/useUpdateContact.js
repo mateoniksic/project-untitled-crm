@@ -9,6 +9,7 @@ function useUpdateContact() {
     mutationFn: ({ contact, id }) => updateContactApi(contact, id),
     onSuccess: () => {
       toast.success('Contact updated successfully.');
+      queryClient.invalidateQueries({ queryKey: ['contact'] });
       queryClient.invalidateQueries({ queryKey: ['contacts'] });
     },
     onError: (err) => toast.error(err),

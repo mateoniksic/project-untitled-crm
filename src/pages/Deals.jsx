@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 
-import MainContainer from '../components/MainContainer';
 import DealsTable from '../features/deals/DealsTable';
 
 import { useApp } from '../hooks/useApp';
@@ -10,10 +9,10 @@ function Deals() {
   useEffect(() => setPageTitle('Deals'));
 
   return (
-    <MainContainer>
+    <>
       Deals
       <DealsTable />
-    </MainContainer>
+    </>
   );
 }
 

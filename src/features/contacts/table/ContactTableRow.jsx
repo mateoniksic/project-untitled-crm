@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import UserAvatar from '../../auth/UserAvatar';
+import AvatarCard from '../../../components/AvatarCard';
 import DeleteContact from '../actions/DeleteContact';
 import UpdateContact from '../actions/UpdateContact';
 
 import { useDeleteContact } from '../hooks/useDeleteContact';
-import Menus from '../../../components/MenuContext';
+import Menus from '../../../components/Menus';
 
 const TableRow = styled.div`
   font-size: 1.4rem;
@@ -42,7 +42,7 @@ function ContactRow({ contactDetails }) {
       <TableRow role="row">
         <div>
           <Link to={`${contact.contact_id}`}>
-            <UserAvatar
+            <AvatarCard
               firstName={contact.contact_first_name}
               lastName={contact.contact_last_name}
               avatarUrl={contact.contact_avatar}
@@ -53,10 +53,10 @@ function ContactRow({ contactDetails }) {
         <div>{contact.contact_email}</div>
         <div>{contact.contact_phone}</div>
         <div>
-          <UserAvatar
+          <AvatarCard
             firstName={user_profile.user_first_name}
             lastName={user_profile.user_last_name}
-            avatarUrl={user_profile.user_avatar_url}
+            avatarUrl={user_profile.user_avatar}
             size="3.2"
           />
         </div>
@@ -68,7 +68,7 @@ function ContactRow({ contactDetails }) {
             <Menus.Toggle id={contact.contact_id}></Menus.Toggle>
             <Menus.List id={contact.contact_id}>
               <Menus.Item>
-                <UpdateContact contactToUpdate={contact} />
+                <UpdateContact contactToUpdate={contact}>Update</UpdateContact>
               </Menus.Item>
               <Menus.Item>
                 <DeleteContact
@@ -78,8 +78,9 @@ function ContactRow({ contactDetails }) {
                     contact.contact_last_name,
                   ].join(' ')}
                   disabled={isDeleting}
-                  onDelete={deleteContact}
-                />
+                  onDelete={deleteContact}>
+                  Delete
+                </DeleteContact>
               </Menus.Item>
             </Menus.List>
           </Menus.Menu>

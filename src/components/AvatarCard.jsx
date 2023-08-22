@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import Text from '../../components/Text';
+import Text from './Text';
 
-const StyledUserAvatar = styled.div`
+const StyledAvatarCard = styled.div`
   align-items: center;
   color: var(--color-grey-600);
   display: flex;
@@ -11,7 +11,7 @@ const StyledUserAvatar = styled.div`
   gap: 1.2rem;
 `;
 
-const UserAvatarWrapper = styled.div`
+const AvatarWrapper = styled.div`
   border-radius: 100%;
   border: 1px solid var(--border-non-interactive);
   display: inline-block;
@@ -27,12 +27,12 @@ const Avatar = styled.img`
   width: 100%;
 `;
 
-const UserDetails = styled.div`
+const AvatarDetails = styled.div`
   display: flex;
   flex-flow: column nowrap;
 `;
 
-function UserAvatar({
+function AvatarCard({
   firstName,
   lastName,
   email,
@@ -46,56 +46,56 @@ function UserAvatar({
 
   if (variation === 'full')
     return (
-      <StyledUserAvatar>
-        <UserAvatarWrapper $size={size}>
+      <StyledAvatarCard>
+        <AvatarWrapper $size={size}>
           <Avatar
             src={avatarUrl || fallbackAvatarUrl}
             alt={`${firstName} ${lastName}'s avatar`}
           />
-        </UserAvatarWrapper>
-        <UserDetails>
+        </AvatarWrapper>
+        <AvatarDetails>
           <Text as="span" size="subtle-medium">
             {`${firstName} ${lastName}`}
           </Text>
           <Text as="span" size="detail">
             {email}
           </Text>
-        </UserDetails>
-      </StyledUserAvatar>
+        </AvatarDetails>
+      </StyledAvatarCard>
     );
 
   if (variation === 'reversed')
     return (
-      <StyledUserAvatar>
-        <UserDetails>
+      <StyledAvatarCard>
+        <AvatarDetails>
           <Text as="span" size="subtle-medium">
             {`${firstName} ${lastName}`}
           </Text>
-        </UserDetails>
-        <UserAvatarWrapper $size={size}>
+        </AvatarDetails>
+        <AvatarWrapper $size={size}>
           <Avatar
             src={avatarUrl || fallbackAvatarUrl}
             alt={`${firstName} ${lastName}'s avatar`}
           />
-        </UserAvatarWrapper>
-      </StyledUserAvatar>
+        </AvatarWrapper>
+      </StyledAvatarCard>
     );
 
   return (
-    <StyledUserAvatar>
-      <UserAvatarWrapper $size={size}>
+    <StyledAvatarCard>
+      <AvatarWrapper $size={size}>
         <Avatar
           src={avatarUrl || fallbackAvatarUrl}
           alt={`${firstName} ${lastName}'s avatar`}
         />
-      </UserAvatarWrapper>
-      <UserDetails>
+      </AvatarWrapper>
+      <AvatarDetails>
         <Text as="span" size="subtle-medium">
           {`${firstName} ${lastName}`}
         </Text>
-      </UserDetails>
-    </StyledUserAvatar>
+      </AvatarDetails>
+    </StyledAvatarCard>
   );
 }
 
-export default UserAvatar;
+export default AvatarCard;
