@@ -12,7 +12,7 @@ function SignUpForm() {
         Create an account.
       </Text>
       <Text as="p" size="normal">
-        And start scaling your business to the next level.
+        And grow your business to the next level.
       </Text>
     </StyledSignUpForm>
   );
