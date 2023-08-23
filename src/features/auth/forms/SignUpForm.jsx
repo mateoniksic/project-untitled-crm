@@ -1,38 +1,8 @@
-import { styled } from 'styled-components';
-import { MailIcon } from 'lucide-react';
-
 import { useForm } from 'react-hook-form';
-
+import { MailIcon } from 'lucide-react';
+import Form from '../../../components/Form';
 import Text from '../../../components/Text';
-import FormRow from '../../../components/FormRow';
-import { Input } from '../../../components/Input';
-import Button from '../../../components/Button';
-
 import { useSignUp } from '../hooks/useSignUp';
-
-const StyledSignUpForm = styled.form`
-  padding: 3.2rem 0;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: start;
-  align-items: stretch;
-  width: 100%;
-  gap: 2.4rem;
-`;
-
-const FormMain = styled.div`
-  align-items: start;
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 1.6rem;
-  justify-content: start;
-`;
-const FormFooter = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: start;
-  align-items: stretch;
-`;
 
 function SignUpForm() {
   const {
@@ -59,18 +29,18 @@ function SignUpForm() {
   }
 
   return (
-    <StyledSignUpForm onSubmit={handleSubmit(onSubmit, onError)}>
-      <div>
+    <Form onSubmit={handleSubmit(onSubmit, onError)}>
+      <Form.Header>
         <Text as="h1" size="xlarge">
           Create an account.
         </Text>
         <Text as="p" size="normal">
           And grow your business to the next level.
         </Text>
-      </div>
-      <FormMain>
-        <FormRow label="Email" error={errors?.email?.message}>
-          <Input
+      </Form.Header>
+      <Form.Main>
+        <Form.Row label="Email" error={errors?.email?.message}>
+          <Form.Input
             type="email"
             id="email"
             disabled={isLoadingSignUp}
@@ -82,9 +52,9 @@ function SignUpForm() {
               },
             })}
           />
-        </FormRow>
-        <FormRow label="Password" error={errors?.password?.message}>
-          <Input
+        </Form.Row>
+        <Form.Row label="Password" error={errors?.password?.message}>
+          <Form.Input
             type="password"
             id="password"
             disabled={isLoadingSignUp}
@@ -96,11 +66,11 @@ function SignUpForm() {
               },
             })}
           />
-        </FormRow>
-        <FormRow
+        </Form.Row>
+        <Form.Row
           label="Confirm password"
           error={errors?.passwordConfirm?.message}>
-          <Input
+          <Form.Input
             type="password"
             id="password-confirm"
             disabled={isLoadingSignUp}
@@ -110,15 +80,18 @@ function SignUpForm() {
                 value === getValues().password || 'Passwords need to match.',
             })}
           />
-        </FormRow>
-      </FormMain>
-      <FormFooter>
-        <Button variation="primary" type="submit" disabled={isLoadingSignUp}>
+        </Form.Row>
+      </Form.Main>
+      <Form.Footer>
+        <Form.Button
+          variation="primary"
+          type="submit"
+          disabled={isLoadingSignUp}>
           <MailIcon size="20" />
           Sign up with email
-        </Button>
-      </FormFooter>
-    </StyledSignUpForm>
+        </Form.Button>
+      </Form.Footer>
+    </Form>
   );
 }
 

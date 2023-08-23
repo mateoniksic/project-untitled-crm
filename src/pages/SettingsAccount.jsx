@@ -4,6 +4,8 @@ import {
   SettingsHeaderText,
 } from '../components/SettingsHeader';
 import Text from '../components/Text';
+import UpdateEmailForm from '../features/settings/account/forms/UpdateEmailForm';
+import UpdatePasswordForm from '../features/settings/account/forms/UpdatePasswordForm';
 
 function SettingsAccount() {
   return (
@@ -23,8 +25,12 @@ function SettingsAccount() {
             <Tab>Password</Tab>
           </TabList>
         </SettingsHeader>
-        <TabPanel>EmailForm</TabPanel>
-        <TabPanel>PasswordForm</TabPanel>
+        <TabPanel>
+          <UpdateEmailForm />
+        </TabPanel>
+        <TabPanel>
+          <UpdatePasswordForm />
+        </TabPanel>
       </Tabs>
     </>
   );

@@ -42,7 +42,7 @@ function SettingsSidebar() {
             <Text size="subtle-semibold">Workspace settings</Text>
             <li>
               <NavLink to="/workspace/settings" end>
-                <BriefcaseIcon />
+                <BriefcaseIcon size="20" />
                 <span>Workspace</span>
               </NavLink>
             </li>
@@ -51,13 +51,13 @@ function SettingsSidebar() {
             <Text size="subtle-semibold">User settings</Text>
             <li>
               <NavLink to="/workspace/settings/profile">
-                <UserIcon />
+                <UserIcon size="20" />
                 <span>Profile</span>
               </NavLink>
             </li>
             <li>
               <NavLink to="/workspace/settings/account">
-                <KeyRoundIcon />
+                <KeyRoundIcon size="20" />
                 <span>Account</span>
               </NavLink>
             </li>

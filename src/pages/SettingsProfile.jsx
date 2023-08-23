@@ -1,9 +1,9 @@
-import { Tab, Tabs, TabList, TabPanel } from '../components/Tabs';
 import {
   SettingsHeader,
   SettingsHeaderText,
 } from '../components/SettingsHeader';
 import Text from '../components/Text';
+import UpdateProfileForm from '../features/settings/profile/forms/UpdateProfileForm';
 
 function SettingsProfile() {
   return (
@@ -18,7 +18,7 @@ function SettingsProfile() {
           </Text>
         </SettingsHeaderText>
       </SettingsHeader>
-      <div>ProfileForm</div>
+      <UpdateProfileForm />
     </>
   );
 }

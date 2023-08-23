@@ -1,38 +1,11 @@
-import { styled } from 'styled-components';
 import { MailIcon } from 'lucide-react';
 
 import { useState } from 'react';
 
 import Text from '../../../components/Text';
-import FormRow from '../../../components/FormRow';
-import { Input } from '../../../components/Input';
-import Button from '../../../components/Button';
+import Form from '../../../components/Form';
 
 import { useSignIn } from '../hooks/useSignIn';
-
-const StyledSignInForm = styled.form`
-  padding: 3.2rem 0;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: start;
-  align-items: stretch;
-  width: 100%;
-  gap: 2.4rem;
-`;
-
-const FormMain = styled.div`
-  align-items: start;
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 1.6rem;
-  justify-content: start;
-`;
-const FormFooter = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: start;
-  align-items: stretch;
-`;
 
 function SignInForm() {
   const [email, setEmail] = useState('mateo.niksic@student.uniri.hr');
@@ -55,18 +28,18 @@ function SignInForm() {
   }
 
   return (
-    <StyledSignInForm onSubmit={handleSubmit}>
-      <div>
+    <Form onSubmit={handleSubmit}>
+      <Form.Header>
         <Text as="h1" size="xlarge">
           Welcome back!
         </Text>
         <Text as="p" size="normal">
           Sign in to continue.
         </Text>
-      </div>
-      <FormMain>
-        <FormRow label="Email">
-          <Input
+      </Form.Header>
+      <Form.Main>
+        <Form.Row label="Email">
+          <Form.Input
             type="email"
             id="email"
             autoComplete="username"
@@ -74,9 +47,9 @@ function SignInForm() {
             value={email}
             disabled={isLoadingSignIn}
           />
-        </FormRow>
-        <FormRow label="Password">
-          <Input
+        </Form.Row>
+        <Form.Row label="Password">
+          <Form.Input
             type="password"
             id="password"
             autoComplete="current-password"
@@ -84,15 +57,18 @@ function SignInForm() {
             value={password}
             disabled={isLoadingSignIn}
           />
-        </FormRow>
-      </FormMain>
-      <FormFooter>
-        <Button variation="primary" type="submit" disabled={isLoadingSignIn}>
+        </Form.Row>
+      </Form.Main>
+      <Form.Footer>
+        <Form.Button
+          variation="primary"
+          type="submit"
+          disabled={isLoadingSignIn}>
           <MailIcon size="20" />
           Sign in with email
-        </Button>
-      </FormFooter>
-    </StyledSignInForm>
+        </Form.Button>
+      </Form.Footer>
+    </Form>
   );
 }
 

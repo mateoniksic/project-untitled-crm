@@ -4,6 +4,8 @@ import {
   SettingsHeaderText,
 } from '../components/SettingsHeader';
 import Text from '../components/Text';
+import UpdateBusinessForm from '../features/settings/workspace/forms/UpdateBusinessForm';
+import UpdatePreferencesForm from '../features/settings/workspace/forms/UpdatePreferencesForm';
 
 function SettingsWorkspace() {
   return (
@@ -23,8 +25,12 @@ function SettingsWorkspace() {
             <Tab>Preferences</Tab>
           </TabList>
         </SettingsHeader>
-        <TabPanel>GeneralForm</TabPanel>
-        <TabPanel>PreferencesForm</TabPanel>
+        <TabPanel>
+          <UpdateBusinessForm />
+        </TabPanel>
+        <TabPanel>
+          <UpdatePreferencesForm />
+        </TabPanel>
       </Tabs>
     </>
   );
