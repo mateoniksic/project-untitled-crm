@@ -87,7 +87,7 @@ export async function signOut() {
 
 export async function updateUser({ email, password }) {
   let updateData = {};
-  if (email) updateData = { email, email_change: null };
+  if (email) updateData = { email };
   if (password) updateData = { password };
 
   const { error } = await supabase.auth.updateUser(updateData);
