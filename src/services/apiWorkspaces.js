@@ -1,7 +1,7 @@
 import supabase from './supabase';
 
 export async function getWorkspace() {
-  let { data, error } = await supabase.from('workspace').select('*');
+  let { data, error } = await supabase.from('workspace').select('*').select();
 
   if (error) {
     console.log(error);

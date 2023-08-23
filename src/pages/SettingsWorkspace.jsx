@@ -4,7 +4,7 @@ import {
   SettingsHeaderText,
 } from '../components/SettingsHeader';
 import Text from '../components/Text';
-import UpdateBusinessForm from '../features/settings/workspace/forms/UpdateBusinessForm';
+import UpdateBusinessProfileForm from '../features/settings/workspace/forms/UpdateBusinessProfileForm';
 import UpdatePreferencesForm from '../features/settings/workspace/forms/UpdatePreferencesForm';
 
 function SettingsWorkspace() {
@@ -26,7 +26,7 @@ function SettingsWorkspace() {
           </TabList>
         </SettingsHeader>
         <TabPanel>
-          <UpdateBusinessForm />
+          <UpdateBusinessProfileForm />
         </TabPanel>
         <TabPanel>
           <UpdatePreferencesForm />

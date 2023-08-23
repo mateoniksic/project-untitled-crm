@@ -1,16 +1,35 @@
 import { useForm } from 'react-hook-form';
 import Form from '../../../../components/Form';
+import { useBusinessProfile } from '../hooks/useBusinessProfile';
+import { useUser } from '../../../auth/hooks/useUser';
+import { useUpdateBusinessProfile } from '../hooks/useUpdateBusinessProfile';
+import { useEffect } from 'react';
 
 function UpdateBusinessForm() {
   const {
+    user: { workspaceId },
+  } = useUser();
+
+  const { businessProfile } = useBusinessProfile(workspaceId);
+
+  const {
     register,
     formState: { errors },
-    getValues,
     handleSubmit,
     reset,
-  } = useForm();
+  } = useForm({ defaultValues: businessProfile });
 
-  function onSubmit() {}
+  useEffect(() => reset(businessProfile), [reset, businessProfile]);
+
+  const { updateBusinessProfile, isUpdatingBusinessProfile } =
+    useUpdateBusinessProfile();
+
+  function onSubmit(data) {
+    updateBusinessProfile(
+      { businessProfile: data, workspaceId },
+      { onSuccess: () => reset() },
+    );
+  }
 
   function onError(error) {
     console.log(error);
@@ -25,7 +44,7 @@ function UpdateBusinessForm() {
           <Form.Input
             type="text"
             id="business_profile_name"
-            disabled={''}
+            disabled={isUpdatingBusinessProfile}
             {...register('business_profile_name')}
           />
         </Form.Row>
@@ -35,7 +54,7 @@ function UpdateBusinessForm() {
           <Form.Input
             type="text"
             id="business_profile_email"
-            disabled={''}
+            disabled={isUpdatingBusinessProfile}
             {...register('business_profile_email')}
           />
         </Form.Row>
@@ -45,23 +64,23 @@ function UpdateBusinessForm() {
           <Form.Input
             type="text"
             id="business_profile_phone"
-            disabled={''}
+            disabled={isUpdatingBusinessProfile}
             {...register('business_profile_phone')}
           />
         </Form.Row>
         <Form.Row
           label="Business website"
-          error={errors?.business_profile_email?.message}>
+          error={errors?.business_profile_website?.message}>
           <Form.Input
             type="text"
             id="business_profile_website"
-            disabled={''}
+            disabled={isUpdatingBusinessProfile}
             {...register('business_profile_website')}
           />
         </Form.Row>
       </Form.Main>
       <Form.Footer>
-        <Form.Button variation="primary" disabled={''}>
+        <Form.Button variation="primary" disabled={isUpdatingBusinessProfile}>
           Save changes
         </Form.Button>
       </Form.Footer>

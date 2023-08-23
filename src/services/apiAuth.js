@@ -30,6 +30,14 @@ export async function signUp({ fname, lname, email, password }) {
   if (workspaceError)
     throw new Error('There was a problem while creating a workspace.');
 
+  //4. Create a business profile
+  const { error: businessProfileError } = await supabase
+    .from('business_profile')
+    .insert([{ workspace_id: workspace.workspace_id }]);
+
+  if (businessProfileError)
+    throw new Error('There was a problem while creating a business profile.');
+
   //4. Assign a user to workspace
   const { error: userWorkspaceError } = await supabase
     .from('user_workspace')
