@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import Form from '../../../../components/Form';
+import useUpdateUser from '../hooks/useUpdateUser';
 
 function UpdatePasswordForm() {
   const {
@@ -7,10 +8,13 @@ function UpdatePasswordForm() {
     formState: { errors },
     getValues,
     handleSubmit,
-    reset,
   } = useForm();
 
-  function onSubmit() {}
+  const { updateUser, isLoadingUpdateUser } = useUpdateUser();
+
+  function onSubmit({ password }) {
+    updateUser({ password });
+  }
 
   function onError(error) {
     console.log(error);
@@ -23,7 +27,7 @@ function UpdatePasswordForm() {
           <Form.Input
             type="password"
             id="password"
-            disabled={''}
+            disabled={isLoadingUpdateUser}
             {...register('password', {
               required: 'This field is required.',
               minLength: {
@@ -39,7 +43,7 @@ function UpdatePasswordForm() {
           <Form.Input
             type="password"
             id="password-confirm"
-            disabled={''}
+            disabled={isLoadingUpdateUser}
             {...register('passwordConfirm', {
               required: 'This field is required.',
               validate: (value) =>

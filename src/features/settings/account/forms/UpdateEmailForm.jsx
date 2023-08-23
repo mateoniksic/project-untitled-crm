@@ -1,16 +1,25 @@
 import { useForm } from 'react-hook-form';
 import Form from '../../../../components/Form';
+import { useUser } from '../../../auth/hooks/useUser';
+import useUpdateUser from '../hooks/useUpdateUser';
 
 function UpdateEmailForm() {
+  const {
+    user: { email },
+  } = useUser();
+
   const {
     register,
     formState: { errors },
     getValues,
     handleSubmit,
-    reset,
-  } = useForm();
+  } = useForm({ defaultValues: { email } });
 
-  function onSubmit() {}
+  const { updateUser, isLoadingUpdateUser } = useUpdateUser();
+
+  function onSubmit({ email }) {
+    updateUser({ email });
+  }
 
   function onError(error) {
     console.log(error);
@@ -23,7 +32,7 @@ function UpdateEmailForm() {
           <Form.Input
             type="email"
             id="email"
-            disabled={''}
+            disabled={isLoadingUpdateUser}
             {...register('email', {
               required: 'This field is required.',
               pattern: {
@@ -37,7 +46,7 @@ function UpdateEmailForm() {
           <Form.Input
             type="email"
             id="email-confirm"
-            disabled={''}
+            disabled={isLoadingUpdateUser}
             {...register('confirmEmail', {
               required: 'This field is required.',
               validate: (value) =>
@@ -47,7 +56,7 @@ function UpdateEmailForm() {
         </Form.Row>
       </Form.Main>
       <Form.Footer>
-        <Form.Button variation="primary" disabled={''}>
+        <Form.Button variation="primary" disabled={isLoadingUpdateUser}>
           Change email
         </Form.Button>
       </Form.Footer>

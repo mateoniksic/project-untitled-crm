@@ -15,9 +15,9 @@ function SignUpForm() {
 
   const { signUp, isLoadingSignUp } = useSignUp();
 
-  function onSubmit({ email, password }) {
+  function onSubmit({ fname, lname, email, password }) {
     signUp(
-      { email, password },
+      { fname, lname, email, password },
       {
         onSettled: reset(),
       },
@@ -39,6 +39,26 @@ function SignUpForm() {
         </Text>
       </Form.Header>
       <Form.Main>
+        <Form.Row label="First name" error={errors?.fname?.message}>
+          <Form.Input
+            type="text"
+            id="fname"
+            disabled={isLoadingSignUp}
+            {...register('fname', {
+              required: 'This field is required.',
+            })}
+          />
+        </Form.Row>
+        <Form.Row label="Last name" error={errors?.lname?.message}>
+          <Form.Input
+            type="text"
+            id="lname"
+            disabled={isLoadingSignUp}
+            {...register('lname', {
+              required: 'This field is required.',
+            })}
+          />
+        </Form.Row>
         <Form.Row label="Email" error={errors?.email?.message}>
           <Form.Input
             type="email"

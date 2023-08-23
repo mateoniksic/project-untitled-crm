@@ -11,7 +11,6 @@ function useSignIn() {
   const { mutate: signIn, isLoading: isLoadingSignIn } = useMutation({
     mutationFn: ({ email, password }) => signInApi({ email, password }),
     onSuccess: (user) => {
-      console.log(user);
       queryClient.setQueryData(['user'], user.user);
       navigate('/workspace', { replace: true });
     },
