@@ -14,6 +14,7 @@ import Contact from './pages/Contact';
 import Deals from './pages/Deals';
 import Deal from './pages/Deal';
 import SettingsWorkspace from './pages/SettingsWorkspace';
+import SettingsMembers from './pages/SettingsMembers';
 import SettingsProfile from './pages/SettingsProfile';
 import SettingsAccount from './pages/SettingsAccount';
 import PageNotFound from './pages/PageNotFound';
@@ -56,6 +57,7 @@ function App() {
               <Route path="deals/:dealId" element={<Deal />} />
               <Route path="settings" element={<SettingsLayout />}>
                 <Route index element={<SettingsWorkspace />} />
+                <Route path="members" element={<SettingsMembers />} />
                 <Route path="profile" element={<SettingsProfile />} />
                 <Route path="account" element={<SettingsAccount />} />
               </Route>

@@ -14,7 +14,11 @@ export async function signUp({ fname, lname, email, password }) {
   const { error: userProfileError } = await supabase
     .from('user_profile')
     .insert([
-      { user_id: user.user.id, user_first_name: fname, user_last_name: lname },
+      {
+        user_id: user.user.id,
+        user_profile_first_name: fname,
+        user_profile_last_name: lname,
+      },
     ]);
 
   if (userProfileError)
@@ -105,4 +109,38 @@ export async function updateUser({ email, password }) {
 
   if (error)
     throw new Error('There was a problem while updating a user account.');
+}
+
+export async function signUpMember({ member, workspaceId }) {
+  console.log(member, workspaceId);
+  // 1. Sign up a user
+  const { data: user, error: userError } = await supabase.auth.signUp({
+    email: member.email,
+    password: member.password,
+  });
+
+  if (userError)
+    throw new Error('There was a problem while creating a member.');
+
+  //2. Create a user profile for member
+  const { error: userProfileError } = await supabase
+    .from('user_profile')
+    .insert([
+      {
+        user_id: user.user.id,
+        user_profile_first_name: member.fname,
+        user_profile_last_name: member.lname,
+      },
+    ]);
+
+  if (userProfileError)
+    throw new Error('There was a problem while creating a user profile.');
+
+  //3. Assign a user to workspace
+  const { error: userWorkspaceError } = await supabase
+    .from('user_workspace')
+    .insert([{ user_id: user.user.id, workspace_id: workspaceId }]);
+
+  if (userWorkspaceError)
+    throw new Error('There was a problem while assigning a user to workspace.');
 }

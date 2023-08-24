@@ -27,3 +27,28 @@ export async function updateWorkspace({ workspace, workspaceId }) {
 
   return data;
 }
+
+export async function getWorkspaceUserProfiles({ workspaceId }) {
+  const { data: workspaceUsers, error: workspaceUsersError } = await supabase
+    .from('user_workspace')
+    .select('user_id')
+    .eq('workspace_id', workspaceId);
+
+  if (workspaceUsersError) {
+    throw new Error('There was a problem while fetching workspace user ids.');
+  }
+
+  const workspaceUsersId = workspaceUsers.map((user) => user.user_id);
+  const { data: userProfiles, error: userProfilesError } = await supabase
+    .from('user_profile')
+    .select('*')
+    .in('user_id', workspaceUsersId);
+
+  if (userProfilesError) {
+    throw new Error(
+      'There was a problem while fetching workspace user profiles.',
+    );
+  }
+
+  return userProfiles;
+}

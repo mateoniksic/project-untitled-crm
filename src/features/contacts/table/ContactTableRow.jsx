@@ -52,9 +52,9 @@ function ContactRow({ contactDetails }) {
         <div>{contact.contact_phone}</div>
         <div>
           <ProfileCard
-            firstName={user_profile.user_profile_first_name}
-            lastName={user_profile.user_profile_last_name}
-            avatarUrl={user_profile.user_profile_avatar}
+            firstName={user_profile?.user_profile_first_name}
+            lastName={user_profile?.user_profile_last_name}
+            avatarUrl={user_profile?.user_profile_avatar}
             size="3.2"
           />
         </div>

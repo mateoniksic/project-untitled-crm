@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { KeyRoundIcon, BriefcaseIcon, UserIcon } from 'lucide-react';
+import { KeyRoundIcon, BriefcaseIcon, UserIcon, Users2 } from 'lucide-react';
 import { Nav, NavList, NavLink } from './VerticalNav';
 import { useUser } from '../features/auth/hooks/useUser';
 import { useUserProfile } from '../features/settings/profile/hooks/useUserProfile';
@@ -57,6 +57,12 @@ function SettingsSidebar() {
               <NavLink to="/workspace/settings" end>
                 <BriefcaseIcon size="20" />
                 <span>Workspace</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/workspace/settings/members" end>
+                <Users2 size="20" />
+                <span>Members</span>
               </NavLink>
             </li>
           </NavList>
