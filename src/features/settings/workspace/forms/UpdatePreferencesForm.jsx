@@ -18,7 +18,7 @@ function UpdatePreferencesForm() {
     user: { workspace_id: workspaceId },
   } = useUser();
 
-  const { workspace, isLoadingWorkspace } = useWorkspace(workspaceId);
+  const { workspace, isLoadingWorkspace } = useWorkspace({ workspaceId });
   useEffect(() => reset(workspace), [reset, workspace]);
 
   const { updateWorkspace, isUpdatingWorkspace } = useUpdateWorkspace();

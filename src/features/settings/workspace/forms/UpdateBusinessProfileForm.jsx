@@ -18,8 +18,9 @@ function UpdateBusinessForm() {
     user: { workspace_id: workspaceId },
   } = useUser();
 
-  const { businessProfile, isLoadingBussinessProfile } =
-    useBusinessProfile(workspaceId);
+  const { businessProfile, isLoadingBussinessProfile } = useBusinessProfile({
+    workspaceId,
+  });
 
   useEffect(() => reset(businessProfile), [reset, businessProfile]);
 

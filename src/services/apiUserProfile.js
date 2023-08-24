@@ -1,6 +1,6 @@
 import supabase, { supabaseUrl } from './supabase';
 
-export async function getUserProfile(userId) {
+export async function getUserProfile({ userId }) {
   const { data, error } = await supabase
     .from('user_profile')
     .select('*')

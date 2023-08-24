@@ -9,7 +9,8 @@ function useUpdateContact() {
     isLoading: isUpdatingContact,
     error: updateContactError,
   } = useMutation({
-    mutationFn: ({ contact, id }) => updateContactApi(contact, id),
+    mutationFn: ({ contact, contactId }) =>
+      updateContactApi({ contact, contactId }),
     onSuccess: () => {
       toast.success('Contact updated successfully.');
       queryClient.invalidateQueries({ queryKey: ['contact'] });

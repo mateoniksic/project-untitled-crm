@@ -1,12 +1,17 @@
 import { useEffect } from 'react';
+import { useUser } from '../../auth/hooks/useUser';
 import { useContacts } from '../hooks/useContacts';
 import Spinner from '../../../components/Spinner';
 import Table from '../../../components/Table';
 import ContactRow from './ContactTableRow';
 import Menus from '../../../components/Menus';
+import Text from '../../../components/Text';
 
 function ContactsTable({ setTotalContacts }) {
-  const { contacts, isLoadingContacts } = useContacts();
+  const {
+    user: { workspace_id: workspaceId },
+  } = useUser();
+  const { contacts, isLoadingContacts } = useContacts({ workspaceId });
   useEffect(() => setTotalContacts(contacts?.length));
 
   if (isLoadingContacts)
@@ -14,6 +19,14 @@ function ContactsTable({ setTotalContacts }) {
       <Spinner.Wrapper>
         <Spinner />
       </Spinner.Wrapper>
+    );
+
+  if (!contacts.length)
+    return (
+      <Text size="subtle">
+        You don&apos;t have any contacts. Click on &apos;New contact&apos;
+        button to create a new contact.
+      </Text>
     );
 
   return (

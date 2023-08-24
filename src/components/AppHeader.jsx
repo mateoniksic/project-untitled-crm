@@ -1,7 +1,10 @@
 import { styled } from 'styled-components';
 import { useApp } from '../hooks/useApp';
+import { useUser } from '../features/auth/hooks/useUser';
+import { useUserProfile } from '../features/settings/profile/hooks/useUserProfile';
 import Text from './Text';
 import ProfileCard from './ProfileCard';
+import Spinner from './Spinner';
 
 const StyledAppHeader = styled.header`
   align-items: center;
@@ -15,16 +18,27 @@ const StyledAppHeader = styled.header`
 
 function AppHeader() {
   const { pageTitle } = useApp();
+  const {
+    user: { id: userId, email },
+  } = useUser();
+  const { userProfile, isLoadingUserProfile } = useUserProfile({ userId });
 
   return (
     <StyledAppHeader>
       <Text size="large">{pageTitle}</Text>
-      <ProfileCard
-        firstName="John"
-        lastName="Doe"
-        email="john.doe@example.com"
-        variation="reversed"
-      />
+      {isLoadingUserProfile ? (
+        <Spinner.Wrapper>
+          <Spinner />
+        </Spinner.Wrapper>
+      ) : (
+        <ProfileCard
+          firstName={userProfile.user_profile_first_name}
+          lastName={userProfile.user_profile_last_name}
+          email={email}
+          avatarUrl={userProfile.user_profile_avatar}
+          variation="reversed"
+        />
+      )}
     </StyledAppHeader>
   );
 }

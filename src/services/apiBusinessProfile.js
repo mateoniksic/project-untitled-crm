@@ -1,6 +1,6 @@
 import supabase from './supabase';
 
-export async function getBusinessProfile(workspaceId) {
+export async function getBusinessProfile({ workspaceId }) {
   const { data, error } = await supabase
     .from('business_profile')
     .select('*')

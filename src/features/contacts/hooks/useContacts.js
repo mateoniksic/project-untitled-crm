@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import { getContacts as getContactsApi } from '../../../services/apiContact';
 
-function useContacts() {
+function useContacts({ workspaceId }) {
   const {
     data: contacts,
     isLoading: isLoadingContacts,
     error: contactsError,
   } = useQuery({
     queryKey: ['contacts'],
-    queryFn: getContactsApi,
+    queryFn: () => getContactsApi({ workspaceId }),
   });
 
   return {

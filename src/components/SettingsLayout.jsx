@@ -7,7 +7,7 @@ import SettingsSidebar from './SettingsSidebar';
 const StyledSettings = styled.div`
   display: grid;
   gap: 3.2rem;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: minmax(min-content, 32rem) 1fr;
   height: 100%;
   padding: 3.2rem;
   place-items: start;

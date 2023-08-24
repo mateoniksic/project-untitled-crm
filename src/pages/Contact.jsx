@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { ChevronLeftIcon } from 'lucide-react';
+import { useUser } from '../features/auth/hooks/useUser';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useApp } from '../hooks/useApp';
@@ -39,7 +40,10 @@ const ContactDeals = styled.div`
 function Contact() {
   const navigate = useNavigate();
   const { contactId } = useParams();
-  const { contact, isLoadingContact } = useContact(contactId);
+  const {
+    user: { workspace_id: workspaceId },
+  } = useUser();
+  const { contact, isLoadingContact } = useContact({ contactId, workspaceId });
   const { contactDeals, isLoadingContactDeals } = useContactDeals(contactId);
   const { setPageTitle } = useApp();
   useEffect(() => setPageTitle('Contact'));

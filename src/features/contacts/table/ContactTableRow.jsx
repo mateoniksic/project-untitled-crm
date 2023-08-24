@@ -76,7 +76,9 @@ function ContactRow({ contactDetails }) {
                     contact.contact_last_name,
                   ].join(' ')}
                   disabled={isDeletingContact}
-                  onDelete={deleteContact}>
+                  onDelete={() =>
+                    deleteContact({ contactId: contact.contact_id })
+                  }>
                   Delete
                 </DeleteContact>
               </Menus.Item>

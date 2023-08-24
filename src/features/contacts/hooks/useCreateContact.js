@@ -9,7 +9,7 @@ function useCreateContact() {
     isLoading: isCreatingContact,
     error: createContactError,
   } = useMutation({
-    mutationFn: createContactApi,
+    mutationFn: ({ contact }) => createContactApi({ contact }),
     onSuccess: (data) => {
       toast.success(
         `New contact (${[data.contact_first_name, data.contact_last_name].join(

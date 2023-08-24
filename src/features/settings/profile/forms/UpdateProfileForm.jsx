@@ -18,7 +18,7 @@ function UpdateProfileForm() {
     user: { id: userId },
   } = useUser();
 
-  const { userProfile, isLoadingUserProfile } = useUserProfile(userId);
+  const { userProfile, isLoadingUserProfile } = useUserProfile({ userId });
   useEffect(() => reset(userProfile), [reset, userProfile]);
 
   const { updateUserProfile, isUpdatingUserProfile } = useUpdateUserProfile();

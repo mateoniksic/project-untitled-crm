@@ -12,6 +12,8 @@ import { useCreateContact } from '../hooks/useCreateContact';
 import { useUpdateContact } from '../hooks/useUpdateContact';
 
 import Form from '../../../components/Form';
+import { useUser } from '../../auth/hooks/useUser';
+import { useUserProfile } from '../../settings/profile/hooks/useUserProfile';
 
 const StyledContactForm = styled.form`
   align-items: stretch;
@@ -70,23 +72,24 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
     defaultValues: isUpdateSession ? editValues : {},
   });
 
-  function onSubmit(data) {
-    const avatar = data.contact_avatar
-      ? typeof data.contact_avatar === 'string'
-        ? data.contact_avatar
-        : data.contact_avatar[0]
-      : null;
+  const {
+    user: { id: userId, workspace_id: workspaceId },
+  } = useUser();
 
+  const {
+    userProfile: { user_profile_id: userProfileId },
+  } = useUserProfile({ userId });
+
+  function onSubmit(data) {
     if (isUpdateSession) {
       updateContact(
         {
           contact: {
             ...data,
-            contact_avatar: avatar,
-            contact_created_by: 2,
-            workspace_id: 1,
+            contact_created_by: userProfileId,
+            workspace_id: workspaceId,
           },
-          id: updateId,
+          contactId: updateId,
         },
         {
           onSuccess: () => {
@@ -98,10 +101,11 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
     } else {
       createContact(
         {
-          ...data,
-          contact_avatar: avatar,
-          contact_created_by: 2,
-          workspace_id: 1,
+          contact: {
+            ...data,
+            contact_created_by: userProfileId,
+            workspace_id: workspaceId,
+          },
         },
         {
           onSuccess: () => {

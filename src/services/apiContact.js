@@ -1,12 +1,13 @@
 import supabase, { supabaseUrl } from './supabase';
 
-export async function getContacts() {
+export async function getContacts({ workspaceId }) {
   const { data, error } = await supabase
     .from('contact')
     .select(
       `*, 
     user_profile(*)`,
     )
+    .eq('workspace_id', workspaceId)
     .order('contact_created_at', { ascending: false });
 
   if (error) {
@@ -17,14 +18,15 @@ export async function getContacts() {
   return data;
 }
 
-export async function getContact(id) {
+export async function getContact({ contactId, workspaceId }) {
   const { data, error } = await supabase
     .from('contact')
     .select(
       `*, 
     user_profile(*)`,
     )
-    .eq('contact_id', id)
+    .eq('contact_id', contactId)
+    .eq('workspace_id', workspaceId)
     .single();
 
   if (error) {
@@ -35,27 +37,30 @@ export async function getContact(id) {
   return data;
 }
 
-export async function updateContact(contact, id) {
+export async function updateContact({ contact, contactId }) {
   // 1. Check and set avatar
-  const hasAvatar = Boolean(contact.contact_avatar);
-  const avatarFile =
-    hasAvatar &&
-    contact.contact_avatar instanceof File &&
-    contact.contact_avatar;
+  const avatar = contact.contact_avatar
+    ? typeof contact.contact_avatar === 'string'
+      ? contact.contact_avatar
+      : contact.contact_avatar[0]
+    : null;
+
+  const avatarFile = avatar instanceof File && avatar;
 
   let avatarFileName = '';
   let avatarUrlPath = '';
 
-  if (hasAvatar && avatarFile) {
-    avatarFileName = `${
-      contact.contact_avatar?.name
-    }-${crypto.randomUUID()}`.replaceAll('/', '');
+  if (avatar && avatarFile) {
+    avatarFileName = `${avatar?.name}-${crypto.randomUUID()}`.replaceAll(
+      '/',
+      '',
+    );
 
-    avatarUrlPath = contact.contact_avatar?.startsWith?.(supabaseUrl)
-      ? contact.contact_avatar
+    avatarUrlPath = avatar?.startsWith?.(supabaseUrl)
+      ? avatar
       : `${supabaseUrl}/storage/v1/object/public/avatars/${avatarFileName}`;
-  } else if (hasAvatar) {
-    avatarUrlPath = contact.contact_avatar;
+  } else if (avatar) {
+    avatarUrlPath = avatar;
   } else {
     avatarUrlPath = null;
   }
@@ -64,7 +69,7 @@ export async function updateContact(contact, id) {
   const { data, error } = await supabase
     .from('contact')
     .update({ ...contact, contact_avatar: avatarUrlPath })
-    .eq('contact_id', id)
+    .eq('contact_id', contactId)
     .select()
     .single();
 
@@ -95,22 +100,30 @@ export async function updateContact(contact, id) {
   return data;
 }
 
-export async function createContact(contact) {
+export async function createContact({ contact }) {
   // 1. Check and set avatar
-  const avatarFile =
-    contact.contact_avatar instanceof File && contact.contact_avatar;
+  const avatar = contact.contact_avatar
+    ? typeof contact.contact_avatar === 'string'
+      ? contact.contact_avatar
+      : contact.contact_avatar[0]
+    : null;
+
+  const avatarFile = avatar instanceof File && avatar;
 
   let avatarFileName = '';
   let avatarUrlPath = '';
 
-  if (avatarFile) {
-    avatarFileName = `${
-      contact.contact_avatar?.name
-    }-${crypto.randomUUID()}`.replaceAll('/', '');
+  if (avatar && avatarFile) {
+    avatarFileName = `${avatar?.name}-${crypto.randomUUID()}`.replaceAll(
+      '/',
+      '',
+    );
 
-    avatarUrlPath = contact.contact_avatar?.startsWith?.(supabaseUrl)
-      ? contact.contact_avatar
+    avatarUrlPath = avatar?.startsWith?.(supabaseUrl)
+      ? avatar
       : `${supabaseUrl}/storage/v1/object/public/avatars/${avatarFileName}`;
+  } else if (avatar) {
+    avatarUrlPath = avatar;
   } else {
     avatarUrlPath = null;
   }
@@ -150,12 +163,12 @@ export async function createContact(contact) {
   return data;
 }
 
-export async function deleteContact(id) {
+export async function deleteContact({ contactId }) {
   // 1. Fetch contact avatar url and create file path.
   const { data: contactAvatar, error: contactAvatarError } = await supabase
     .from('contact')
     .select('contact_avatar')
-    .eq('contact_id', id);
+    .eq('contact_id', contactId);
 
   const avatarFilePath = contactAvatar?.at(0)?.contact_avatar
     ? contactAvatar.at(0).contact_avatar.split('/').at(-1)
@@ -165,7 +178,7 @@ export async function deleteContact(id) {
   const { data, error } = await supabase
     .from('contact')
     .delete()
-    .eq('contact_id', id)
+    .eq('contact_id', contactId)
     .single();
 
   if (error) {
