@@ -69,7 +69,6 @@ export async function updateContact(contact, id) {
     .single();
 
   if (error) {
-    console.log(error);
     throw new Error(
       `There was a problem while updating a contact (${[
         contact.contact_first_name,
@@ -80,7 +79,7 @@ export async function updateContact(contact, id) {
 
   // 3. Upload avatar image in storage bucket if there's a new file.
   if (avatarFile) {
-    const { data: storageData, error: storageError } = await supabase.storage
+    const { error: storageError } = await supabase.storage
       .from('avatars')
       .upload(avatarFileName, avatarFile);
 

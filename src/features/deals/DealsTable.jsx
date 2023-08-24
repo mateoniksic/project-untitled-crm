@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getDeals } from '../../services/apiDeals';
+import { getDeals } from '../../services/apiDeal';
 
 import Spinner from '../../components/Spinner';
 

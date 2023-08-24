@@ -4,20 +4,22 @@ import { useUser } from '../../../auth/hooks/useUser';
 import { useBusinessProfile } from '../hooks/useBusinessProfile';
 import { useUpdateBusinessProfile } from '../hooks/useUpdateBusinessProfile';
 import Form from '../../../../components/Form';
+import Spinner from '../../../../components/Spinner';
 
 function UpdateBusinessForm() {
-  const {
-    user: { workspace_id: workspaceId },
-  } = useUser();
-
-  const { businessProfile } = useBusinessProfile(workspaceId);
-
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm({ defaultValues: businessProfile });
+  } = useForm();
+
+  const {
+    user: { workspace_id: workspaceId },
+  } = useUser();
+
+  const { businessProfile, isLoadingBussinessProfile } =
+    useBusinessProfile(workspaceId);
 
   useEffect(() => reset(businessProfile), [reset, businessProfile]);
 
@@ -31,6 +33,13 @@ function UpdateBusinessForm() {
   function onError(error) {
     console.log(error);
   }
+
+  if (isLoadingBussinessProfile)
+    return (
+      <Spinner.Wrapper>
+        <Spinner />
+      </Spinner.Wrapper>
+    );
 
   return (
     <Form onSubmit={handleSubmit(onSubmit, onError)}>

@@ -50,14 +50,17 @@ export async function signUp({ fname, lname, email, password }) {
 }
 
 export async function signIn({ email, password }) {
-  let { data, error } = await supabase.auth.signInWithPassword({
-    email: email,
-    password: password,
-  });
+  let { data: user, error: userError } = await supabase.auth.signInWithPassword(
+    {
+      email: email,
+      password: password,
+    },
+  );
 
-  if (error) throw new Error('There was a problem while signing in a user.');
+  if (userError)
+    throw new Error('There was a problem while signing in a user.');
 
-  return data;
+  return user;
 }
 
 export async function getSignedInUser() {
