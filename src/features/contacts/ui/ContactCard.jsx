@@ -1,13 +1,11 @@
 import { styled } from 'styled-components';
 import { MailIcon, PhoneIcon } from 'lucide-react';
-
-import Text from '../../../components/Text';
-import AvatarCard from '../../../components/AvatarCard';
-import UpdateContact from '../actions/UpdateContact';
-import DeleteContact from '../actions/DeleteContact';
-
 import { useDeleteContact } from '../hooks/useDeleteContact';
 import { formatDate } from '../../../utils/helpers';
+import Text from '../../../components/Text';
+import ProfileCard from '../../../components/ProfileCard';
+import UpdateContact from '../actions/UpdateContact';
+import DeleteContact from '../actions/DeleteContact';
 
 const StyledContactCard = styled.div`
   background-color: var(--bg-normal);
@@ -56,9 +54,9 @@ const ContactFooter = styled.div`
 function ContactCard({ contactDetails }) {
   const {
     user_profile: {
-      user_first_name: userFname,
-      user_last_name: userLname,
-      user_avatar: userAvatar,
+      user_profile_first_name: userFname,
+      user_profile_last_name: userLname,
+      user_profile_avatar: userAvatar,
     },
     ...contact
   } = contactDetails ?? {};
@@ -78,7 +76,7 @@ function ContactCard({ contactDetails }) {
   return (
     <StyledContactCard>
       <ContactHeader>
-        <AvatarCard firstName={fName} lastName={lName} avatarUrl={avatar} />
+        <ProfileCard firstName={fName} lastName={lName} avatarUrl={avatar} />
         <ContactActions>
           <UpdateContact contactToUpdate={contact} />
           <DeleteContact
@@ -90,7 +88,6 @@ function ContactCard({ contactDetails }) {
           />
         </ContactActions>
       </ContactHeader>
-
       <ContactMain>
         <Text size="subtle-medium">
           <MailIcon size="20" /> {email}
@@ -99,9 +96,8 @@ function ContactCard({ contactDetails }) {
           <PhoneIcon size="20" /> {phone}
         </Text>
       </ContactMain>
-
       <ContactFooter>
-        <AvatarCard
+        <ProfileCard
           firstName={userFname}
           lastName={userLname}
           avatarUrl={userAvatar}

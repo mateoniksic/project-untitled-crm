@@ -1,12 +1,16 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { signOut as signOutApi } from '../../../services/apiAuth';
 import { useNavigate } from 'react-router-dom';
+import { signOut as signOutApi } from '../../../services/apiAuth';
 
 function useSignOut() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { mutate: signOut, isLoading: isLoadingSignOutUser } = useMutation({
+  const {
+    mutate: signOut,
+    isLoading: isLoadingSignOutUser,
+    error: signOutError,
+  } = useMutation({
     mutationFn: signOutApi,
     onSuccess: () => {
       queryClient.removeQueries();
@@ -14,7 +18,7 @@ function useSignOut() {
     },
   });
 
-  return { signOut, isLoadingSignOutUser };
+  return { signOut, isLoadingSignOutUser, signOutError };
 }
 
 export { useSignOut };

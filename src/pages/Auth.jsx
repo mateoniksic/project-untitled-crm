@@ -1,7 +1,5 @@
 import { styled } from 'styled-components';
-
 import { Tab, Tabs, TabList, TabPanel } from '../components/Tabs';
-
 import SignInForm from '../features/auth/forms/SignInForm';
 import SignUpForm from '../features/auth/forms/SignUpForm';
 import Logo from '../components/Logo';

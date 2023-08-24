@@ -1,16 +1,16 @@
 import { styled } from 'styled-components';
-import { Input } from './Input';
+import { FormInput } from './FormInput';
+import { FormInputFile } from './FormInputFile';
 import FormRow from './FormRow';
 import Button from './Button';
-import { FileInput } from './InputFile';
 
 const Form = styled.form`
+  align-items: stretch;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: start;
-  align-items: stretch;
-  width: 100%;
   gap: 2.4rem;
+  justify-content: start;
+  width: 100%;
 `;
 
 const FormHeader = styled.div`
@@ -26,18 +26,18 @@ const FormMain = styled.div`
 `;
 
 const FormFooter = styled.div`
+  align-items: stretch;
   display: flex;
   flex-flow: column;
   justify-content: start;
-  align-items: stretch;
 `;
 
 Form.Header = FormHeader;
 Form.Main = FormMain;
-Form.Footer = FormFooter;
-Form.Input = Input;
-Form.InputFile = FileInput;
 Form.Row = FormRow;
+Form.Input = FormInput;
+Form.InputFile = FormInputFile;
+Form.Footer = FormFooter;
 Form.Button = Button;
 
 export default Form;

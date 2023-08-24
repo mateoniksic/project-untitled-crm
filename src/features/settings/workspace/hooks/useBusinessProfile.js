@@ -1,17 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import { getBusinessProfile as getBusinessProfileApi } from '../../../../services/apiBusinessProfile';
 
-function useBusinessProfile(workspace_id) {
+function useBusinessProfile(workspaceId) {
   const {
     data: businessProfile,
-    isLoading,
-    error,
+    isLoading: isLoadingBussinessProfile,
+    error: businessProfileError,
   } = useQuery({
-    queryKey: ['business_profile', workspace_id],
-    queryFn: () => getBusinessProfileApi(workspace_id),
+    queryKey: ['business_profile', workspaceId],
+    queryFn: () => getBusinessProfileApi(workspaceId),
   });
 
-  return { businessProfile, isLoading, error };
+  return { businessProfile, isLoadingBussinessProfile, businessProfileError };
 }
 
 export { useBusinessProfile };

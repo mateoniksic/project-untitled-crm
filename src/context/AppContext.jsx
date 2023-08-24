@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 
 const AppContext = createContext();
 
@@ -11,12 +11,5 @@ function AppProvider({ children }) {
     </AppContext.Provider>
   );
 }
-
-// function useApp() {
-//   const context = useContext(AppContext);
-//   if (context === undefined)
-//     throw new Error('PageTitleContext was used outside of PageTitleProvider');
-//   return context;
-// }
 
 export { AppProvider, AppContext };

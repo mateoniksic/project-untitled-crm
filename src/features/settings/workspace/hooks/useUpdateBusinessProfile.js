@@ -7,6 +7,7 @@ function useUpdateBusinessProfile() {
   const {
     mutate: updateBusinessProfile,
     isLoading: isUpdatingBusinessProfile,
+    error: updatingBusinessProfileError,
   } = useMutation({
     mutationFn: ({ businessProfile, workspaceId }) =>
       updateBusinessProfileApi({ businessProfile, workspaceId }),
@@ -19,7 +20,11 @@ function useUpdateBusinessProfile() {
     },
   });
 
-  return { updateBusinessProfile, isUpdatingBusinessProfile };
+  return {
+    updateBusinessProfile,
+    isUpdatingBusinessProfile,
+    updatingBusinessProfileError,
+  };
 }
 
 export { useUpdateBusinessProfile };

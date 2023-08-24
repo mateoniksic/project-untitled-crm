@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 
-const FileInput = styled.input.attrs({ type: 'file' })`
+const FormInputFile = styled.input.attrs({ type: 'file' })`
+  cursor: pointer;
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 2rem;
@@ -9,7 +10,6 @@ const FileInput = styled.input.attrs({ type: 'file' })`
   right: 2.9rem;
   top: 6.4rem;
   width: 100%;
-  cursor: pointer;
 
   &:focus {
     outline: none;
@@ -20,4 +20,4 @@ const FileInput = styled.input.attrs({ type: 'file' })`
   }
 `;
 
-export { FileInput };
+export { FormInputFile };

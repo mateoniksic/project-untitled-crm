@@ -61,6 +61,20 @@ function SpinnerWrapper({ children }) {
   return <StyledSpinnerWrapper>{children}</StyledSpinnerWrapper>;
 }
 
+const StyledSpinnerFullPage = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  width: 100dvw;
+`;
+
+function SpinnerFullPage({ children }) {
+  return <StyledSpinnerFullPage>{children}</StyledSpinnerFullPage>;
+}
+
+Spinner.FullPage = SpinnerFullPage;
 Spinner.Wrapper = SpinnerWrapper;
 
 export default Spinner;

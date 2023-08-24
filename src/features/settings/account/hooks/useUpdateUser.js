@@ -18,4 +18,4 @@ function useUpdateUser() {
   return { updateUser, isLoadingUpdateUser };
 }
 
-export default useUpdateUser;
+export { useUpdateUser };

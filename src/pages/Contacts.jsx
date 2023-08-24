@@ -1,11 +1,9 @@
 import { styled } from 'styled-components';
 import { useEffect, useState } from 'react';
-
+import { useApp } from '../hooks/useApp';
 import ContactsTable from '../features/contacts/table/ContactsTable';
 import AddContact from '../features/contacts/actions/AddContact';
 import Text from '../components/Text';
-
-import { useApp } from '../hooks/useApp';
 
 const StyledContacts = styled.div`
   background-color: var(--bg-normal);
@@ -23,10 +21,9 @@ const ContactsHeader = styled.div`
 `;
 
 function Contacts() {
+  const [totalContacts, setTotalContacts] = useState('');
   const { setPageTitle } = useApp();
   useEffect(() => setPageTitle('Contacts'));
-
-  const [totalContacts, setTotalContacts] = useState('');
 
   return (
     <StyledContacts>

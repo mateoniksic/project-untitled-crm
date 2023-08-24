@@ -1,11 +1,14 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
-
-import { createContact as createContactApi } from '../../../services/apiContacts';
+import { createContact as createContactApi } from '../../../services/apiContact';
 
 function useCreateContact() {
   const queryClient = useQueryClient();
-  const { isLoading: isCreating, mutate: createContact } = useMutation({
+  const {
+    mutate: createContact,
+    isLoading: isCreatingContact,
+    error: createContactError,
+  } = useMutation({
     mutationFn: createContactApi,
     onSuccess: (data) => {
       toast.success(
@@ -18,7 +21,7 @@ function useCreateContact() {
     onError: (err) => toast.error(err),
   });
 
-  return { isCreating, createContact };
+  return { createContact, isCreatingContact, createContactError };
 }
 
 export { useCreateContact };

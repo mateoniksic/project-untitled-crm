@@ -84,7 +84,7 @@ export async function getSignedInUser() {
       'There was a problem while getting user workspace from supabase.',
     );
 
-  return { ...user.user, workspaceId: userWorkspace?.workspace_id };
+  return { ...user.user, workspace_id: userWorkspace.workspace_id };
 }
 
 export async function signOut() {

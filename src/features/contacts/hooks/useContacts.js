@@ -1,12 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-
-import { getContacts as getContactsApi } from '../../../services/apiContacts';
+import { getContacts as getContactsApi } from '../../../services/apiContact';
 
 function useContacts() {
   const {
     data: contacts,
-    isLoading,
-    error,
+    isLoading: isLoadingContacts,
+    error: contactsError,
   } = useQuery({
     queryKey: ['contacts'],
     queryFn: getContactsApi,
@@ -14,8 +13,8 @@ function useContacts() {
 
   return {
     contacts,
-    isLoading,
-    error,
+    isLoadingContacts,
+    contactsError,
   };
 }
 

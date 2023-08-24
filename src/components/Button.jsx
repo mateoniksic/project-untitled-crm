@@ -27,15 +27,15 @@ const variations = {
 };
 
 const StyledButton = styled.button`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
   align-items: center;
-  gap: 0.8rem;
   border-radius: 0.6rem;
   border: none;
+  display: flex;
+  flex-flow: row nowrap;
   font-size: 1.4rem;
   font-weight: 600;
+  gap: 0.8rem;
+  justify-content: center;
   line-height: 2rem;
   padding: 0.8rem 1.6rem;
 
@@ -43,15 +43,15 @@ const StyledButton = styled.button`
 `;
 
 const StyledLink = styled(Link)`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
   align-items: center;
-  gap: 0.8rem;
   border-radius: 0.6rem;
   border: none;
+  display: flex;
+  flex-flow: row nowrap;
   font-size: 1.4rem;
   font-weight: 600;
+  gap: 0.8rem;
+  justify-content: center;
   line-height: 2rem;
   padding: 0.8rem 1.6rem;
 

@@ -1,14 +1,6 @@
 import { styled } from 'styled-components';
 import { createPortal } from 'react-dom';
-
-import {
-  createContext,
-  useContext,
-  useState,
-  cloneElement,
-  useEffect,
-  useRef,
-} from 'react';
+import { createContext, useContext, useState, cloneElement } from 'react';
 
 const ModalContext = createContext();
 

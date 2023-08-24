@@ -1,11 +1,9 @@
 import { styled } from 'styled-components';
-
-import Text from './Text';
-import AvatarCard from './AvatarCard';
-
 import { useApp } from '../hooks/useApp';
+import Text from './Text';
+import ProfileCard from './ProfileCard';
 
-const StyledHeader = styled.header`
+const StyledAppHeader = styled.header`
   align-items: center;
   background: var(--bg-normal);
   border-bottom: 1px solid var(--border-non-interactive);
@@ -15,22 +13,20 @@ const StyledHeader = styled.header`
   padding: 0.8rem 3.2rem;
 `;
 
-function Header() {
+function AppHeader() {
   const { pageTitle } = useApp();
 
   return (
-    <StyledHeader>
-      <Text as="h1" size="large">
-        {pageTitle}
-      </Text>
-      <AvatarCard
+    <StyledAppHeader>
+      <Text size="large">{pageTitle}</Text>
+      <ProfileCard
         firstName="John"
         lastName="Doe"
         email="john.doe@example.com"
         variation="reversed"
       />
-    </StyledHeader>
+    </StyledAppHeader>
   );
 }
 
-export default Header;
+export default AppHeader;

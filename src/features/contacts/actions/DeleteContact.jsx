@@ -1,5 +1,4 @@
 import { Trash2Icon } from 'lucide-react';
-
 import Modal from '../../../components/Modal';
 import Button from '../../../components/Button';
 import ConfirmDelete from '../../../components/ConfirmDelete';

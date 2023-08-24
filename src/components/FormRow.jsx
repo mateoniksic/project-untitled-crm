@@ -16,6 +16,7 @@ const ErrorMessage = styled.div`
 const labelType = {
   file: css`
     align-items: center;
+    align-items: start;
     background-color: var(--component-normal-neutral);
     border-radius: 0.6rem;
     border: 1px solid var(--border-interactive);
@@ -23,13 +24,12 @@ const labelType = {
     flex-flow: row nowrap;
     gap: 1.6rem;
     justify-content: start;
-    align-items: start;
     padding: 4rem 2.4rem 5rem 2.4rem;
 
     &:hover {
-      cursor: pointer;
       background-color: var(--component-normal-hover);
       border: 1px solid var(--border-interactive-focus);
+      cursor: pointer;
     }
   `,
 };

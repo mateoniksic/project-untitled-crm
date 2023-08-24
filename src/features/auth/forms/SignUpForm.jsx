@@ -1,8 +1,8 @@
-import { useForm } from 'react-hook-form';
 import { MailIcon } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { useSignUp } from '../hooks/useSignUp';
 import Form from '../../../components/Form';
 import Text from '../../../components/Text';
-import { useSignUp } from '../hooks/useSignUp';
 
 function SignUpForm() {
   const {

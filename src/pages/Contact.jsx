@@ -1,17 +1,14 @@
 import { styled } from 'styled-components';
-import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronLeftIcon } from 'lucide-react';
-
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-
+import { useApp } from '../hooks/useApp';
+import { useContact } from '../features/contacts/hooks/useContact';
+import { useContactDeals } from '../features/contacts/hooks/useContactDeals';
 import Text from '../components/Text';
 import Button from '../components/Button';
 import Spinner from '../components/Spinner';
 import ContactCard from '../features/contacts/ui/ContactCard';
-
-import { useApp } from '../hooks/useApp';
-import { useContact } from '../features/contacts/hooks/useContact';
-import { useContactDeals } from '../features/contacts/hooks/useContactDeals';
 import DealCard from '../features/deals/ui/DealCard';
 
 const StyledContact = styled.div`
@@ -40,25 +37,14 @@ const ContactDeals = styled.div`
 `;
 
 function Contact() {
+  const navigate = useNavigate();
+  const { contactId } = useParams();
+  const { contact, isLoadingContact } = useContact(contactId);
+  const { contactDeals, isLoadingContactDeals } = useContactDeals(contactId);
   const { setPageTitle } = useApp();
   useEffect(() => setPageTitle('Contact'));
 
-  const navigate = useNavigate();
-  const { contactId } = useParams();
-
-  const {
-    contact,
-    isLoading: isLoadingContact,
-    error: isErrorContact,
-  } = useContact(contactId);
-
-  const {
-    deals,
-    isLoading: isLoadingDeals,
-    error: isErrorDeals,
-  } = useContactDeals(contactId);
-
-  if (isLoadingContact || isLoadingDeals)
+  if (isLoadingContact || isLoadingContactDeals)
     return (
       <Spinner.Wrapper>
         <Spinner />
@@ -74,12 +60,12 @@ function Contact() {
       <ContactCard contactDetails={contact} />
       <ContactDeals>
         <Text size="large">Deals</Text>
-        {!deals.length && (
+        {!contactDeals.length && (
           <Text size="subtle-semibold">
             This contact doesn&apos;t have any deals.
           </Text>
         )}
-        {deals.map((deal) => (
+        {contactDeals.map((deal) => (
           <DealCard key={deal.deal_id} dealDetails={deal} />
         ))}
       </ContactDeals>

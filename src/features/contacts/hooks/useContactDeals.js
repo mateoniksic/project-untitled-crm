@@ -1,21 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
-
-import { getContactDeals as getContactDealsApi } from '../../../services/apiDeals';
+import { getContactDeals as getContactDealsApi } from '../../../services/apiDeal';
 
 function useContactDeals(id) {
   const {
-    data: deals,
-    isLoading,
-    error,
+    data: contactDeals,
+    isLoading: isLoadingContactDeals,
+    error: contactDealsError,
   } = useQuery({
     queryKey: ['contactDeals', id],
     queryFn: () => getContactDealsApi(id),
   });
 
   return {
-    deals,
-    isLoading,
-    error,
+    contactDeals,
+    isLoadingContactDeals,
+    contactDealsError,
   };
 }
 

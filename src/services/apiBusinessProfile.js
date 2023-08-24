@@ -1,7 +1,6 @@
 import supabase from './supabase';
 
 export async function getBusinessProfile(workspaceId) {
-  console.log(workspaceId);
   const { data, error } = await supabase
     .from('business_profile')
     .select('*')

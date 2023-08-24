@@ -4,12 +4,14 @@ import { PlusCircleIcon, SaveIcon } from 'lucide-react';
 
 import Button from '../../../components/Button';
 import FormRow from '../../../components/FormRow';
-import { FileInput } from '../../../components/InputFile';
-import { Input } from '../../../components/Input';
+import { FormInputFile } from '../../../components/FormInputFile';
+import { FormInput } from '../../../components/FormInput';
 import Text from '../../../components/Text';
 
 import { useCreateContact } from '../hooks/useCreateContact';
 import { useUpdateContact } from '../hooks/useUpdateContact';
+
+import Form from '../../../components/Form';
 
 const StyledContactForm = styled.form`
   align-items: stretch;
@@ -55,9 +57,9 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
   const { contact_id: updateId, ...editValues } = contactToUpdate;
   const isUpdateSession = Boolean(updateId);
 
-  const { isCreating, createContact } = useCreateContact();
-  const { isUpdating, updateContact } = useUpdateContact();
-  const isProcessing = isCreating || isUpdating;
+  const { createContact, isCreatingContact } = useCreateContact();
+  const { updateContact, isUpdatingContact } = useUpdateContact();
+  const isProcessing = isCreatingContact || isUpdatingContact;
 
   const {
     register,
@@ -127,7 +129,7 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
           label="Click to upload avatar."
           type="file"
           error={errors?.contact_avatar?.message}>
-          <FileInput
+          <FormInputFile
             accept=".jpg, .jpeg, .png"
             id="avatar"
             {...register('contact_avatar')}
@@ -137,7 +139,7 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
         <FormRow
           label="First name:"
           error={errors?.contact_first_name?.message}>
-          <Input
+          <FormInput
             type="text"
             id="fname"
             {...register('contact_first_name', {
@@ -147,7 +149,7 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
         </FormRow>
 
         <FormRow label="Last name:" error={errors?.contact_last_name?.message}>
-          <Input
+          <FormInput
             type="text"
             id="lname"
             {...register('contact_last_name', {
@@ -157,7 +159,7 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
         </FormRow>
 
         <FormRow label="Email:" error={errors?.contact_email?.message}>
-          <Input
+          <FormInput
             type="text"
             id="email"
             {...register('contact_email', {
@@ -167,7 +169,7 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
         </FormRow>
 
         <FormRow label="Phone:" error={errors?.contact_phone?.message}>
-          <Input
+          <FormInput
             type="text"
             id="phone"
             {...register('contact_phone', {

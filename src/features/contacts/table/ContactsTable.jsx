@@ -1,20 +1,15 @@
-import { styled } from 'styled-components';
-
-import Spinner from '../../../components/Spinner';
-import ContactRow from './ContactTableRow';
-
 import { useEffect } from 'react';
 import { useContacts } from '../hooks/useContacts';
-
+import Spinner from '../../../components/Spinner';
 import Table from '../../../components/Table';
+import ContactRow from './ContactTableRow';
 import Menus from '../../../components/Menus';
 
 function ContactsTable({ setTotalContacts }) {
-  const { isLoading, contacts } = useContacts();
-
+  const { contacts, isLoadingContacts } = useContacts();
   useEffect(() => setTotalContacts(contacts?.length));
 
-  if (isLoading)
+  if (isLoadingContacts)
     return (
       <Spinner.Wrapper>
         <Spinner />

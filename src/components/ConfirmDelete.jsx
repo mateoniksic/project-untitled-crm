@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 import { Trash2Icon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
 import Button from './Button';
 import Text from './Text';
 

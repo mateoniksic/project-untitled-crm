@@ -1,11 +1,11 @@
 import { styled, css } from 'styled-components';
 
 const Text = styled.div`
+  align-items: center;
   display: flex;
   flex-flow: row wrap;
-  justify-content: start;
-  align-items: center;
   gap: 0.8rem;
+  justify-content: start;
 
   ${(props) =>
     props.size === '2xlarge' &&

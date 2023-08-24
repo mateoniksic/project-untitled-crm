@@ -1,8 +1,7 @@
-import { Outlet, useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
-
-import Sidebar from './Sidebar';
-import Header from './Header';
+import { Outlet } from 'react-router-dom';
+import AppSidebar from './AppSidebar';
+import AppHeader from './AppHeader';
 
 const StyledAppLayout = styled.div`
   display: grid;
@@ -11,7 +10,7 @@ const StyledAppLayout = styled.div`
   height: 100dvh;
 `;
 
-const Main = styled.main`
+const AppMain = styled.main`
   background-color: var(--bg-subtle);
   overflow: auto;
   padding: 3.2rem;
@@ -20,11 +19,11 @@ const Main = styled.main`
 function AppLayout() {
   return (
     <StyledAppLayout>
-      <Sidebar />
-      <Header />
-      <Main>
+      <AppSidebar />
+      <AppHeader />
+      <AppMain>
         <Outlet />
-      </Main>
+      </AppMain>
     </StyledAppLayout>
   );
 }

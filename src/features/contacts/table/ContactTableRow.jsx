@@ -1,23 +1,21 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-import AvatarCard from '../../../components/AvatarCard';
+import { Link } from 'react-router-dom';
+import { useDeleteContact } from '../hooks/useDeleteContact';
+import ProfileCard from '../../../components/ProfileCard';
+import Menus from '../../../components/Menus';
 import DeleteContact from '../actions/DeleteContact';
 import UpdateContact from '../actions/UpdateContact';
 
-import { useDeleteContact } from '../hooks/useDeleteContact';
-import Menus from '../../../components/Menus';
-
 const TableRow = styled.div`
+  align-items: center;
+  column-gap: 2.4rem;
+  display: grid;
   font-size: 1.4rem;
   font-weight: 500;
-  line-height: 2rem;
-  display: grid;
   grid-template-columns:
     minmax(20rem, 1fr) minmax(20rem, 1fr) minmax(12.5rem, 0.7fr)
     minmax(20rem, 1fr) minmax(10.5rem, 0.65fr) 3.6rem;
-  column-gap: 2.4rem;
-  align-items: center;
+  line-height: 2rem;
   padding: 1.4rem 2.4rem;
 
   &:not(:last-child) {
@@ -35,14 +33,14 @@ const ActionsColumn = styled.div`
 
 function ContactRow({ contactDetails }) {
   const { user_profile, ...contact } = contactDetails;
-  const { isDeleting, deleteContact } = useDeleteContact();
+  const { deleteContact, isDeletingContact } = useDeleteContact();
 
   return (
     <>
       <TableRow role="row">
         <div>
           <Link to={`${contact.contact_id}`}>
-            <AvatarCard
+            <ProfileCard
               firstName={contact.contact_first_name}
               lastName={contact.contact_last_name}
               avatarUrl={contact.contact_avatar}
@@ -53,10 +51,10 @@ function ContactRow({ contactDetails }) {
         <div>{contact.contact_email}</div>
         <div>{contact.contact_phone}</div>
         <div>
-          <AvatarCard
-            firstName={user_profile.user_first_name}
-            lastName={user_profile.user_last_name}
-            avatarUrl={user_profile.user_avatar}
+          <ProfileCard
+            firstName={user_profile.user_profile_first_name}
+            lastName={user_profile.user_profile_last_name}
+            avatarUrl={user_profile.user_profile_avatar}
             size="3.2"
           />
         </div>
@@ -77,7 +75,7 @@ function ContactRow({ contactDetails }) {
                     contact.contact_first_name,
                     contact.contact_last_name,
                   ].join(' ')}
-                  disabled={isDeleting}
+                  disabled={isDeletingContact}
                   onDelete={deleteContact}>
                   Delete
                 </DeleteContact>

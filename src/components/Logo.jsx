@@ -11,14 +11,10 @@ const StyledLogo = styled(Link)`
   justify-content: start;
 `;
 
-const LogoImage = styled.img`
-  fill: red;
-`;
-
 function Logo({ className, to }) {
   return (
     <StyledLogo className={className} to={to}>
-      <LogoImage src="/logo/logo.svg" alt="UntitledCRM logo" />
+      <img src="/logo/logo.svg" alt="UntitledCRM logo" />
       <Text size="large">UntitledCRM</Text>
     </StyledLogo>
   );

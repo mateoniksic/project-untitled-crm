@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 
-const StyledInput = styled.input`
+const StyledFormInput = styled.input`
   background-color: var(--component-interactive);
-  border: 1px solid var(--border-interactive);
   border-radius: 0.6rem;
+  border: 1px solid var(--border-interactive);
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 2rem;
@@ -11,4 +11,4 @@ const StyledInput = styled.input`
   width: 100%;
 `;
 
-export { StyledInput as Input };
+export { StyledFormInput as FormInput };

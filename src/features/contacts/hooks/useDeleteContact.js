@@ -1,11 +1,14 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
-
-import { deleteContact as deleteContactApi } from '../../../services/apiContacts';
+import { deleteContact as deleteContactApi } from '../../../services/apiContact';
 
 function useDeleteContact() {
   const queryClient = useQueryClient();
-  const { isLoading: isDeleting, mutate: deleteContact } = useMutation({
+  const {
+    mutate: deleteContact,
+    isLoading: isDeletingContact,
+    error: deleteContactError,
+  } = useMutation({
     mutationFn: deleteContactApi,
     onSuccess: () => {
       toast.success(`Contact deleted successfully.`);
@@ -14,7 +17,7 @@ function useDeleteContact() {
     onError: (err) => toast.error(err.message),
   });
 
-  return { isDeleting, deleteContact };
+  return { deleteContact, isDeletingContact, deleteContactError };
 }
 
 export { useDeleteContact };

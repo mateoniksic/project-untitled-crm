@@ -2,16 +2,14 @@ import { styled } from 'styled-components';
 import {
   CircleDollarSign,
   LayoutDashboard,
-  LogOut,
   Settings,
   Users,
 } from 'lucide-react';
-
-import Logo from './Logo';
 import { Nav, NavList, NavLink } from './VerticalNav';
-import SignOut from '../features/auth/forms/SignOut';
+import Logo from './Logo';
+import SignOut from '../features/auth/actions/SignOut';
 
-const StyledSidebar = styled.aside`
+const StyledAppSidebar = styled.aside`
   background: var(--bg-normal);
   border-right: 1px solid var(--border-non-interactive);
   display: flex;
@@ -23,14 +21,14 @@ const StyledSidebar = styled.aside`
   padding: 1.6rem;
 `;
 
-const SidebarLogo = styled(Logo)`
+const AppSidebarLogo = styled(Logo)`
   padding: 0 0.8rem;
 `;
 
-function Sidebar() {
+function AppSidebar() {
   return (
-    <StyledSidebar>
-      <SidebarLogo to="/workspace" />
+    <StyledAppSidebar>
+      <AppSidebarLogo to="/workspace" />
       <Nav>
         <NavList>
           <li>
@@ -52,7 +50,6 @@ function Sidebar() {
             </NavLink>
           </li>
         </NavList>
-
         <NavList>
           <li>
             <NavLink to="/workspace/settings">
@@ -65,8 +62,8 @@ function Sidebar() {
           </li>
         </NavList>
       </Nav>
-    </StyledSidebar>
+    </StyledAppSidebar>
   );
 }
 
-export default Sidebar;
+export default AppSidebar;

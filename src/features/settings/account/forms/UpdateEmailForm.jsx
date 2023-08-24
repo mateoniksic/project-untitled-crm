@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
-import Form from '../../../../components/Form';
 import { useUser } from '../../../auth/hooks/useUser';
-import useUpdateUser from '../hooks/useUpdateUser';
+import { useUpdateUser } from '../hooks/useUpdateUser';
+import Form from '../../../../components/Form';
 
 function UpdateEmailForm() {
   const {

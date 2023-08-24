@@ -185,4 +185,6 @@ export async function deleteContact(id) {
       throw new Error('There was a problem while deleting contact avatar.');
     }
   }
+
+  return data;
 }

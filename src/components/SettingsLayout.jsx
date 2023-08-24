@@ -1,11 +1,8 @@
-import { styled } from 'styled-components';
 import { Outlet } from 'react-router-dom';
-
+import { styled } from 'styled-components';
 import { useEffect } from 'react';
-
-import SettingsSidebar from './SettingsSidebar';
-
 import { useApp } from '../hooks/useApp';
+import SettingsSidebar from './SettingsSidebar';
 
 const StyledSettings = styled.div`
   display: grid;
@@ -20,11 +17,11 @@ const SettingsMain = styled.main`
   background-color: var(--bg-normal);
   border-radius: 0.8rem;
   border: 1px solid var(--border-non-interactive);
+  max-width: 69rem;
+  min-width: max-content;
   overflow: hidden;
   padding: 3.2rem;
-  min-width: max-content;
   width: 100%;
-  max-width: 69rem;
 `;
 
 function Settings() {

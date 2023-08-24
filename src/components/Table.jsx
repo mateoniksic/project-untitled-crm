@@ -1,5 +1,5 @@
-import { createContext, useContext } from 'react';
 import { styled } from 'styled-components';
+import { createContext, useContext } from 'react';
 
 const TableContext = createContext();
 
@@ -55,9 +55,9 @@ function TableHeader({ children }) {
 }
 
 const StyledTableColumn = styled.div`
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
   font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
 `;
 
 function TableColumn({ children }) {

@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
 import { LogOutIcon } from 'lucide-react';
-
 import { useSignOut } from '../hooks/useSignOut.js';
 
 const StyledButton = styled.button`

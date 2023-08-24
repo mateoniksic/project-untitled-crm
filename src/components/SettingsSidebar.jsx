@@ -1,9 +1,8 @@
 import { styled } from 'styled-components';
 import { KeyRoundIcon, BriefcaseIcon, UserIcon } from 'lucide-react';
-
-import AvatarCard from './AvatarCard';
 import { Nav, NavList, NavLink } from './VerticalNav';
 import Text from './Text';
+import ProfileCard from './ProfileCard';
 
 const StyledSettingsSidebar = styled.div`
   background-color: var(--bg-subtle);
@@ -29,7 +28,7 @@ function SettingsSidebar() {
   return (
     <StyledSettingsSidebar>
       <SettingsSidebarHeader>
-        <AvatarCard
+        <ProfileCard
           firstName={'John'}
           lastName={'Doe'}
           email={'john.doe@example.com'}

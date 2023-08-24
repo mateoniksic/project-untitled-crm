@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
+import { useUpdateUser } from '../hooks/useUpdateUser';
 import Form from '../../../../components/Form';
-import useUpdateUser from '../hooks/useUpdateUser';
 
 function UpdatePasswordForm() {
   const {

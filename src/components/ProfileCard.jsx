@@ -1,17 +1,14 @@
-import styled from 'styled-components';
-
+import { styled } from 'styled-components';
 import Text from './Text';
 
-const StyledAvatarCard = styled.div`
+const StyledProfileCard = styled.div`
   align-items: center;
   color: var(--color-grey-600);
   display: flex;
-  font-size: 1.4rem;
-  font-weight: 500;
   gap: 1.2rem;
 `;
 
-const AvatarWrapper = styled.div`
+const ProfileCardWrapper = styled.div`
   border-radius: 100%;
   border: 1px solid var(--border-non-interactive);
   display: inline-block;
@@ -27,12 +24,12 @@ const Avatar = styled.img`
   width: 100%;
 `;
 
-const AvatarDetails = styled.div`
+const ProfileDetails = styled.div`
   display: flex;
   flex-flow: column nowrap;
 `;
 
-function AvatarCard({
+function ProfileCard({
   firstName,
   lastName,
   email,
@@ -40,62 +37,60 @@ function AvatarCard({
   variation,
   size,
 }) {
-  const fallbackAvatarBg = '86ead4';
-  const fallbackAvatarColor = '86e16433cad4';
-  const fallbackAvatarUrl = `https://ui-avatars.com/api/?name=${firstName}+${lastName}&uppercase=true&bold=true&color=${fallbackAvatarColor}&background=${fallbackAvatarBg}&format=svg&rounded=true`;
+  const fallbackAvatarUrl = `https://ui-avatars.com/api/?name=${firstName}+${lastName}&uppercase=true&bold=true&color=86e16433cad4&background=86ead4&format=svg&rounded=true`;
 
   if (variation === 'full')
     return (
-      <StyledAvatarCard>
-        <AvatarWrapper $size={size}>
+      <StyledProfileCard>
+        <ProfileCardWrapper $size={size}>
           <Avatar
             src={avatarUrl || fallbackAvatarUrl}
             alt={`${firstName} ${lastName}'s avatar`}
           />
-        </AvatarWrapper>
-        <AvatarDetails>
+        </ProfileCardWrapper>
+        <ProfileDetails>
           <Text as="span" size="subtle-medium">
             {`${firstName} ${lastName}`}
           </Text>
           <Text as="span" size="detail">
             {email}
           </Text>
-        </AvatarDetails>
-      </StyledAvatarCard>
+        </ProfileDetails>
+      </StyledProfileCard>
     );
 
   if (variation === 'reversed')
     return (
-      <StyledAvatarCard>
-        <AvatarDetails>
+      <StyledProfileCard>
+        <ProfileDetails>
           <Text as="span" size="subtle-medium">
             {`${firstName} ${lastName}`}
           </Text>
-        </AvatarDetails>
-        <AvatarWrapper $size={size}>
+        </ProfileDetails>
+        <ProfileCardWrapper $size={size}>
           <Avatar
             src={avatarUrl || fallbackAvatarUrl}
             alt={`${firstName} ${lastName}'s avatar`}
           />
-        </AvatarWrapper>
-      </StyledAvatarCard>
+        </ProfileCardWrapper>
+      </StyledProfileCard>
     );
 
   return (
-    <StyledAvatarCard>
-      <AvatarWrapper $size={size}>
+    <StyledProfileCard>
+      <ProfileCardWrapper $size={size}>
         <Avatar
           src={avatarUrl || fallbackAvatarUrl}
           alt={`${firstName} ${lastName}'s avatar`}
         />
-      </AvatarWrapper>
-      <AvatarDetails>
+      </ProfileCardWrapper>
+      <ProfileDetails>
         <Text as="span" size="subtle-medium">
           {`${firstName} ${lastName}`}
         </Text>
-      </AvatarDetails>
-    </StyledAvatarCard>
+      </ProfileDetails>
+    </StyledProfileCard>
   );
 }
 
-export default AvatarCard;
+export default ProfileCard;

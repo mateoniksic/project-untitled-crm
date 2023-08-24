@@ -1,11 +1,8 @@
 import { MailIcon } from 'lucide-react';
-
 import { useState } from 'react';
-
+import { useSignIn } from '../hooks/useSignIn';
 import Text from '../../../components/Text';
 import Form from '../../../components/Form';
-
-import { useSignIn } from '../hooks/useSignIn';
 
 function SignInForm() {
   const [email, setEmail] = useState('mateo.niksic@student.uniri.hr');

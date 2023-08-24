@@ -1,13 +1,13 @@
 import { useForm } from 'react-hook-form';
-import Form from '../../../../components/Form';
-import { useBusinessProfile } from '../hooks/useBusinessProfile';
-import { useUser } from '../../../auth/hooks/useUser';
-import { useUpdateBusinessProfile } from '../hooks/useUpdateBusinessProfile';
 import { useEffect } from 'react';
+import { useUser } from '../../../auth/hooks/useUser';
+import { useBusinessProfile } from '../hooks/useBusinessProfile';
+import { useUpdateBusinessProfile } from '../hooks/useUpdateBusinessProfile';
+import Form from '../../../../components/Form';
 
 function UpdateBusinessForm() {
   const {
-    user: { workspaceId },
+    user: { workspace_id: workspaceId },
   } = useUser();
 
   const { businessProfile } = useBusinessProfile(workspaceId);
@@ -25,10 +25,7 @@ function UpdateBusinessForm() {
     useUpdateBusinessProfile();
 
   function onSubmit(data) {
-    updateBusinessProfile(
-      { businessProfile: data, workspaceId },
-      { onSuccess: () => reset() },
-    );
+    updateBusinessProfile({ businessProfile: data, workspaceId });
   }
 
   function onError(error) {
