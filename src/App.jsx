@@ -1,26 +1,22 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Toaster } from 'react-hot-toast';
-
+import { AppProvider } from './context/AppContext';
 import GlobalStyles from './styles/GlobalStyles';
-
 import AppLayout from './ui/AppLayout';
-import SettingsLayout from './ui/SettingsLayout';
+import AppToaster from './ui/Toaster';
 import ProtectedRoute from './ui/ProtectedRoute';
+import SettingsLayout from './ui/SettingsLayout';
 import Auth from './pages/Auth';
 import Dashboard from './pages/Dashboard';
 import Contacts from './pages/Contacts';
 import Contact from './pages/Contact';
 import Deals from './pages/Deals';
-import Deal from './pages/Deal';
-import SettingsWorkspace from './pages/SettingsWorkspace';
-import SettingsMembers from './pages/SettingsMembers';
-import SettingsProfile from './pages/SettingsProfile';
-import SettingsAccount from './pages/SettingsAccount';
+import WorkspaceSettings from './pages/WorkspaceSettings';
+import MembersSettings from './pages/MembersSettings';
+import UserProfileSettings from './pages/UserProfileSettings';
+import UserAccountSettings from './pages/UserAccountSettings';
 import PageNotFound from './pages/PageNotFound';
-
-import { AppProvider } from './context/AppContext';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -54,47 +50,18 @@ function App() {
               <Route path="contacts" element={<Contacts />} />
               <Route path="contacts/:contactId" element={<Contact />} />
               <Route path="deals" element={<Deals />} />
-              <Route path="deals/:dealId" element={<Deal />} />
               <Route path="settings" element={<SettingsLayout />}>
-                <Route index element={<SettingsWorkspace />} />
-                <Route path="members" element={<SettingsMembers />} />
-                <Route path="profile" element={<SettingsProfile />} />
-                <Route path="account" element={<SettingsAccount />} />
+                <Route index element={<WorkspaceSettings />} />
+                <Route path="members" element={<MembersSettings />} />
+                <Route path="profile" element={<UserProfileSettings />} />
+                <Route path="account" element={<UserAccountSettings />} />
               </Route>
             </Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
       </AppProvider>
-      <Toaster
-        position="bottom-left"
-        gutter={16}
-        toastOptions={{
-          success: {
-            iconTheme: {
-              primary: 'var(--component-normal)',
-              secondary: 'var(--text-hc)',
-            },
-            duration: 3000,
-          },
-          error: {
-            iconTheme: {
-              primary: 'var(--component-normal-danger)',
-              secondary: 'var(--text-hc-danger)',
-            },
-            duration: 3000,
-          },
-          style: {
-            background: 'var(--bg-normal)',
-            border: '1px solid var(--border-non-interactive)',
-            boxShadow: '-0.6rem 0.6rem 0.1rem var(--bg-subtle)',
-            color: 'var(--text-hc)',
-            fontSize: '1.4rem',
-            maxWidth: '32rem',
-            padding: '1.6rem',
-          },
-        }}
-      />
+      <AppToaster />
     </QueryClientProvider>
   );
 }

@@ -1,10 +1,10 @@
 import { Tab, Tabs, TabList, TabPanel } from '../ui/Tabs';
 import { SettingsHeader, SettingsHeaderText } from '../ui/SettingsHeader';
 import Text from '../ui/Text';
-import AddMemberForm from '../features/settings/members/AddMemberForm';
-import MemberList from '../features/settings/members/MemberList';
+import AddMemberForm from '../features/settings/workspace-members/AddMemberForm';
+import MemberList from '../features/settings/workspace-members/MemberList';
 
-function SettingsMembers() {
+function MembersSettings() {
   return (
     <>
       <Tabs>
@@ -33,4 +33,4 @@ function SettingsMembers() {
   );
 }
 
-export default SettingsMembers;
+export default MembersSettings;

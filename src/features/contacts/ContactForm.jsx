@@ -13,7 +13,7 @@ import { useUpdateContact } from './useUpdateContact';
 
 import Form from '../../ui/Form';
 import { useUser } from '../auth/useUser';
-import { useUserProfile } from '../settings/profile/useUserProfile';
+import { useUserProfile } from '../settings/user-profile/useUserProfile';
 
 const StyledContactForm = styled.form`
   align-items: stretch;

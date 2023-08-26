@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { useApp } from '../hooks/useApp';
 import { useUser } from '../features/auth/useUser';
-import { useUserProfile } from '../features/settings/profile/useUserProfile';
+import { useUserProfile } from '../features/settings/user-profile/useUserProfile';
 import Text from './Text';
 import ProfileCard from './ProfileCard';
 import Spinner from './Spinner';

@@ -1,36 +1,36 @@
 import { Tab, Tabs, TabList, TabPanel } from '../ui/Tabs';
 import { SettingsHeader, SettingsHeaderText } from '../ui/SettingsHeader';
 import Text from '../ui/Text';
-import UpdateEmailForm from '../features/settings/account/UpdateEmailForm';
-import UpdatePasswordForm from '../features/settings/account/UpdatePasswordForm';
+import UpdateBusinessProfileForm from '../features/settings/workspace/UpdateBusinessProfileForm';
+import UpdatePreferencesForm from '../features/settings/workspace/UpdatePreferencesForm';
 
-function SettingsAccount() {
+function WorkspaceSettings() {
   return (
     <>
       <Tabs>
         <SettingsHeader>
           <SettingsHeaderText>
             <Text as="h2" size="large">
-              Account
+              Workspace
             </Text>
             <Text as="p" size="subtle-medium">
-              Change your sign in credentials.
+              Your business details and preferences related to this workspace.
             </Text>
           </SettingsHeaderText>
           <TabList>
-            <Tab>Email</Tab>
-            <Tab>Password</Tab>
+            <Tab>General</Tab>
+            <Tab>Preferences</Tab>
           </TabList>
         </SettingsHeader>
         <TabPanel>
-          <UpdateEmailForm />
+          <UpdateBusinessProfileForm />
         </TabPanel>
         <TabPanel>
-          <UpdatePasswordForm />
+          <UpdatePreferencesForm />
         </TabPanel>
       </Tabs>
     </>
   );
 }
 
-export default SettingsAccount;
+export default WorkspaceSettings;

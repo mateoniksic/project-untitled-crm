@@ -1,8 +1,8 @@
 import { SettingsHeader, SettingsHeaderText } from '../ui/SettingsHeader';
 import Text from '../ui/Text';
-import UpdateProfileForm from '../features/settings/profile/UpdateProfileForm';
+import UpdateProfileForm from '../features/settings/user-profile/UpdateProfileForm';
 
-function SettingsProfile() {
+function UserProfileSettings() {
   return (
     <>
       <SettingsHeader>
@@ -20,4 +20,4 @@ function SettingsProfile() {
   );
 }
 
-export default SettingsProfile;
+export default UserProfileSettings;
