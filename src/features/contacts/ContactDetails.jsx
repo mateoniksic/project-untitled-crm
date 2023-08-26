@@ -51,7 +51,7 @@ const ContactFooter = styled.div`
   padding: 2.4rem;
 `;
 
-function ContactCard({ contactDetails }) {
+function ContactDetails({ contactDetails }) {
   const {
     user_profile: {
       user_profile_first_name: userFname,
@@ -109,4 +109,4 @@ function ContactCard({ contactDetails }) {
   );
 }
 
-export default ContactCard;
+export default ContactDetails;

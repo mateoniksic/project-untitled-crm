@@ -73,7 +73,7 @@ const DealFooter = styled.div`
   padding: 1.6rem;
 `;
 
-function DealCard({ dealDetails }) {
+function DealDetails({ dealDetails }) {
   const {
     deal_title: title,
     deal_value: value,
@@ -103,4 +103,4 @@ function DealCard({ dealDetails }) {
   );
 }
 
-export default DealCard;
+export default DealDetails;

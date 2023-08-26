@@ -39,6 +39,7 @@ export async function getWorkspaceUserProfiles({ workspaceId }) {
   }
 
   const workspaceUsersId = workspaceUsers.map((user) => user.user_id);
+
   const { data: userProfiles, error: userProfilesError } = await supabase
     .from('user_profile')
     .select('*')

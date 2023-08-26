@@ -80,18 +80,29 @@ export async function getSignedInUser() {
       userError.message,
     );
 
-  let { data: userWorkspace, error: userWorkspaceError } = await supabase
+  const { data: userProfile, error: userProfileError } = await supabase
+    .from('user_profile')
+    .select('*')
+    .eq('user_id', user.user.id)
+    .single();
+
+  if (userProfileError)
+    throw new Error('There was a problem while getting user profile.');
+
+  const { data: userWorkspace, error: userWorkspaceError } = await supabase
     .from('user_workspace')
     .select('workspace_id')
     .eq('user_id', user.user.id)
     .single();
 
   if (userWorkspaceError)
-    throw new Error(
-      'There was a problem while getting user workspace from supabase.',
-    );
+    throw new Error('There was a problem while getting user workspace.');
 
-  return { ...user.user, workspace_id: userWorkspace.workspace_id };
+  return {
+    ...user.user,
+    workspace_id: userWorkspace.workspace_id,
+    user_profile: { ...userProfile },
+  };
 }
 
 export async function signOut() {

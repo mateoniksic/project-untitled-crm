@@ -5,12 +5,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useApp } from '../hooks/useApp';
 import { useContact } from '../features/contacts/useContact';
-import { useContactDeals } from '../features/contacts/useContactDeals';
+
 import Text from '../ui/Text';
 import Button from '../ui/Button';
 import Spinner from '../ui/Spinner';
-import ContactCard from '../features/contacts/ContactCard';
-import DealCard from '../features/deals/DealCard';
+import ContactDetails from '../features/contacts/ContactDetails';
+import DealDetails from '../features/deals/DealDetails';
 
 const StyledContact = styled.div`
   align-items: stretch;
@@ -38,17 +38,21 @@ const ContactDeals = styled.div`
 `;
 
 function Contact() {
+  const { setPageTitle } = useApp();
+  useEffect(() => setPageTitle('Contact'));
   const navigate = useNavigate();
+
   const { contactId } = useParams();
   const {
     user: { workspace_id: workspaceId },
   } = useUser();
-  const { contact, isLoadingContact } = useContact({ contactId, workspaceId });
-  const { contactDeals, isLoadingContactDeals } = useContactDeals(contactId);
-  const { setPageTitle } = useApp();
-  useEffect(() => setPageTitle('Contact'));
 
-  if (isLoadingContact || isLoadingContactDeals)
+  const {
+    data: { contact, deals },
+    isLoading,
+  } = useContact({ contactId, workspaceId });
+
+  if (isLoading)
     return (
       <Spinner.Wrapper>
         <Spinner />
@@ -61,16 +65,16 @@ function Contact() {
         <ChevronLeftIcon />
         Go back
       </Button>
-      <ContactCard contactDetails={contact} />
+      <ContactDetails contactDetails={contact} />
       <ContactDeals>
         <Text size="large">Deals</Text>
-        {!contactDeals.length && (
+        {!deals.length && (
           <Text size="subtle-semibold">
             This contact doesn&apos;t have any deals.
           </Text>
         )}
-        {contactDeals.map((deal) => (
-          <DealCard key={deal.deal_id} dealDetails={deal} />
+        {deals.map((deal) => (
+          <DealDetails key={deal.deal_id} dealDetails={deal} />
         ))}
       </ContactDeals>
     </StyledContact>
