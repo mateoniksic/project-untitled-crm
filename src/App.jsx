@@ -12,10 +12,10 @@ import Dashboard from './pages/Dashboard';
 import Contacts from './pages/Contacts';
 import Contact from './pages/Contact';
 import Deals from './pages/Deals';
-import WorkspaceSettings from './pages/WorkspaceSettings';
-import MembersSettings from './pages/MembersSettings';
-import UserProfileSettings from './pages/UserProfileSettings';
-import UserAccountSettings from './pages/UserAccountSettings';
+import Workspace from './pages/settings/Workspace';
+import WorkspaceMemebers from './pages/settings/WorkspaceMembers';
+import UserProfile from './pages/settings/UserProfile';
+import UserAccount from './pages/settings/UserAccount';
 import PageNotFound from './pages/PageNotFound';
 
 const queryClient = new QueryClient({
@@ -51,10 +51,10 @@ function App() {
               <Route path="contacts/:contactId" element={<Contact />} />
               <Route path="deals" element={<Deals />} />
               <Route path="settings" element={<SettingsLayout />}>
-                <Route index element={<WorkspaceSettings />} />
-                <Route path="members" element={<MembersSettings />} />
-                <Route path="profile" element={<UserProfileSettings />} />
-                <Route path="account" element={<UserAccountSettings />} />
+                <Route index element={<Workspace />} />
+                <Route path="members" element={<WorkspaceMemebers />} />
+                <Route path="profile" element={<UserProfile />} />
+                <Route path="account" element={<UserAccount />} />
               </Route>
             </Route>
             <Route path="*" element={<PageNotFound />} />

@@ -1,10 +1,10 @@
-import { Tab, Tabs, TabList, TabPanel } from '../ui/Tabs';
-import { SettingsHeader, SettingsHeaderText } from '../ui/SettingsHeader';
-import Text from '../ui/Text';
-import UpdateEmailForm from '../features/settings/user-account/UpdateEmailForm';
-import UpdatePasswordForm from '../features/settings/user-account/UpdatePasswordForm';
+import { Tab, Tabs, TabList, TabPanel } from '../../ui/Tabs';
+import { SettingsHeader, SettingsHeaderText } from '../../ui/SettingsHeader';
+import Text from '../../ui/Text';
+import UpdateEmailForm from '../../features/settings/user-account/UpdateEmailForm';
+import UpdatePasswordForm from '../../features/settings/user-account/UpdatePasswordForm';
 
-function UserAccountSettings() {
+function UserAccount() {
   return (
     <>
       <Tabs>
@@ -33,4 +33,4 @@ function UserAccountSettings() {
   );
 }
 
-export default UserAccountSettings;
+export default UserAccount;

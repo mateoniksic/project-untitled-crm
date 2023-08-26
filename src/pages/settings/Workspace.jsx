@@ -1,10 +1,10 @@
-import { Tab, Tabs, TabList, TabPanel } from '../ui/Tabs';
-import { SettingsHeader, SettingsHeaderText } from '../ui/SettingsHeader';
-import Text from '../ui/Text';
-import UpdateBusinessProfileForm from '../features/settings/workspace/UpdateBusinessProfileForm';
-import UpdatePreferencesForm from '../features/settings/workspace/UpdatePreferencesForm';
+import { Tab, Tabs, TabList, TabPanel } from '../../ui/Tabs';
+import { SettingsHeader, SettingsHeaderText } from '../../ui/SettingsHeader';
+import Text from '../../ui/Text';
+import UpdateBusinessProfileForm from '../../features/settings/workspace/UpdateBusinessProfileForm';
+import UpdatePreferencesForm from '../../features/settings/workspace/UpdatePreferencesForm';
 
-function WorkspaceSettings() {
+function Workspace() {
   return (
     <>
       <Tabs>
@@ -33,4 +33,4 @@ function WorkspaceSettings() {
   );
 }
 
-export default WorkspaceSettings;
+export default Workspace;
