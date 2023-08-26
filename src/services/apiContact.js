@@ -6,6 +6,7 @@ export async function getContacts({ workspaceId }) {
     .select(
       `*, 
     user_profile(*)`,
+      { count: 'exact' },
     )
     .eq('workspace_id', workspaceId)
     .order('contact_created_at', { ascending: false });

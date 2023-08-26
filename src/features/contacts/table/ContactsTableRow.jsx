@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useDeleteContact } from '../hooks/useDeleteContact';
 import ProfileCard from '../../../components/ProfileCard';
-import Menus from '../../../components/Menus';
 import DeleteContact from '../actions/DeleteContact';
 import UpdateContact from '../actions/UpdateContact';
+import Menus from '../../../components/Menus';
+import { formatDate } from '../../../utils/helpers';
 
 const TableRow = styled.div`
   align-items: center;
@@ -31,7 +32,7 @@ const ActionsColumn = styled.div`
   gap: 0.8rem;
 `;
 
-function ContactRow({ contactDetails }) {
+function ContactsTableRow({ contactDetails }) {
   const { user_profile, ...contact } = contactDetails;
   const { deleteContact, isDeletingContact } = useDeleteContact();
 
@@ -58,9 +59,7 @@ function ContactRow({ contactDetails }) {
             size="3.2"
           />
         </div>
-        <div>
-          {new Date(contact.contact_created_at).toLocaleString('hr-HR')}
-        </div>
+        <div>{formatDate(contact.contact_created_at)}</div>
         <ActionsColumn>
           <Menus.Menu>
             <Menus.Toggle id={contact.contact_id}></Menus.Toggle>
@@ -90,4 +89,4 @@ function ContactRow({ contactDetails }) {
   );
 }
 
-export default ContactRow;
+export default ContactsTableRow;

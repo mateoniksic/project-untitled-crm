@@ -3,9 +3,10 @@ import { useUser } from '../../auth/hooks/useUser';
 import { useContacts } from '../hooks/useContacts';
 import Spinner from '../../../components/Spinner';
 import Table from '../../../components/Table';
-import ContactRow from './ContactTableRow';
+import ContactsTableRow from './ContactsTableRow';
 import Menus from '../../../components/Menus';
 import Text from '../../../components/Text';
+import Pagination from '../../../components/Pagination';
 
 function ContactsTable({ setTotalContacts }) {
   const {
@@ -45,9 +46,15 @@ function ContactsTable({ setTotalContacts }) {
           <Table.Body
             data={contacts}
             render={(contact) => (
-              <ContactRow contactDetails={contact} key={contact.contact_id} />
+              <ContactsTableRow
+                contactDetails={contact}
+                key={contact.contact_id}
+              />
             )}
           />
+          <Table.Footer>
+            <Pagination count={contacts.length} />
+          </Table.Footer>
         </Table>
       </Table.Wrapper>
     </Menus>

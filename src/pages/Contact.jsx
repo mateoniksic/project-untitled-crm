@@ -59,7 +59,7 @@ function Contact() {
     <StyledContact>
       <Button variation={'neutral'} onClick={() => navigate(-1)}>
         <ChevronLeftIcon />
-        Return to all contacts
+        Go back
       </Button>
       <ContactCard contactDetails={contact} />
       <ContactDeals>

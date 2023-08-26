@@ -68,9 +68,17 @@ function TableBody({ data, render }) {
   return <div>{data.map(render)}</div>;
 }
 
+const TableFooter = styled.header`
+  background-color: var(--bg-subtle);
+  border-top: 1px solid var(--border-non-interactive);
+  color: var(--text-lc);
+  padding: 1.6rem 2.4rem;
+`;
+
 Table.Wrapper = TableWrapper;
 Table.Header = TableHeader;
 Table.Column = TableColumn;
 Table.Body = TableBody;
+Table.Footer = TableFooter;
 
 export default Table;
