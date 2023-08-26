@@ -1,11 +1,8 @@
-import { Tab, Tabs, TabList, TabPanel } from '../components/Tabs';
-import {
-  SettingsHeader,
-  SettingsHeaderText,
-} from '../components/SettingsHeader';
-import Text from '../components/Text';
-import UpdateEmailForm from '../features/settings/account/forms/UpdateEmailForm';
-import UpdatePasswordForm from '../features/settings/account/forms/UpdatePasswordForm';
+import { Tab, Tabs, TabList, TabPanel } from '../ui/Tabs';
+import { SettingsHeader, SettingsHeaderText } from '../ui/SettingsHeader';
+import Text from '../ui/Text';
+import UpdateEmailForm from '../features/settings/account/UpdateEmailForm';
+import UpdatePasswordForm from '../features/settings/account/UpdatePasswordForm';
 
 function SettingsAccount() {
   return (

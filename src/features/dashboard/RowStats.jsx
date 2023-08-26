@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { CircleDollarSignIcon } from 'lucide-react';
 
-import Text from '../../components/Text';
+import Text from '../../ui/Text';
 import DashboardCard from './DashboardCard';
 
 const StyledRowStats = styled.div`

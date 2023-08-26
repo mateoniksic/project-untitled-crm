@@ -5,8 +5,9 @@ import { Toaster } from 'react-hot-toast';
 
 import GlobalStyles from './styles/GlobalStyles';
 
-import AppLayout from './components/AppLayout';
-import SettingsLayout from './components/SettingsLayout';
+import AppLayout from './ui/AppLayout';
+import SettingsLayout from './ui/SettingsLayout';
+import ProtectedRoute from './ui/ProtectedRoute';
 import Auth from './pages/Auth';
 import Dashboard from './pages/Dashboard';
 import Contacts from './pages/Contacts';
@@ -18,7 +19,6 @@ import SettingsMembers from './pages/SettingsMembers';
 import SettingsProfile from './pages/SettingsProfile';
 import SettingsAccount from './pages/SettingsAccount';
 import PageNotFound from './pages/PageNotFound';
-import ProtectedRoute from './components/ProtectedRoute';
 
 import { AppProvider } from './context/AppContext';
 

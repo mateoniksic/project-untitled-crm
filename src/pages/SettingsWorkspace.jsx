@@ -1,11 +1,8 @@
-import { Tab, Tabs, TabList, TabPanel } from '../components/Tabs';
-import {
-  SettingsHeader,
-  SettingsHeaderText,
-} from '../components/SettingsHeader';
-import Text from '../components/Text';
-import UpdateBusinessProfileForm from '../features/settings/workspace/forms/UpdateBusinessProfileForm';
-import UpdatePreferencesForm from '../features/settings/workspace/forms/UpdatePreferencesForm';
+import { Tab, Tabs, TabList, TabPanel } from '../ui/Tabs';
+import { SettingsHeader, SettingsHeaderText } from '../ui/SettingsHeader';
+import Text from '../ui/Text';
+import UpdateBusinessProfileForm from '../features/settings/workspace/UpdateBusinessProfileForm';
+import UpdatePreferencesForm from '../features/settings/workspace/UpdatePreferencesForm';
 
 function SettingsWorkspace() {
   return (

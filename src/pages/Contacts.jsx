@@ -1,10 +1,10 @@
 import { styled } from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useApp } from '../hooks/useApp';
-import ContactsTable from '../features/contacts/table/ContactsTable';
-import AddContact from '../features/contacts/actions/AddContact';
-import Text from '../components/Text';
-import ContactsTableOperations from '../features/contacts/table/ContactsTableOperations';
+import ContactsTable from '../features/contacts/ContactsTable';
+import AddContact from '../features/contacts/AddContact';
+import Text from '../ui/Text';
+import ContactsTableOperations from '../features/contacts/ContactsTableOperations';
 
 const StyledContacts = styled.div`
   background-color: var(--bg-normal);

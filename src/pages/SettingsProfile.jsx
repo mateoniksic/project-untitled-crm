@@ -1,9 +1,6 @@
-import {
-  SettingsHeader,
-  SettingsHeaderText,
-} from '../components/SettingsHeader';
-import Text from '../components/Text';
-import UpdateProfileForm from '../features/settings/profile/forms/UpdateProfileForm';
+import { SettingsHeader, SettingsHeaderText } from '../ui/SettingsHeader';
+import Text from '../ui/Text';
+import UpdateProfileForm from '../features/settings/profile/UpdateProfileForm';
 
 function SettingsProfile() {
   return (

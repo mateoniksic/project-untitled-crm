@@ -1,16 +1,16 @@
 import { styled } from 'styled-components';
 import { ChevronLeftIcon } from 'lucide-react';
-import { useUser } from '../features/auth/hooks/useUser';
+import { useUser } from '../features/auth/useUser';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useApp } from '../hooks/useApp';
-import { useContact } from '../features/contacts/hooks/useContact';
-import { useContactDeals } from '../features/contacts/hooks/useContactDeals';
-import Text from '../components/Text';
-import Button from '../components/Button';
-import Spinner from '../components/Spinner';
-import ContactCard from '../features/contacts/ui/ContactCard';
-import DealCard from '../features/deals/ui/DealCard';
+import { useContact } from '../features/contacts/useContact';
+import { useContactDeals } from '../features/contacts/useContactDeals';
+import Text from '../ui/Text';
+import Button from '../ui/Button';
+import Spinner from '../ui/Spinner';
+import ContactCard from '../features/contacts/ContactCard';
+import DealCard from '../features/deals/DealCard';
 
 const StyledContact = styled.div`
   align-items: stretch;

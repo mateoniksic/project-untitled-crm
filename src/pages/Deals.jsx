@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 import { useState, useEffect } from 'react';
 import { useApp } from '../hooks/useApp';
-import Text from '../components/Text';
-import DealsTable from '../features/deals/table/DealsTable';
-import AddDeal from '../features/deals/actions/AddDeal';
+import Text from '../ui/Text';
+import DealsTable from '../features/deals/DealsTable';
+import AddDeal from '../features/deals/AddDeal';
 
 const StyledDeals = styled.div`
   background-color: var(--bg-normal);

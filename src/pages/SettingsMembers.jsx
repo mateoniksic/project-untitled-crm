@@ -1,11 +1,8 @@
-import { Tab, Tabs, TabList, TabPanel } from '../components/Tabs';
-import {
-  SettingsHeader,
-  SettingsHeaderText,
-} from '../components/SettingsHeader';
-import Text from '../components/Text';
-import AddMemberForm from '../features/settings/members/forms/AddMemberForm';
-import MemberList from '../features/settings/members/ui/MemberList';
+import { Tab, Tabs, TabList, TabPanel } from '../ui/Tabs';
+import { SettingsHeader, SettingsHeaderText } from '../ui/SettingsHeader';
+import Text from '../ui/Text';
+import AddMemberForm from '../features/settings/members/AddMemberForm';
+import MemberList from '../features/settings/members/MemberList';
 
 function SettingsMembers() {
   return (
