@@ -38,7 +38,7 @@ function SignUpForm() {
           And grow your business to the next level.
         </Text>
       </Form.Header>
-      <Form.Main>
+      <Form.Rows>
         <Form.Row label="First name" error={errors?.fname?.message}>
           <Form.Input
             type="text"
@@ -101,7 +101,7 @@ function SignUpForm() {
             })}
           />
         </Form.Row>
-      </Form.Main>
+      </Form.Rows>
       <Form.Footer>
         <Form.Button
           variation="primary"

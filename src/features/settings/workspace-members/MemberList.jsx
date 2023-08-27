@@ -16,10 +16,10 @@ function MemberList() {
   const {
     user: { workspace_id: workspaceId },
   } = useUser();
-  const { workspaceUserProfiles, isLoadingUserworkspaceUserProfiles } =
+  const { workspaceUserProfiles, isLoadingWorkspaceUserProfiles } =
     useWorkspaceUserProfiles({ workspaceId });
 
-  if (isLoadingUserworkspaceUserProfiles)
+  if (isLoadingWorkspaceUserProfiles)
     <Spinner.Wrapper>
       <Spinner />
     </Spinner.Wrapper>;

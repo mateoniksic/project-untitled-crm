@@ -22,7 +22,7 @@ function UpdatePasswordForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit, onError)}>
-      <Form.Main>
+      <Form.Rows>
         <Form.Row label="Password" error={errors?.password?.message}>
           <Form.Input
             type="password"
@@ -51,7 +51,7 @@ function UpdatePasswordForm() {
             })}
           />
         </Form.Row>
-      </Form.Main>
+      </Form.Rows>
       <Form.Footer>
         <Form.Button variation="primary" disabled={''}>
           Change password

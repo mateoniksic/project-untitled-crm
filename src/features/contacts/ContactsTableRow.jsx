@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useDeleteContact } from './useDeleteContact';
+import { formatDate } from '../../utils/helpers';
 import ProfileCard from '../../ui/ProfileCard';
 import DeleteContact from './DeleteContact';
 import UpdateContact from './UpdateContact';
 import Menus from '../../ui/Menus';
-import { formatDate } from '../../utils/helpers';
 
 const TableRow = styled.div`
   align-items: center;

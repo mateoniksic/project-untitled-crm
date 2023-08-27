@@ -34,7 +34,7 @@ function SignInForm() {
           Sign in to continue.
         </Text>
       </Form.Header>
-      <Form.Main>
+      <Form.Rows>
         <Form.Row label="Email">
           <Form.Input
             type="email"
@@ -55,7 +55,7 @@ function SignInForm() {
             disabled={isLoadingSignIn}
           />
         </Form.Row>
-      </Form.Main>
+      </Form.Rows>
       <Form.Footer>
         <Form.Button
           variation="primary"

@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { KeyRoundIcon, BriefcaseIcon, UserIcon, Users2 } from 'lucide-react';
 import { Nav, NavList, NavLink } from './VerticalNav';
 import { useUser } from '../features/auth/useUser';
+import { useUserProfile } from '../features/settings/user-profile/useUserProfile';
 import Text from './Text';
 import ProfileCard from './ProfileCard';
 import Spinner from './Spinner';
@@ -27,30 +28,25 @@ const SettingsSidebarMain = styled.div`
 
 function SettingsSidebar() {
   const {
-    user: {
-      email: userEmail,
-      user_profile: {
-        user_profile_first_name: userFirstName,
-        user_profile_last_name: userLastName,
-        user_profile_avatar: userAvatar,
-      },
-    },
+    user: { id: userId, email: userEmail },
     isLoadingUser,
   } = useUser();
+  const { userProfile, isLoadingUserProfile } = useUserProfile({ userId });
+  const isLoading = isLoadingUser || isLoadingUserProfile;
 
   return (
     <StyledSettingsSidebar>
       <SettingsSidebarHeader>
-        {isLoadingUser ? (
+        {isLoading ? (
           <Spinner.Wrapper>
             <Spinner />
           </Spinner.Wrapper>
         ) : (
           <ProfileCard
-            firstName={userFirstName}
-            lastName={userLastName}
+            firstName={userProfile.user_profile_first_name}
+            lastName={userProfile.user_profile_last_name}
             email={userEmail}
-            avatarUrl={userAvatar}
+            avatarUrl={userProfile.user_profile_avatar}
             variation="full"
           />
         )}

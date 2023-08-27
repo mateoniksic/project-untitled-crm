@@ -44,7 +44,7 @@ function UpdateBusinessForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit, onError)}>
-      <Form.Main>
+      <Form.Rows>
         <Form.Row
           label="Business name"
           error={errors?.business_profile_name?.message}>
@@ -85,7 +85,7 @@ function UpdateBusinessForm() {
             {...register('business_profile_website')}
           />
         </Form.Row>
-      </Form.Main>
+      </Form.Rows>
       <Form.Footer>
         <Form.Button variation="primary" disabled={isUpdatingBusinessProfile}>
           Save changes

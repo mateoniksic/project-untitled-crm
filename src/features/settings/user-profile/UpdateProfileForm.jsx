@@ -38,7 +38,7 @@ function UpdateProfileForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit, onError)}>
-      <Form.Main>
+      <Form.Rows>
         <Form.Row
           label="Click to upload avatar."
           type="file"
@@ -69,7 +69,7 @@ function UpdateProfileForm() {
             {...register('user_profile_last_name')}
           />
         </Form.Row>
-      </Form.Main>
+      </Form.Rows>
       <Form.Footer>
         <Form.Button variation="primary" disabled={isUpdatingUserProfile}>
           Save changes

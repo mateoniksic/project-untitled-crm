@@ -15,6 +15,22 @@ const FormSelect = styled.select`
   width: 100%;
 `;
 
+const FormTextArea = styled.textarea`
+  background-color: var(--component-interactive);
+  border-radius: 0.6rem;
+  border: 1px solid var(--border-interactive);
+  font-size: 1.4rem;
+  font-weight: 400;
+  height: 100%;
+  line-height: 2rem;
+  max-height: 16rem;
+  min-height: 4rem;
+  overflow: auto;
+  padding: 0.8rem;
+  resize: vertical;
+  width: 100%;
+`;
+
 const Form = styled.form`
   align-items: stretch;
   display: flex;
@@ -28,7 +44,7 @@ const FormHeader = styled.div`
   margin-top: 2.4rem;
 `;
 
-const FormMain = styled.div`
+const FormRows = styled.div`
   align-items: start;
   display: flex;
   flex-flow: column nowrap;
@@ -44,9 +60,10 @@ const FormFooter = styled.div`
 `;
 
 Form.Header = FormHeader;
-Form.Main = FormMain;
+Form.Rows = FormRows;
 Form.Row = FormRow;
 Form.Input = FormInput;
+Form.TextArea = FormTextArea;
 Form.InputFile = FormInputFile;
 Form.Select = FormSelect;
 Form.Footer = FormFooter;

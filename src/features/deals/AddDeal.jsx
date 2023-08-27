@@ -1,6 +1,7 @@
 import { PlusCircleIcon } from 'lucide-react';
 import Modal from '../../ui/Modal';
 import Button from '../../ui/Button';
+import DealForm from './DealForm';
 
 function AddDeal() {
   return (
@@ -11,7 +12,9 @@ function AddDeal() {
           New deal
         </Button>
       </Modal.Open>
-      <Modal.Window name="add-deal-form">Deal Form</Modal.Window>
+      <Modal.Window name="add-deal-form">
+        <DealForm />
+      </Modal.Window>
     </Modal>
   );
 }

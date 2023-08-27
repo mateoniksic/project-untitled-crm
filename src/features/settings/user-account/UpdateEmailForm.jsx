@@ -27,7 +27,7 @@ function UpdateEmailForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit, onError)}>
-      <Form.Main>
+      <Form.Rows>
         <Form.Row label="Email" error={errors?.email?.message}>
           <Form.Input
             type="email"
@@ -54,7 +54,7 @@ function UpdateEmailForm() {
             })}
           />
         </Form.Row>
-      </Form.Main>
+      </Form.Rows>
       <Form.Footer>
         <Form.Button variation="primary" disabled={isLoadingUpdateUser}>
           Change email

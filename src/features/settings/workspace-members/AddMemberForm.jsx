@@ -34,7 +34,7 @@ function AddMemberForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit, onError)}>
-      <Form.Main>
+      <Form.Rows>
         <Form.Row label="First name" error={errors?.fname?.message}>
           <Form.Input
             type="text"
@@ -97,7 +97,7 @@ function AddMemberForm() {
             })}
           />
         </Form.Row>
-      </Form.Main>
+      </Form.Rows>
       <Form.Footer>
         <Form.Button
           variation="primary"

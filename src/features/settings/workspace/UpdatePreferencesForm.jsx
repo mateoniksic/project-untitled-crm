@@ -40,7 +40,7 @@ function UpdatePreferencesForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit, onError)}>
-      <Form.Main>
+      <Form.Rows>
         <Form.Row
           label="Workspace currency"
           error={errors?.workspace_currency?.message}>
@@ -54,7 +54,7 @@ function UpdatePreferencesForm() {
             <option value="GBP">GBP</option>
           </Form.Select>
         </Form.Row>
-      </Form.Main>
+      </Form.Rows>
       <Form.Footer>
         <Form.Button variation="primary" disabled={isUpdatingWorkspace}>
           Save changes
