@@ -40,8 +40,8 @@ function Window({ children, name }) {
   if (name !== openName) return null;
 
   return createPortal(
-    <StyledModal>
-      {cloneElement(children, { onCloseModal: () => close(name) })}
+    <StyledModal id={name}>
+      {cloneElement(children, { onCloseModal: () => close(name), name })}
     </StyledModal>,
     document.body,
   );

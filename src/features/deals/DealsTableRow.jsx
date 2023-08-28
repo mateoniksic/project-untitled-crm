@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import Menus from '../../ui/Menus';
 import ProfileCard from '../../ui/ProfileCard';
 import { formatDate, formatCurrency } from '../../utils/helpers';
+import UpdateDeal from './UpdateDeal';
+import DeleteDeal from './DeleteDeal';
+import { useDeleteDeal } from './useDeleteDeal';
 
 const TableRow = styled.div`
   align-items: center;
@@ -39,6 +42,8 @@ function DealsTableRow({ dealDetails }) {
     ...deal
   } = dealDetails;
 
+  const { deleteDeal, isDeletingDeal } = useDeleteDeal();
+
   return (
     <TableRow>
       <div>
@@ -63,8 +68,18 @@ function DealsTableRow({ dealDetails }) {
           <Menus.Toggle id={deal.deal_id}></Menus.Toggle>
         </Menus.Menu>
         <Menus.List id={deal.deal_id}>
-          <Menus.Item>UpdateDeal</Menus.Item>
-          <Menus.Item>DeleteDeal</Menus.Item>
+          <Menus.Item>
+            <UpdateDeal dealToUpdate={deal}>Update</UpdateDeal>
+          </Menus.Item>
+          <Menus.Item>
+            <DeleteDeal
+              resourceName={deal.deal_title}
+              id={deal.deal_id}
+              onDelete={deleteDeal}
+              disabled={isDeletingDeal}>
+              Delete
+            </DeleteDeal>
+          </Menus.Item>
         </Menus.List>
       </ActionsColumn>
     </TableRow>

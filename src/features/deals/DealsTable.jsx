@@ -14,7 +14,7 @@ function DealsTable({ setTotalDeals }) {
   } = useUser();
   const { deals, isLoadingDeals } = useDeals({ workspaceId });
   useEffect(() => setTotalDeals(deals?.length));
-  console.log(deals);
+
   if (isLoadingDeals)
     return (
       <Spinner.Wrapper>

@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useEffect } from 'react';
 import { useUser } from '../../auth/useUser';
 import { useWorkspace } from './useWorkspace';
@@ -8,7 +8,7 @@ import Spinner from '../../../ui/Spinner';
 
 function UpdatePreferencesForm() {
   const {
-    register,
+    control,
     formState: { errors },
     handleSubmit,
     reset,
@@ -19,17 +19,44 @@ function UpdatePreferencesForm() {
   } = useUser();
 
   const { workspace, isLoadingWorkspace } = useWorkspace({ workspaceId });
-  useEffect(() => reset(workspace), [reset, workspace]);
+
+  useEffect(() => {
+    if (!isLoadingWorkspace) {
+      reset({
+        ...workspace,
+        workspace_currency: {
+          value: workspace?.workspace_currency,
+          label: workspace?.workspace_currency,
+        },
+      });
+    }
+  }, [reset, workspace, isLoadingWorkspace]);
 
   const { updateWorkspace, isUpdatingWorkspace } = useUpdateWorkspace();
 
+  const currencyOptions = [
+    { value: 'USD', label: 'USD' },
+    { value: 'EUR', label: 'EUR' },
+    { value: 'GBP', label: 'GBP' },
+  ];
+
   function onSubmit(data) {
-    updateWorkspace({ workspace: data, workspaceId });
+    updateWorkspace({
+      workspace: { ...data, workspace_currency: data.workspace_currency.value },
+      workspaceId,
+    });
   }
 
   function onError(error) {
     console.log(error);
   }
+
+  if (isLoadingWorkspace)
+    return (
+      <Spinner.Wrapper>
+        <Spinner />
+      </Spinner.Wrapper>
+    );
 
   if (isLoadingWorkspace)
     return (
@@ -44,15 +71,18 @@ function UpdatePreferencesForm() {
         <Form.Row
           label="Workspace currency"
           error={errors?.workspace_currency?.message}>
-          <Form.Select
+          <Controller
             name="workspace_currency"
-            id="workspace_currency"
-            disabled={isUpdatingWorkspace}
-            {...register('workspace_currency')}>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-          </Form.Select>
+            control={control}
+            render={({ field }) => (
+              <Form.Select
+                field={field}
+                options={currencyOptions}
+                placeholder="Select currency"
+                menuPortalTarget={document.body}
+              />
+            )}
+          />
         </Form.Row>
       </Form.Rows>
       <Form.Footer>

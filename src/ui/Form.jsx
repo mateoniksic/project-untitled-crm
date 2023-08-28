@@ -3,17 +3,7 @@ import { FormInput } from './FormInput';
 import { FormInputFile } from './FormInputFile';
 import FormRow from './FormRow';
 import Button from './Button';
-
-const FormSelect = styled.select`
-  background-color: var(--component-interactive);
-  border-radius: 0.6rem;
-  border: 1px solid var(--border-interactive);
-  font-size: 1.4rem;
-  font-weight: 400;
-  line-height: 2rem;
-  padding: 0.8rem;
-  width: 100%;
-`;
+import FormSelect from './FormSelect';
 
 const FormTextArea = styled.textarea`
   background-color: var(--component-interactive);

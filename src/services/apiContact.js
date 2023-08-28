@@ -48,7 +48,8 @@ export async function getContactDeals({ contactId }) {
     pipeline(pipeline_name),
     pipeline_stage(pipeline_stage_name)`,
     )
-    .eq('contact_id', contactId);
+    .eq('contact_id', contactId)
+    .order('deal_created_at', { ascending: false });
 
   if (error) {
     console.log(error);

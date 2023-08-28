@@ -10,7 +10,8 @@ export async function getDeals({ workspaceId }) {
     pipeline(pipeline_name),
     pipeline_stage(pipeline_stage_name), workspace(workspace_currency)`,
     )
-    .eq('workspace_id', workspaceId);
+    .eq('workspace_id', workspaceId)
+    .order('deal_created_at', { ascending: false });
 
   if (error) {
     console.log(error);
@@ -18,4 +19,35 @@ export async function getDeals({ workspaceId }) {
   }
 
   return data;
+}
+
+export async function createDeal({ deal }) {
+  const { data, error } = await supabase
+    .from('deal')
+    .insert([deal])
+    .select()
+    .single();
+
+  if (error) throw new Error('There was a problem while creating a deal.');
+
+  return data;
+}
+
+export async function updateDeal({ deal }) {
+  const { data, error } = await supabase
+    .from('deal')
+    .update(deal)
+    .eq('deal_id', deal.deal_id)
+    .select()
+    .single();
+
+  if (error) throw new Error('There was a problem while updating a deal.');
+
+  return data;
+}
+
+export async function deleteDeal(id) {
+  const { error } = await supabase.from('deal').delete().eq('deal_id', id);
+
+  if (error) throw new Error('There was a problem while deleting a deal.');
 }

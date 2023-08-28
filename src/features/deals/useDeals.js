@@ -7,7 +7,7 @@ function useDeals({ workspaceId }) {
     isLoading: isLoadingDeals,
     error: dealsError,
   } = useQuery({
-    queryKey: ['deals'],
+    queryKey: ['deals', workspaceId],
     queryFn: () => getDealsApi({ workspaceId }),
   });
 
