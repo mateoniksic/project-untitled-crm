@@ -19,17 +19,19 @@ function UpdatePreferencesForm() {
     { value: 'GBP', label: 'GBP' },
   ];
 
+  const defaultValues = {
+    ...workspace,
+    workspace_currency: currencyOptions.find(
+      (currency) => currency.value === workspace?.workspace_currency,
+    ),
+  };
+
   const {
     control,
     formState: { errors },
     handleSubmit,
   } = useForm({
-    values: {
-      ...workspace,
-      workspace_currency: currencyOptions.find(
-        (currency) => currency.value === workspace.workspace_currency,
-      ),
-    },
+    values: defaultValues,
   });
 
   const { updateWorkspace, isUpdatingWorkspace } = useUpdateWorkspace();

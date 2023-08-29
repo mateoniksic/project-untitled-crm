@@ -9,7 +9,7 @@ function useDeleteContact() {
     isLoading: isDeletingContact,
     error: deleteContactError,
   } = useMutation({
-    mutationFn: ({ contactId }) => deleteContactApi({ contactId }),
+    mutationFn: (id) => deleteContactApi(id),
     onSuccess: () => {
       toast.success(`Contact deleted successfully.`);
       queryClient.invalidateQueries({ queryKey: ['contacts'] });

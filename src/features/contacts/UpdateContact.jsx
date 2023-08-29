@@ -3,13 +3,12 @@ import Modal from '../../ui/Modal';
 import Button from '../../ui/Button';
 import ContactForm from './ContactForm';
 
-function UpdateContact({ contactToUpdate, children }) {
+function UpdateContact({ contactToUpdate }) {
   return (
     <Modal>
       <Modal.Open windowName="update-contact-form">
-        <Button variation="neutral">
+        <Button variation="neutral" iconOnly={true}>
           <PenBoxIcon size="16" />
-          {children}
         </Button>
       </Modal.Open>
       <Modal.Window name="update-contact-form">

@@ -1,12 +1,21 @@
-import { useEffect } from 'react';
+import { styled } from 'styled-components';
+import { useEffect, useState } from 'react';
 import { useUser } from '../auth/useUser';
 import { useDeals } from './useDeals';
 import Text from '../../ui/Text';
 import Spinner from '../../ui/Spinner';
 import Table from '../../ui/Table';
-import Menus from '../../ui/Menus';
 import Pagination from '../../ui/Pagination';
 import DealsTableRow from './DealsTableRow';
+import Form from '../../ui/Form';
+
+const StyledDealsTable = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: stretch;
+  gap: 2.4rem;
+`;
 
 function DealsTable({ setTotalDeals }) {
   const {
@@ -14,6 +23,7 @@ function DealsTable({ setTotalDeals }) {
   } = useUser();
   const { deals, isLoadingDeals } = useDeals({ workspaceId });
   useEffect(() => setTotalDeals(deals?.length));
+  const [search, setSearch] = useState('');
 
   if (isLoadingDeals)
     return (
@@ -31,14 +41,22 @@ function DealsTable({ setTotalDeals }) {
     );
 
   return (
-    <Menus>
+    <StyledDealsTable>
+      <Form.Rows>
+        <Form.Input
+          type="text"
+          id="search-deals"
+          placeholder="Search deals by title..."
+          onChange={(e) => setSearch(e.target.value.trim().toLowerCase())}
+        />
+      </Form.Rows>
       <Table.Wrapper>
         <Table
           role="table"
           columns="6.8rem minmax(8rem, 0.75fr) minmax(7rem, 0.25fr) minmax(4.8rem, 0.25fr)
-                  minmax(8rem, 0.3fr) minmax(16rem, 0.4fr) minmax(10rem, 0.4fr);">
+                  minmax(8rem, 0.3fr) minmax(14rem, 0.4fr) minmax(10rem, 0.4fr);">
           <Table.Header>
-            <Table.Column></Table.Column>
+            <Table.Column />
             <Table.Column>Title</Table.Column>
             <Table.Column>Value</Table.Column>
             <Table.Column>Status</Table.Column>
@@ -47,7 +65,11 @@ function DealsTable({ setTotalDeals }) {
             <Table.Column>Created at</Table.Column>
           </Table.Header>
           <Table.Body
-            data={deals}
+            data={deals.filter((deal) =>
+              search === ''
+                ? deal
+                : deal.deal_title.toLowerCase().includes(search),
+            )}
             render={(deal) => (
               <DealsTableRow key={deal.deal_id} dealDetails={deal} />
             )}
@@ -57,7 +79,7 @@ function DealsTable({ setTotalDeals }) {
           </Table.Footer>
         </Table>
       </Table.Wrapper>
-    </Menus>
+    </StyledDealsTable>
   );
 }
 

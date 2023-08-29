@@ -3,20 +3,12 @@ import Modal from '../../ui/Modal';
 import Button from '../../ui/Button';
 import ConfirmDelete from '../../ui/ConfirmDelete';
 
-function DeleteContact({
-  id,
-  resourceName,
-  disabled,
-  onDelete,
-  redirect,
-  children,
-}) {
+function DeleteContact({ id, resourceName, disabled, onDelete, redirect }) {
   return (
     <Modal>
       <Modal.Open windowName="delete-contact-form">
-        <Button variation="danger">
+        <Button variation="danger" iconOnly={true}>
           <Trash2Icon size="16" />
-          {children}
         </Button>
       </Modal.Open>
       <Modal.Window name="delete-contact-form">

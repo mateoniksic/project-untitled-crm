@@ -13,6 +13,7 @@ function useUpdateDeal() {
     onSuccess: (data) => {
       toast.success(`Deal (${data.deal_title}) updated successfully.`);
       queryClient.invalidateQueries({ queryKey: ['deals'] });
+      queryClient.invalidateQueries({ queryKey: ['contact_deals'] });
     },
     onError: (err) => toast.error(err),
   });

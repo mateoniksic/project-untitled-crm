@@ -5,7 +5,6 @@ import { useContacts } from './useContacts';
 import Spinner from '../../ui/Spinner';
 import Table from '../../ui/Table';
 import ContactsTableRow from './ContactsTableRow';
-import Menus from '../../ui/Menus';
 import Text from '../../ui/Text';
 import Pagination from '../../ui/Pagination';
 import Form from '../../ui/Form';
@@ -51,40 +50,41 @@ function ContactsTable({ setTotalContacts }) {
           onChange={(e) => setSearch(e.target.value.trim().toLowerCase())}
         />
       </Form.Rows>
-      <Menus>
-        <Table.Wrapper>
-          <Table
-            role="table"
-            columns="minmax(20rem, 1fr) minmax(20rem, 1fr) minmax(12.5rem, 0.7fr) minmax(20rem, 1fr) minmax(10.5rem, 0.65fr) 3.6rem;">
-            <Table.Header role="row">
-              <Table.Column>Full name</Table.Column>
-              <Table.Column>Email</Table.Column>
-              <Table.Column>Phone</Table.Column>
-              <Table.Column>Created by</Table.Column>
-              <Table.Column>Created at</Table.Column>
-            </Table.Header>
-            <Table.Body
-              data={contacts.filter((contact) =>
-                search === ''
-                  ? contact
-                  : [contact.contact_first_name, contact.contact_last_name]
-                      .join(' ')
-                      .toLowerCase()
-                      .includes(search),
-              )}
-              render={(contact) => (
-                <ContactsTableRow
-                  contactDetails={contact}
-                  key={contact.contact_id}
-                />
-              )}
-            />
-            <Table.Footer>
-              <Pagination count={contacts.length} />
-            </Table.Footer>
-          </Table>
-        </Table.Wrapper>
-      </Menus>
+
+      <Table.Wrapper>
+        <Table
+          role="table"
+          columns="6.8rem minmax(16rem, 0.4fr) minmax(18rem, 0.75fr)
+                  minmax(10rem, 0.75fr) minmax(16rem, 0.4fr) minmax(10rem, 0.4fr);">
+          <Table.Header role="row">
+            <Table.Column />
+            <Table.Column>Full name</Table.Column>
+            <Table.Column>Email</Table.Column>
+            <Table.Column>Phone</Table.Column>
+            <Table.Column>Created by</Table.Column>
+            <Table.Column>Created at</Table.Column>
+          </Table.Header>
+          <Table.Body
+            data={contacts.filter((contact) =>
+              search === ''
+                ? contact
+                : [contact.contact_first_name, contact.contact_last_name]
+                    .join(' ')
+                    .toLowerCase()
+                    .includes(search),
+            )}
+            render={(contact) => (
+              <ContactsTableRow
+                contactDetails={contact}
+                key={contact.contact_id}
+              />
+            )}
+          />
+          <Table.Footer>
+            <Pagination count={contacts.length} />
+          </Table.Footer>
+        </Table>
+      </Table.Wrapper>
     </StyledContactsTable>
   );
 }

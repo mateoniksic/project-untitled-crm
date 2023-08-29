@@ -5,19 +5,18 @@ import { formatDate } from '../../utils/helpers';
 import ProfileCard from '../../ui/ProfileCard';
 import DeleteContact from './DeleteContact';
 import UpdateContact from './UpdateContact';
-import Menus from '../../ui/Menus';
 
 const TableRow = styled.div`
   align-items: center;
   column-gap: 2.4rem;
   display: grid;
-  font-size: 1.4rem;
-  font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: 600;
   grid-template-columns:
-    minmax(20rem, 1fr) minmax(20rem, 1fr) minmax(12.5rem, 0.7fr)
-    minmax(20rem, 1fr) minmax(10.5rem, 0.65fr) 3.6rem;
+    6.8rem minmax(16rem, 0.4fr) minmax(18rem, 0.75fr)
+    minmax(10rem, 0.75fr) minmax(16rem, 0.4fr) minmax(10rem, 0.4fr);
   line-height: 2rem;
-  padding: 1.4rem 2.4rem;
+  padding: 0.8rem 2rem;
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--border-non-interactive);
@@ -39,6 +38,18 @@ function ContactsTableRow({ contactDetails }) {
   return (
     <>
       <TableRow role="row">
+        <ActionsColumn>
+          <UpdateContact contactToUpdate={contact} />
+          <DeleteContact
+            id={contact.contact_id}
+            resourceName={[
+              contact.contact_first_name,
+              contact.contact_last_name,
+            ].join(' ')}
+            disabled={isDeletingContact}
+            onDelete={deleteContact}
+          />
+        </ActionsColumn>
         <div>
           <Link to={`${contact.contact_id}`}>
             <ProfileCard
@@ -60,30 +71,6 @@ function ContactsTableRow({ contactDetails }) {
           />
         </div>
         <div>{formatDate(contact.contact_created_at)}</div>
-        <ActionsColumn>
-          <Menus.Menu>
-            <Menus.Toggle id={contact.contact_id}></Menus.Toggle>
-            <Menus.List id={contact.contact_id}>
-              <Menus.Item>
-                <UpdateContact contactToUpdate={contact}>Update</UpdateContact>
-              </Menus.Item>
-              <Menus.Item>
-                <DeleteContact
-                  id={contact.contact_id}
-                  resourceName={[
-                    contact.contact_first_name,
-                    contact.contact_last_name,
-                  ].join(' ')}
-                  disabled={isDeletingContact}
-                  onDelete={() =>
-                    deleteContact({ contactId: contact.contact_id })
-                  }>
-                  Delete
-                </DeleteContact>
-              </Menus.Item>
-            </Menus.List>
-          </Menus.Menu>
-        </ActionsColumn>
       </TableRow>
     </>
   );

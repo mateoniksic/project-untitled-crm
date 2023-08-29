@@ -59,7 +59,7 @@ export async function getContactDeals({ contactId }) {
   return data;
 }
 
-export async function updateContact({ contact, contactId }) {
+export async function updateContact({ contact }) {
   // 1. Check and set avatar
   const avatar = contact.contact_avatar
     ? typeof contact.contact_avatar === 'string'
@@ -91,7 +91,7 @@ export async function updateContact({ contact, contactId }) {
   const { data, error } = await supabase
     .from('contact')
     .update({ ...contact, contact_avatar: avatarUrlPath })
-    .eq('contact_id', contactId)
+    .eq('contact_id', contact.contact_id)
     .select()
     .single();
 
@@ -185,12 +185,12 @@ export async function createContact({ contact }) {
   return data;
 }
 
-export async function deleteContact({ contactId }) {
+export async function deleteContact(id) {
   // 1. Fetch contact avatar url and create file path.
   const { data: contactAvatar, error: contactAvatarError } = await supabase
     .from('contact')
     .select('contact_avatar')
-    .eq('contact_id', contactId);
+    .eq('contact_id', id);
 
   const avatarFilePath = contactAvatar?.at(0)?.contact_avatar
     ? contactAvatar.at(0).contact_avatar.split('/').at(-1)
@@ -200,7 +200,7 @@ export async function deleteContact({ contactId }) {
   const { data, error } = await supabase
     .from('contact')
     .delete()
-    .eq('contact_id', contactId)
+    .eq('contact_id', id)
     .single();
 
   if (error) {

@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { PlusCircleIcon, SaveIcon } from 'lucide-react';
+import { PlusCircleIcon, SaveIcon, User2Icon } from 'lucide-react';
 
 import Button from '../../ui/Button';
 import FormRow from '../../ui/FormRow';
@@ -14,6 +14,7 @@ import { useUpdateContact } from './useUpdateContact';
 import Form from '../../ui/Form';
 import { useUser } from '../auth/useUser';
 import { useUserProfile } from '../settings/user-profile/useUserProfile';
+import Spinner from '../../ui/Spinner';
 
 const StyledContactForm = styled.form`
   align-items: stretch;
@@ -59,9 +60,19 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
   const { contact_id: updateId, ...editValues } = contactToUpdate;
   const isUpdateSession = Boolean(updateId);
 
-  const { createContact, isCreatingContact } = useCreateContact();
-  const { updateContact, isUpdatingContact } = useUpdateContact();
-  const isProcessing = isCreatingContact || isUpdatingContact;
+  const {
+    user: { id: userId, workspace_id: workspaceId },
+    isLoadingUser,
+  } = useUser();
+
+  const {
+    userProfile: { user_profile_id: userProfileId },
+    isLoadingUserProfile,
+  } = useUserProfile({ userId });
+
+  const isLoading = isLoadingUser || isLoadingUserProfile;
+
+  const defaultValues = isUpdateSession ? editValues : {};
 
   const {
     register,
@@ -69,16 +80,12 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
     reset,
     formState: { errors },
   } = useForm({
-    defaultValues: isUpdateSession ? editValues : {},
+    defaultValues: defaultValues,
   });
 
-  const {
-    user: { id: userId, workspace_id: workspaceId },
-  } = useUser();
-
-  const {
-    userProfile: { user_profile_id: userProfileId },
-  } = useUserProfile({ userId });
+  const { createContact, isCreatingContact } = useCreateContact();
+  const { updateContact, isUpdatingContact } = useUpdateContact();
+  const isProcessing = isCreatingContact || isUpdatingContact;
 
   function onSubmit(data) {
     if (isUpdateSession) {
@@ -88,8 +95,8 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
             ...data,
             contact_created_by: userProfileId,
             workspace_id: workspaceId,
+            contact_id: updateId,
           },
-          contactId: updateId,
         },
         {
           onSuccess: () => {
@@ -121,90 +128,97 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
     console.log('ContactForm errors: ', errors);
   }
 
+  if (isLoading)
+    return (
+      <Form.ModalWrapper>
+        <Spinner.Wrapper>
+          <Spinner />
+        </Spinner.Wrapper>
+      </Form.ModalWrapper>
+    );
+
   return (
-    <StyledContactForm onSubmit={handleSubmit(onSubmit, onError)}>
-      <FormHeader>
-        <Text size="large" as="h1">
+    <Form.ModalWrapper>
+      <Form onSubmit={handleSubmit(onSubmit, onError)}>
+        <Form.ModalHeader>
+          <User2Icon size="24" />
           New contact
-        </Text>
-      </FormHeader>
-      <FormMain>
-        <FormRow
-          label="Click to upload avatar."
-          type="file"
-          error={errors?.contact_avatar?.message}>
-          <FormInputFile
-            accept=".jpg, .jpeg, .png"
-            id="avatar"
-            {...register('contact_avatar')}
-          />
-        </FormRow>
-
-        <FormRow
-          label="First name:"
-          error={errors?.contact_first_name?.message}>
-          <FormInput
-            type="text"
-            id="fname"
-            {...register('contact_first_name', {
-              required: 'This field is required.',
-            })}
-          />
-        </FormRow>
-
-        <FormRow label="Last name:" error={errors?.contact_last_name?.message}>
-          <FormInput
-            type="text"
-            id="lname"
-            {...register('contact_last_name', {
-              required: 'This field is required.',
-            })}
-          />
-        </FormRow>
-
-        <FormRow label="Email:" error={errors?.contact_email?.message}>
-          <FormInput
-            type="text"
-            id="email"
-            {...register('contact_email', {
-              required: 'This field is required.',
-            })}
-          />
-        </FormRow>
-
-        <FormRow label="Phone:" error={errors?.contact_phone?.message}>
-          <FormInput
-            type="text"
-            id="phone"
-            {...register('contact_phone', {
-              required: 'This field is required.',
-            })}
-          />
-        </FormRow>
-      </FormMain>
-
-      <FormFooter>
-        <Button
-          variation="neutral"
-          type="button"
-          onClick={() => onCloseModal?.()}>
-          Cancel
-        </Button>
-        <Button variation="primary" disabled={isProcessing}>
-          {isUpdateSession ? (
-            <>
-              <SaveIcon size="16" />
-              Save changes
-            </>
-          ) : (
-            <>
-              <PlusCircleIcon size="16" />
-              Create contact
-            </>
-          )}
-        </Button>
-      </FormFooter>
-    </StyledContactForm>
+        </Form.ModalHeader>
+        <Form.ModalMain>
+          <FormRow
+            label="Click to upload avatar."
+            type="file"
+            error={errors?.contact_avatar?.message}>
+            <FormInputFile
+              accept=".jpg, .jpeg, .png"
+              id="avatar"
+              {...register('contact_avatar')}
+            />
+          </FormRow>
+          <FormRow
+            label="First name:"
+            error={errors?.contact_first_name?.message}>
+            <FormInput
+              type="text"
+              id="fname"
+              {...register('contact_first_name', {
+                required: 'This field is required.',
+              })}
+            />
+          </FormRow>
+          <FormRow
+            label="Last name:"
+            error={errors?.contact_last_name?.message}>
+            <FormInput
+              type="text"
+              id="lname"
+              {...register('contact_last_name', {
+                required: 'This field is required.',
+              })}
+            />
+          </FormRow>
+          <FormRow label="Email:" error={errors?.contact_email?.message}>
+            <FormInput
+              type="text"
+              id="email"
+              {...register('contact_email', {
+                required: 'This field is required.',
+              })}
+            />
+          </FormRow>
+          <FormRow label="Phone:" error={errors?.contact_phone?.message}>
+            <FormInput
+              type="text"
+              id="phone"
+              {...register('contact_phone', {
+                required: 'This field is required.',
+              })}
+            />
+          </FormRow>
+        </Form.ModalMain>
+        <Form.ModalFooter>
+          <Button
+            variation="neutral"
+            type="button"
+            onClick={() => onCloseModal?.()}>
+            Cancel
+          </Button>
+          <Button variation="primary" disabled={isProcessing}>
+            {isUpdateSession ? (
+              <>
+                <SaveIcon size="16" />
+                Save changes
+              </>
+            ) : (
+              <>
+                <PlusCircleIcon size="16" />
+                Create contact
+              </>
+            )}
+          </Button>
+        </Form.ModalFooter>
+      </Form>
+    </Form.ModalWrapper>
   );
 }
 

@@ -70,11 +70,9 @@ function DealForm({ dealToUpdate = {}, onCloseModal }) {
 
   const { createDeal, isCreatingDeal } = useCreateDeal();
   const { updateDeal, isUpdatingDeal } = useUpdateDeal();
-
   const isProcessing = isCreatingDeal || isUpdatingDeal;
 
   function onSubmit(data) {
-    console.log(data);
     if (isUpdateSession) {
       updateDeal(
         {
@@ -132,7 +130,7 @@ function DealForm({ dealToUpdate = {}, onCloseModal }) {
 
   return (
     <Form.ModalWrapper>
-      <form onSubmit={handleSubmit(onSubmit, onError)}>
+      <Form onSubmit={handleSubmit(onSubmit, onError)}>
         <Form.ModalHeader>
           <CircleDollarSignIcon size="24" />
           New deal
@@ -252,7 +250,7 @@ function DealForm({ dealToUpdate = {}, onCloseModal }) {
             )}
           </Button>
         </Form.ModalFooter>
-      </form>
+      </Form>
     </Form.ModalWrapper>
   );
 }

@@ -21,7 +21,7 @@ const ContactHeader = styled.div`
   flex-flow: row wrap;
   gap: 1.6rem;
   justify-content: space-between;
-  padding: 1.6rem;
+  padding: 0.8rem 1.6rem;
 `;
 
 const ContactActions = styled.div`
@@ -48,7 +48,7 @@ const ContactFooter = styled.div`
   flex-flow: row wrap;
   gap: 1.6rem;
   justify-content: space-between;
-  padding: 2.4rem;
+  padding: 0.8rem 1.6rem;
 `;
 
 function ContactDetails({ contactDetails }) {

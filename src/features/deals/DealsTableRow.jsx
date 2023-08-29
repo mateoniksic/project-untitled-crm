@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Menus from '../../ui/Menus';
-import ProfileCard from '../../ui/ProfileCard';
+import { useDeleteDeal } from './useDeleteDeal';
 import { formatDate, formatCurrency } from '../../utils/helpers';
+import ProfileCard from '../../ui/ProfileCard';
 import UpdateDeal from './UpdateDeal';
 import DeleteDeal from './DeleteDeal';
-import { useDeleteDeal } from './useDeleteDeal';
 
 const TableRow = styled.div`
   align-items: center;
@@ -17,7 +16,6 @@ const TableRow = styled.div`
   grid-template-columns:
     6.8rem minmax(8rem, 0.75fr) minmax(7rem, 0.25fr) minmax(4.8rem, 0.25fr)
     minmax(8rem, 0.3fr) minmax(16rem, 0.4fr) minmax(10rem, 0.4fr);
-
   padding: 0.8rem 2rem;
 
   &:not(:last-child) {

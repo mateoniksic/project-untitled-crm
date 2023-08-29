@@ -1,8 +1,9 @@
 import { styled, css } from 'styled-components';
-
-import Text from '../../ui/Text';
-
+import { useDeleteDeal } from './useDeleteDeal';
 import { formatCurrency, formatDate } from '../../utils/helpers';
+import Text from '../../ui/Text';
+import UpdateDeal from './UpdateDeal';
+import DeleteDeal from './DeleteDeal';
 
 const DealCardStyled = styled.div`
   align-items: stretch;
@@ -21,6 +22,14 @@ const DealHeader = styled.div`
   border-bottom: 1px solid var(--border-non-interactive);
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 1.6rem;
+`;
+
+const DealActions = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.8rem;
   justify-content: space-between;
   padding: 1.6rem;
 `;
@@ -74,30 +83,53 @@ const DealFooter = styled.div`
 `;
 
 function DealDetails({ dealDetails }) {
-  const {
-    deal_title: title,
-    deal_value: value,
-    deal_description: description,
-    deal_created_at: createdAt,
-    deal_status: { deal_status_name: status },
-    pipeline_stage: { pipeline_stage_name: pipelineStage },
-  } = dealDetails ?? {};
+  const deal = {
+    deal_id: dealDetails.deal_id,
+    deal_title: dealDetails.deal_title,
+    deal_description: dealDetails.deal_description,
+    deal_value: dealDetails.deal_value,
+    deal_created_at: dealDetails.deal_created_at,
+    deal_status_id: dealDetails.deal_status_id,
+    pipeline_id: dealDetails.pipeline_id,
+    pipeline_stage_id: dealDetails.pipeline_stage_id,
+    workspace_id: dealDetails.workspace_id,
+    contact_id: dealDetails.contact_id,
+  };
+
+  const { deleteDeal, isDeletingDeal } = useDeleteDeal();
 
   return (
     <DealCardStyled>
       <DealHeader>
-        <Text size="normal">{title}</Text>
-        <Text size="subtle-semibold">{formatCurrency(value, 'EUR')}</Text>
+        <div>
+          <Text size="subtle">{dealDetails.deal_title}</Text>
+          <Text size="subtle-semibold">
+            {formatCurrency(dealDetails.deal_value, 'EUR')}
+          </Text>
+        </div>
+        <DealActions>
+          <UpdateDeal dealToUpdate={deal}></UpdateDeal>
+          <DeleteDeal
+            resourceName={deal.deal_title}
+            id={deal.deal_id}
+            onDelete={deleteDeal}
+            disabled={isDeletingDeal}></DeleteDeal>
+        </DealActions>
       </DealHeader>
       <DealMain>
-        {description && <Text size="subtle-medium">{description}</Text>}
+        {dealDetails.deal_description && (
+          <Text size="subtle-medium">{dealDetails.deal_description}</Text>
+        )}
         <StatusWrapper>
-          <Status $status={status.toLowerCase()}>{status}</Status>
-          <Status>{pipelineStage}</Status>
+          <Status
+            $status={dealDetails.deal_status.deal_status_name.toLowerCase()}>
+            {dealDetails.deal_status.deal_status_name}
+          </Status>
+          <Status>{dealDetails.pipeline_stage.pipeline_stage_name}</Status>
         </StatusWrapper>
       </DealMain>
       <DealFooter>
-        <Text size="detail">{formatDate(createdAt)}</Text>
+        <Text size="detail">{formatDate(dealDetails.deal_created_at)}</Text>
       </DealFooter>
     </DealCardStyled>
   );

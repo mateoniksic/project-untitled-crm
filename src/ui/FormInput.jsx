@@ -5,7 +5,7 @@ const StyledFormInput = styled.input`
   border-radius: 0.6rem;
   border: 1px solid var(--border-interactive);
   font-size: 1.4rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 2rem;
   padding: 0.8rem;
   width: 100%;

@@ -5,7 +5,7 @@ import AppHeader from './AppHeader';
 
 const StyledAppLayout = styled.div`
   display: grid;
-  grid-template-columns: minmax(18.5rem, 23.5rem) 1fr;
+  grid-template-columns: 20rem 1fr;
   grid-template-rows: auto 1fr;
   height: 100dvh;
 `;

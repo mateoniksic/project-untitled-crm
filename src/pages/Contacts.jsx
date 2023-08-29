@@ -4,7 +4,6 @@ import { useApp } from '../hooks/useApp';
 import ContactsTable from '../features/contacts/ContactsTable';
 import AddContact from '../features/contacts/AddContact';
 import Text from '../ui/Text';
-import ContactsTableOperations from '../features/contacts/ContactsTableOperations';
 
 const StyledContacts = styled.div`
   background-color: var(--bg-normal);
@@ -34,7 +33,6 @@ function Contacts() {
         </Text>
         <AddContact />
       </ContactsHeader>
-      {/* <ContactsTableOperations /> */}
       <ContactsTable setTotalContacts={setTotalContacts} />
     </StyledContacts>
   );

@@ -3,20 +3,12 @@ import Modal from '../../ui/Modal';
 import Button from '../../ui/Button';
 import ConfirmDelete from '../../ui/ConfirmDelete';
 
-function DeleteDeal({
-  id,
-  resourceName,
-  disabled,
-  onDelete,
-  redirect,
-  children,
-}) {
+function DeleteDeal({ id, resourceName, disabled, onDelete, redirect }) {
   return (
     <Modal>
       <Modal.Open windowName="delete-deal-form">
         <Button variation="danger" iconOnly={true}>
           <Trash2Icon size="16" />
-          {children}
         </Button>
       </Modal.Open>
       <Modal.Window name="delete-deal-form">

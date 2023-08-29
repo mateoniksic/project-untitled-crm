@@ -13,6 +13,7 @@ function useDeleteDeal() {
     onSuccess: () => {
       toast.success(`Deal deleted successfully.`);
       queryClient.invalidateQueries({ queryKey: ['deals'] });
+      queryClient.invalidateQueries({ queryKey: ['contact_deals'] });
     },
     onError: (err) => toast.error(err),
   });

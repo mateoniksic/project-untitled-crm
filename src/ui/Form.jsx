@@ -10,7 +10,7 @@ const FormTextArea = styled.textarea`
   border-radius: 0.6rem;
   border: 1px solid var(--border-interactive);
   font-size: 1.4rem;
-  font-weight: 400;
+  font-weight: 500;
   height: 100%;
   line-height: 2rem;
   max-height: 16rem;
@@ -25,7 +25,7 @@ const Form = styled.form`
   align-items: stretch;
   display: flex;
   flex-flow: column nowrap;
-  gap: 2.4rem;
+  gap: 1.6rem;
   justify-content: start;
   width: 100%;
 `;
