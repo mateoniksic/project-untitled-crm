@@ -85,7 +85,7 @@ function ProfileCard({
         />
       </ProfileCardWrapper>
       <ProfileDetails>
-        <Text as="span" size="subtle-medium">
+        <Text as="span" size="detail">
           {`${firstName} ${lastName}`}
         </Text>
       </ProfileDetails>

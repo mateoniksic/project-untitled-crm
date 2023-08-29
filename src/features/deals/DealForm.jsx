@@ -1,55 +1,14 @@
-import { styled } from 'styled-components';
 import { CircleDollarSignIcon, SaveIcon, PlusCircleIcon } from 'lucide-react';
 import { useForm, Controller } from 'react-hook-form';
+import { useUser } from '../auth/useUser';
+import { useContacts } from '../contacts/useContacts';
 import { useDealStatuses } from './useDealStatuses';
 import { usePipelineStages } from './usePipelineStages';
-import { useContacts } from '../contacts/useContacts';
+import { useCreateDeal } from './useCreateDeal';
+import { useUpdateDeal } from './useUpdateDeal';
 import Form from '../../ui/Form';
 import Button from '../../ui/Button';
-import { useUser } from '../auth/useUser';
-import { useCreateDeal } from './useCreateDeal';
-import { useEffect, useMemo } from 'react';
 import Spinner from '../../ui/Spinner';
-import { useUpdateDeal } from './useUpdateDeal';
-
-const ModalFormWrapper = styled.div`
-  background-color: var(--bg-normal);
-  border-radius: var(--border-radius-sm);
-  border: 1px solid var(--border-non-interactive);
-  max-width: 48rem;
-  min-width: max-content;
-  width: 100%;
-`;
-
-const ModalFormHeader = styled.div`
-  align-items: center;
-  background-color: var(--bg-subtle);
-  border-bottom: 1px solid var(--border-non-interactive);
-  border-top-left-radius: var(--border-radius-sm);
-  border-top-right-radius: var(--border-radius-sm);
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 0.8rem;
-  justify-content: start;
-  padding: 1.6rem 2.4rem;
-`;
-
-const ModalFormMain = styled.div`
-  padding: 1.6rem 2.4rem;
-`;
-
-const ModalFormFooter = styled.div`
-  align-items: center;
-  background-color: var(--bg-subtle);
-  border-bottom-left-radius: var(--border-radius-sm);
-  border-bottom-right-radius: var(--border-radius-sm);
-  border-top: 1px solid var(--border-non-interactive);
-  display: flex;
-  flex-flow: row wrap;
-  gap: 1.6rem;
-  justify-content: space-between;
-  padding: 1.6rem 2.4rem;
-`;
 
 function DealForm({ dealToUpdate = {}, onCloseModal }) {
   const { deal_id: dealId, ...editValues } = dealToUpdate;
@@ -102,17 +61,17 @@ function DealForm({ dealToUpdate = {}, onCloseModal }) {
   const {
     control,
     register,
-    getValues,
     handleSubmit,
     reset,
     formState: { errors },
-    isLoading: isSubmitting,
   } = useForm({
     values: defaultValues,
   });
 
   const { createDeal, isCreatingDeal } = useCreateDeal();
   const { updateDeal, isUpdatingDeal } = useUpdateDeal();
+
+  const isProcessing = isCreatingDeal || isUpdatingDeal;
 
   function onSubmit(data) {
     console.log(data);
@@ -164,25 +123,27 @@ function DealForm({ dealToUpdate = {}, onCloseModal }) {
 
   if (isLoading)
     return (
-      <Spinner.Wrapper>
-        <Spinner />
-      </Spinner.Wrapper>
+      <Form.ModalWrapper>
+        <Spinner.Wrapper>
+          <Spinner />
+        </Spinner.Wrapper>
+      </Form.ModalWrapper>
     );
 
   return (
-    <ModalFormWrapper>
+    <Form.ModalWrapper>
       <form onSubmit={handleSubmit(onSubmit, onError)}>
-        <ModalFormHeader>
+        <Form.ModalHeader>
           <CircleDollarSignIcon size="24" />
           New deal
-        </ModalFormHeader>
-        <ModalFormMain>
+        </Form.ModalHeader>
+        <Form.ModalMain>
           <Form.Rows>
             <Form.Row label="Deal title" error={errors?.deal_title?.message}>
               <Form.Input
                 type="text"
                 id="deal-title"
-                disabled={isSubmitting}
+                disabled={isProcessing}
                 {...register('deal_title', {
                   required: 'This field is required.',
                 })}
@@ -194,7 +155,7 @@ function DealForm({ dealToUpdate = {}, onCloseModal }) {
               <Form.TextArea
                 type="textarea"
                 id="deal-description"
-                disabled={isSubmitting}
+                disabled={isProcessing}
                 {...register('deal_description', {
                   required: 'This field is required.',
                 })}
@@ -204,11 +165,11 @@ function DealForm({ dealToUpdate = {}, onCloseModal }) {
               <Form.Input
                 type="number"
                 id="deal-value"
-                disabled={isSubmitting}
+                disabled={isProcessing}
                 {...register('deal_value', {
                   required: 'This field is required.',
                   validate: (value) =>
-                    getValues().deal_value >= 0 ||
+                    value >= 0 ||
                     'Value must be greater than or equal to zero.',
                 })}
               />
@@ -224,7 +185,7 @@ function DealForm({ dealToUpdate = {}, onCloseModal }) {
                   <Form.Select
                     field={field}
                     options={contactOptions}
-                    disabled={isSubmitting}
+                    disabled={isProcessing}
                     placeholder="Select contact"
                   />
                 )}
@@ -243,7 +204,7 @@ function DealForm({ dealToUpdate = {}, onCloseModal }) {
                   <Form.Select
                     field={field}
                     options={dealStatusOptions}
-                    disabled={isSubmitting}
+                    disabled={isProcessing}
                     placeholder="Select deal status"
                   />
                 )}
@@ -262,22 +223,22 @@ function DealForm({ dealToUpdate = {}, onCloseModal }) {
                   <Form.Select
                     field={field}
                     options={pipelineStageOptions}
-                    disabled={isSubmitting}
+                    disabled={isProcessing}
                     placeholder="Select pipeline stage"
                   />
                 )}
               />
             </Form.Row>
           </Form.Rows>
-        </ModalFormMain>
-        <ModalFormFooter>
+        </Form.ModalMain>
+        <Form.ModalFooter>
           <Button
             variation="neutral"
             type="button"
             onClick={() => onCloseModal?.()}>
             Cancel
           </Button>
-          <Button variation="primary" disabled={''}>
+          <Button variation="primary" disabled={isProcessing}>
             {isUpdateSession ? (
               <>
                 <SaveIcon size="16" />
@@ -290,9 +251,9 @@ function DealForm({ dealToUpdate = {}, onCloseModal }) {
               </>
             )}
           </Button>
-        </ModalFormFooter>
+        </Form.ModalFooter>
       </form>
-    </ModalFormWrapper>
+    </Form.ModalWrapper>
   );
 }
 

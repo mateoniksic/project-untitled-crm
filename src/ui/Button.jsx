@@ -37,7 +37,8 @@ const StyledButton = styled.button`
   gap: 0.8rem;
   justify-content: center;
   line-height: 2rem;
-  padding: 0.8rem 1.6rem;
+  padding: ${(props) =>
+    props.$iconOnly === true ? '0.8rem' : '0.8rem 1.6rem'};
 
   ${(props) => (props.$variation ? variations[props.$variation] : 'primary')};
 `;
@@ -53,15 +54,24 @@ const StyledLink = styled(Link)`
   gap: 0.8rem;
   justify-content: center;
   line-height: 2rem;
-  padding: 0.8rem 1.6rem;
+  padding: ${(props) =>
+    props.$iconOnly === true ? '0.8rem' : '0.8rem 1.6rem'};
 
   ${(props) => (props.$variation ? variations[props.$variation] : 'primary')}
 `;
 
-function Button({ to, type, variation, onClick, disabled, children }) {
+function Button({
+  to,
+  type,
+  variation,
+  iconOnly,
+  onClick,
+  disabled,
+  children,
+}) {
   if (to)
     return (
-      <StyledLink $variation={variation} to={to}>
+      <StyledLink $variation={variation} $iconOnly={iconOnly} to={to}>
         {children}
       </StyledLink>
     );
@@ -69,6 +79,7 @@ function Button({ to, type, variation, onClick, disabled, children }) {
   return (
     <StyledButton
       $variation={variation}
+      $iconOnly={iconOnly}
       type={type}
       onClick={onClick}
       disabled={disabled}>

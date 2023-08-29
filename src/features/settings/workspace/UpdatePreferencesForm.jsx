@@ -8,31 +8,10 @@ import Spinner from '../../../ui/Spinner';
 
 function UpdatePreferencesForm() {
   const {
-    control,
-    formState: { errors },
-    handleSubmit,
-    reset,
-  } = useForm();
-
-  const {
     user: { workspace_id: workspaceId },
   } = useUser();
 
   const { workspace, isLoadingWorkspace } = useWorkspace({ workspaceId });
-
-  useEffect(() => {
-    if (!isLoadingWorkspace) {
-      reset({
-        ...workspace,
-        workspace_currency: {
-          value: workspace?.workspace_currency,
-          label: workspace?.workspace_currency,
-        },
-      });
-    }
-  }, [reset, workspace, isLoadingWorkspace]);
-
-  const { updateWorkspace, isUpdatingWorkspace } = useUpdateWorkspace();
 
   const currencyOptions = [
     { value: 'USD', label: 'USD' },
@@ -40,9 +19,27 @@ function UpdatePreferencesForm() {
     { value: 'GBP', label: 'GBP' },
   ];
 
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    values: {
+      ...workspace,
+      workspace_currency: currencyOptions.find(
+        (currency) => currency.value === workspace.workspace_currency,
+      ),
+    },
+  });
+
+  const { updateWorkspace, isUpdatingWorkspace } = useUpdateWorkspace();
+
   function onSubmit(data) {
     updateWorkspace({
-      workspace: { ...data, workspace_currency: data.workspace_currency.value },
+      workspace: {
+        ...data,
+        workspace_currency: data.workspace_currency.value,
+      },
       workspaceId,
     });
   }
@@ -50,13 +47,6 @@ function UpdatePreferencesForm() {
   function onError(error) {
     console.log(error);
   }
-
-  if (isLoadingWorkspace)
-    return (
-      <Spinner.Wrapper>
-        <Spinner />
-      </Spinner.Wrapper>
-    );
 
   if (isLoadingWorkspace)
     return (

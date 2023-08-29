@@ -35,14 +35,15 @@ function DealsTable({ setTotalDeals }) {
       <Table.Wrapper>
         <Table
           role="table"
-          columns="minmax(20rem, 1fr) minmax(6.5rem, 0.25fr) minmax(6rem, 0.25fr) 
-          minmax(14rem, 0.5fr) minmax(20rem, 1fr) minmax(10.5rem, 0.65fr) 3.6rem;">
+          columns="6.8rem minmax(8rem, 0.75fr) minmax(7rem, 0.25fr) minmax(4.8rem, 0.25fr)
+                  minmax(8rem, 0.3fr) minmax(16rem, 0.4fr) minmax(10rem, 0.4fr);">
           <Table.Header>
+            <Table.Column></Table.Column>
             <Table.Column>Title</Table.Column>
             <Table.Column>Value</Table.Column>
             <Table.Column>Status</Table.Column>
-            <Table.Column>Pipeline stage</Table.Column>
-            <Table.Column>Deal contact</Table.Column>
+            <Table.Column>Stage</Table.Column>
+            <Table.Column>Contact</Table.Column>
             <Table.Column>Created at</Table.Column>
           </Table.Header>
           <Table.Body

@@ -41,7 +41,7 @@ const StyledTableHeader = styled.header`
   column-gap: 2.4rem;
   display: grid;
   grid-template-columns: ${(props) => props.$columns};
-  padding: 1.6rem 2.4rem;
+  padding: 0.8rem 2rem;
 `;
 
 function TableHeader({ children }) {
@@ -55,9 +55,10 @@ function TableHeader({ children }) {
 }
 
 const StyledTableColumn = styled.div`
+  font-size: 1.4rem;
   font-weight: 600;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
+  line-height: 2rem;
+  text-transform: capitalize;
 `;
 
 function TableColumn({ children }) {
@@ -72,7 +73,7 @@ const TableFooter = styled.header`
   background-color: var(--bg-subtle);
   border-top: 1px solid var(--border-non-interactive);
   color: var(--text-lc);
-  padding: 1.6rem 2.4rem;
+  padding: 0.8rem 2rem;
 `;
 
 Table.Wrapper = TableWrapper;

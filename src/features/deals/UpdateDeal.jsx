@@ -7,7 +7,7 @@ function UpdateDeal({ dealToUpdate, children }) {
   return (
     <Modal>
       <Modal.Open windowName="update-deal-form">
-        <Button variation="neutral">
+        <Button variation="neutral" iconOnly={true}>
           <PenBoxIcon size="16" />
           {children}
         </Button>

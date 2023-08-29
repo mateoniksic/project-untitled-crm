@@ -14,7 +14,7 @@ function DeleteDeal({
   return (
     <Modal>
       <Modal.Open windowName="delete-deal-form">
-        <Button variation="danger">
+        <Button variation="danger" iconOnly={true}>
           <Trash2Icon size="16" />
           {children}
         </Button>

@@ -11,13 +11,14 @@ const TableRow = styled.div`
   align-items: center;
   column-gap: 2.4rem;
   display: grid;
-  font-size: 1.4rem;
-  font-weight: 500;
-  grid-template-columns:
-    minmax(20rem, 1fr) minmax(6.5rem, 0.25fr) minmax(6rem, 0.25fr)
-    minmax(14rem, 0.5fr) minmax(20rem, 1fr) minmax(10.5rem, 0.65fr) 3.6rem;
+  font-size: 1.2rem;
+  font-weight: 600;
   line-height: 2rem;
-  padding: 1.4rem 2.4rem;
+  grid-template-columns:
+    6.8rem minmax(8rem, 0.75fr) minmax(7rem, 0.25fr) minmax(4.8rem, 0.25fr)
+    minmax(8rem, 0.3fr) minmax(16rem, 0.4fr) minmax(10rem, 0.4fr);
+
+  padding: 0.8rem 2rem;
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--border-non-interactive);
@@ -46,42 +47,31 @@ function DealsTableRow({ dealDetails }) {
 
   return (
     <TableRow>
+      <ActionsColumn>
+        <UpdateDeal dealToUpdate={deal}></UpdateDeal>
+        <DeleteDeal
+          resourceName={deal.deal_title}
+          id={deal.deal_id}
+          onDelete={deleteDeal}
+          disabled={isDeletingDeal}></DeleteDeal>
+      </ActionsColumn>
       <div>
         <Link to={`/workspace/contacts/${contact.contact_id}`}>
           {deal.deal_title}
         </Link>
       </div>
-
       <div>{formatCurrency(deal.deal_value, currency)}</div>
       <div>{status}</div>
       <div>{pipelineStage}</div>
-      <ProfileCard
-        firstName={contact.contact_first_name}
-        lastName={contact.contact_last_name}
-        avatarUrl={contact.contact_avatar}
-        size="3.2"
-      />
+      <div>
+        <ProfileCard
+          firstName={contact.contact_first_name}
+          lastName={contact.contact_last_name}
+          avatarUrl={contact.contact_avatar}
+          size="3.2"
+        />
+      </div>
       <div>{formatDate(deal.deal_created_at)}</div>
-
-      <ActionsColumn>
-        <Menus.Menu>
-          <Menus.Toggle id={deal.deal_id}></Menus.Toggle>
-        </Menus.Menu>
-        <Menus.List id={deal.deal_id}>
-          <Menus.Item>
-            <UpdateDeal dealToUpdate={deal}>Update</UpdateDeal>
-          </Menus.Item>
-          <Menus.Item>
-            <DeleteDeal
-              resourceName={deal.deal_title}
-              id={deal.deal_id}
-              onDelete={deleteDeal}
-              disabled={isDeletingDeal}>
-              Delete
-            </DeleteDeal>
-          </Menus.Item>
-        </Menus.List>
-      </ActionsColumn>
     </TableRow>
   );
 }
