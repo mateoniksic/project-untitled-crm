@@ -13,8 +13,8 @@ const TableRow = styled.div`
   font-size: 1.2rem;
   font-weight: 600;
   grid-template-columns:
-    6.8rem minmax(16rem, 0.4fr) minmax(18rem, 0.75fr)
-    minmax(10rem, 0.75fr) minmax(16rem, 0.4fr) minmax(10rem, 0.4fr);
+    minmax(16rem, 0.4fr) minmax(18rem, 0.75fr)
+    minmax(10rem, 0.5fr) minmax(16rem, 0.4fr) minmax(10rem, 0.5fr) 6.8rem;
   line-height: 2rem;
   padding: 0.8rem 2rem;
 
@@ -38,18 +38,6 @@ function ContactsTableRow({ contactDetails }) {
   return (
     <>
       <TableRow role="row">
-        <ActionsColumn>
-          <UpdateContact contactToUpdate={contact} />
-          <DeleteContact
-            id={contact.contact_id}
-            resourceName={[
-              contact.contact_first_name,
-              contact.contact_last_name,
-            ].join(' ')}
-            disabled={isDeletingContact}
-            onDelete={deleteContact}
-          />
-        </ActionsColumn>
         <div>
           <Link to={`${contact.contact_id}`}>
             <ProfileCard
@@ -71,6 +59,18 @@ function ContactsTableRow({ contactDetails }) {
           />
         </div>
         <div>{formatDate(contact.contact_created_at)}</div>
+        <ActionsColumn>
+          <UpdateContact contactToUpdate={contact} />
+          <DeleteContact
+            id={contact.contact_id}
+            resourceName={[
+              contact.contact_first_name,
+              contact.contact_last_name,
+            ].join(' ')}
+            disabled={isDeletingContact}
+            onDelete={deleteContact}
+          />
+        </ActionsColumn>
       </TableRow>
     </>
   );

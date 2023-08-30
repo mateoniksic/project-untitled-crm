@@ -5,12 +5,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useApp } from '../hooks/useApp';
 import { useContact } from '../features/contacts/useContact';
-
 import Text from '../ui/Text';
 import Button from '../ui/Button';
 import Spinner from '../ui/Spinner';
 import ContactDetails from '../features/contacts/ContactDetails';
 import DealDetails from '../features/deals/DealDetails';
+import AddDeal from '../features/deals/AddDeal';
 
 const StyledContact = styled.div`
   align-items: stretch;
@@ -31,10 +31,27 @@ const ContactDeals = styled.div`
   border: 1px solid var(--border-non-interactive);
   display: flex;
   flex-flow: column nowrap;
-  gap: 3.2rem;
   justify-content: start;
   overflow: hidden;
-  padding: 3.2rem;
+`;
+
+const ContactDealsHeader = styled.div`
+  background-color: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-non-interactive);
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1.6rem;
+  justify-content: space-between;
+  padding: 0.8rem 1.6rem;
+`;
+
+const ContactDealsMain = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 2rem 1.6rem;
 `;
 
 function Contact() {
@@ -61,21 +78,33 @@ function Contact() {
 
   return (
     <StyledContact>
-      <Button variation={'neutral'} onClick={() => navigate(-1)}>
-        <ChevronLeftIcon />
-        Go back
-      </Button>
+      <div>
+        <Button variation={'neutral'} onClick={() => navigate(-1)}>
+          <ChevronLeftIcon />
+          Return
+        </Button>
+      </div>
       <ContactDetails contactDetails={contact} />
       <ContactDeals>
-        <Text size="large">Deals</Text>
-        {!deals.length && (
-          <Text size="subtle-semibold">
-            This contact doesn&apos;t have any deals.
+        <ContactDealsHeader>
+          <Text size="subtle-bold">
+            {`${[contact.contact_first_name, contact.contact_last_name].join(
+              ' ',
+            )}'s `}
+            Deals
           </Text>
-        )}
-        {deals.map((deal) => (
-          <DealDetails key={deal.deal_id} dealDetails={deal} />
-        ))}
+          <AddDeal />
+        </ContactDealsHeader>
+        <ContactDealsMain>
+          {!deals.length && (
+            <Text size="subtle-semibold">
+              This contact doesn&apos;t have any deals.
+            </Text>
+          )}
+          {deals.map((deal) => (
+            <DealDetails key={deal.deal_id} dealDetails={deal} />
+          ))}
+        </ContactDealsMain>
       </ContactDeals>
     </StyledContact>
   );

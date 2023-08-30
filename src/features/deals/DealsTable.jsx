@@ -53,10 +53,9 @@ function DealsTable({ setTotalDeals }) {
       <Table.Wrapper>
         <Table
           role="table"
-          columns="6.8rem minmax(8rem, 0.75fr) minmax(7rem, 0.25fr) minmax(4.8rem, 0.25fr)
-                  minmax(8rem, 0.3fr) minmax(14rem, 0.4fr) minmax(10rem, 0.4fr);">
+          columns="minmax(8rem, 0.65fr) minmax(7rem, 0.25fr) minmax(4.8rem, 0.25fr)
+                  minmax(8rem, 0.3fr) minmax(14rem, 0.4fr) minmax(10rem, 0.4fr) 6.8rem;">
           <Table.Header>
-            <Table.Column />
             <Table.Column>Title</Table.Column>
             <Table.Column>Value</Table.Column>
             <Table.Column>Status</Table.Column>

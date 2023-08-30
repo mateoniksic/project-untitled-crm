@@ -54,10 +54,9 @@ function ContactsTable({ setTotalContacts }) {
       <Table.Wrapper>
         <Table
           role="table"
-          columns="6.8rem minmax(16rem, 0.4fr) minmax(18rem, 0.75fr)
-                  minmax(10rem, 0.75fr) minmax(16rem, 0.4fr) minmax(10rem, 0.4fr);">
+          columns="minmax(16rem, 0.4fr) minmax(18rem, 0.75fr) minmax(10rem, 0.5fr) 
+                   minmax(16rem, 0.4fr) minmax(10rem, 0.5fr) 6.8rem;">
           <Table.Header role="row">
-            <Table.Column />
             <Table.Column>Full name</Table.Column>
             <Table.Column>Email</Table.Column>
             <Table.Column>Phone</Table.Column>

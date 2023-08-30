@@ -14,8 +14,8 @@ const TableRow = styled.div`
   font-weight: 600;
   line-height: 2rem;
   grid-template-columns:
-    6.8rem minmax(8rem, 0.75fr) minmax(7rem, 0.25fr) minmax(4.8rem, 0.25fr)
-    minmax(8rem, 0.3fr) minmax(16rem, 0.4fr) minmax(10rem, 0.4fr);
+    minmax(8rem, 0.65fr) minmax(7rem, 0.25fr) minmax(4.8rem, 0.25fr)
+    minmax(8rem, 0.3fr) minmax(16rem, 0.4fr) minmax(10rem, 0.4fr) 6.8rem;
   padding: 0.8rem 2rem;
 
   &:not(:last-child) {
@@ -45,14 +45,6 @@ function DealsTableRow({ dealDetails }) {
 
   return (
     <TableRow>
-      <ActionsColumn>
-        <UpdateDeal dealToUpdate={deal}></UpdateDeal>
-        <DeleteDeal
-          resourceName={deal.deal_title}
-          id={deal.deal_id}
-          onDelete={deleteDeal}
-          disabled={isDeletingDeal}></DeleteDeal>
-      </ActionsColumn>
       <div>
         <Link to={`/workspace/contacts/${contact.contact_id}`}>
           {deal.deal_title}
@@ -70,6 +62,14 @@ function DealsTableRow({ dealDetails }) {
         />
       </div>
       <div>{formatDate(deal.deal_created_at)}</div>
+      <ActionsColumn>
+        <UpdateDeal dealToUpdate={deal}></UpdateDeal>
+        <DeleteDeal
+          resourceName={deal.deal_title}
+          id={deal.deal_id}
+          onDelete={deleteDeal}
+          disabled={isDeletingDeal}></DeleteDeal>
+      </ActionsColumn>
     </TableRow>
   );
 }

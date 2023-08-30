@@ -23,7 +23,7 @@ const DealHeader = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  padding: 1.6rem;
+  padding: 0.4rem 1.6rem;
 `;
 
 const DealActions = styled.div`
@@ -68,9 +68,9 @@ const statuses = {
 
 const Status = styled.div`
   ${(props) => statuses[props.$status]};
-  padding: 0.8rem;
+  padding: 0.4rem 0.8rem;
   border-radius: var(--border-radius-sm);
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 600;
   line-height: 2rem;
   max-width: max-content;
