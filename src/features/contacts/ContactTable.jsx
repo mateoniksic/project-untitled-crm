@@ -1,13 +1,14 @@
 import { styled } from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useUser } from '../auth/useUser';
-import { useContacts } from './useContacts';
+import { useContactsTable } from './useContactsTable';
 import Spinner from '../../ui/Spinner';
 import Table from '../../ui/Table';
 import ContactTableRow from './ContactTableRow';
 import Text from '../../ui/Text';
 import Pagination from '../../ui/Pagination';
 import Form from '../../ui/Form';
+import { useSearchParams } from 'react-router-dom';
 
 const StyledContactsTable = styled.div`
   display: flex;
@@ -21,9 +22,17 @@ function ContactTable({ setTotalContacts }) {
   const {
     user: { workspace_id: workspaceId },
   } = useUser();
-  const { contacts, count, isLoadingContacts } = useContacts({ workspaceId });
+  const { contacts, count, isLoadingContacts } = useContactsTable({
+    workspaceId,
+  });
   useEffect(() => setTotalContacts(count));
-  const [search, setSearch] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    searchParams.delete('page');
+    setSearchParams(searchParams);
+  }
 
   if (isLoadingContacts)
     return (
@@ -32,30 +41,31 @@ function ContactTable({ setTotalContacts }) {
       </Spinner.Wrapper>
     );
 
-  if (!contacts.length)
-    return (
-      <Text size="subtle">
-        You don&apos;t have any contacts. Click on &apos;New contact&apos;
-        button to create a new contact.
-      </Text>
-    );
-
   return (
     <StyledContactsTable>
-      <Form.Rows>
-        <Form.Input
-          type="text"
-          id="search-contacts"
-          placeholder="Search contacts by name..."
-          onChange={(e) => setSearch(e.target.value.trim().toLowerCase())}
-        />
-      </Form.Rows>
-
+      <Form onSubmit={handleSubmit}>
+        <Form.Rows>
+          <Form.Input
+            type="text"
+            id="search-contacts"
+            placeholder="Search contacts by name..."
+            defaultValue={searchParams.get('search') ?? ''}
+            onChange={(e) => {
+              const queryValue = e.target.value.trim().toLowerCase();
+              if (!queryValue) {
+                searchParams.delete('search');
+              } else {
+                searchParams.set('search', queryValue);
+              }
+            }}
+          />
+        </Form.Rows>
+      </Form>
       <Table.Wrapper>
         <Table
           role="table"
           columns="minmax(16rem, 0.4fr) minmax(18rem, 0.75fr) minmax(10rem, 0.5fr) 
-                   minmax(16rem, 0.4fr) minmax(10rem, 0.5fr) 6.8rem;">
+                   minmax(16rem, 0.5fr) minmax(10rem, 0.5fr) 6.8rem;">
           <Table.Header role="row">
             <Table.Column>Full name</Table.Column>
             <Table.Column>Email</Table.Column>
@@ -64,14 +74,7 @@ function ContactTable({ setTotalContacts }) {
             <Table.Column>Created at</Table.Column>
           </Table.Header>
           <Table.Body
-            data={contacts.filter((contact) =>
-              search === ''
-                ? contact
-                : [contact.contact_first_name, contact.contact_last_name]
-                    .join(' ')
-                    .toLowerCase()
-                    .includes(search),
-            )}
+            data={contacts}
             render={(contact) => (
               <ContactTableRow
                 contactDetails={contact}

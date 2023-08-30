@@ -34,6 +34,7 @@ function DealTable({ setTotalDeals }) {
     user: { workspace_id: workspaceId },
   } = useUser();
   const { deals, count, isLoadingDeals } = useDeals({ workspaceId });
+  useEffect(() => setTotalDeals(count));
 
   const { pipelineStages, isLoadingPipelineStages } = usePipelineStages();
   const pipelineStageOptions = pipelineStages?.map((stage) => ({
@@ -54,9 +55,6 @@ function DealTable({ setTotalDeals }) {
 
   const statusFilter = Number(searchParams.get('status'));
   const stageFilter = Number(searchParams.get('stage'));
-
-  const totalDeals = stageFilter || statusFilter ? deals?.length : count;
-  useEffect(() => setTotalDeals(totalDeals));
 
   if (isLoading)
     return (

@@ -12,8 +12,7 @@ export async function getDeals({ workspaceId, page, stageId, statusId }) {
     pipeline_stage(pipeline_stage_name), workspace(workspace_currency)`,
       { count: 'exact' },
     )
-    .eq('workspace_id', workspaceId)
-    .order('deal_created_at', { ascending: false });
+    .eq('workspace_id', workspaceId);
 
   if (statusId) {
     query = query.eq('deal_status_id', statusId);
@@ -28,6 +27,8 @@ export async function getDeals({ workspaceId, page, stageId, statusId }) {
     const to = from - 1 + PAGE_SIZE;
     query = query.range(from, to);
   }
+
+  query = query.order('deal_id', { ascending: false });
 
   let { data, error, count } = await query;
 

@@ -32,6 +32,7 @@ function DealForm({ dealToUpdate = {}, onCloseModal }) {
   }));
 
   const { contacts, isLoadingContacts } = useContacts({ workspaceId });
+  console.log(contacts);
   const contactOptions = contacts?.map((contact) => ({
     value: contact.contact_id,
     label: [contact.contact_first_name, contact.contact_last_name].join(' '),
@@ -52,9 +53,10 @@ function DealForm({ dealToUpdate = {}, onCloseModal }) {
         pipeline_stage_id: pipelineStageOptions?.find(
           (stage) => stage.value === editValues.pipeline_stage_id,
         ),
-        contact_id: contactOptions?.find(
-          (contact) => contact.value === editValues.contact_id,
-        ),
+        contact_id: contactOptions?.find((contact) => {
+          console.log(contact.value, editValues.contact_id);
+          return contact.value === editValues.contact_id;
+        }),
       }
     : {};
 
@@ -119,6 +121,8 @@ function DealForm({ dealToUpdate = {}, onCloseModal }) {
     console.log(error);
   }
 
+  console.log(defaultValues, editValues);
+
   if (isLoading)
     return (
       <Form.ModalWrapper>
@@ -133,7 +137,7 @@ function DealForm({ dealToUpdate = {}, onCloseModal }) {
       <Form onSubmit={handleSubmit(onSubmit, onError)}>
         <Form.ModalHeader>
           <CircleDollarSignIcon size="24" />
-          New deal
+          Deal
         </Form.ModalHeader>
         <Form.ModalMain>
           <Form.Rows>

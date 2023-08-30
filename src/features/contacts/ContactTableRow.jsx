@@ -14,7 +14,7 @@ const TableRow = styled.div`
   font-weight: 600;
   grid-template-columns:
     minmax(16rem, 0.4fr) minmax(18rem, 0.75fr)
-    minmax(10rem, 0.5fr) minmax(16rem, 0.4fr) minmax(10rem, 0.5fr) 6.8rem;
+    minmax(10rem, 0.5fr) minmax(16rem, 0.5fr) minmax(10rem, 0.5fr) 6.8rem;
   line-height: 2rem;
   padding: 0.8rem 2rem;
 

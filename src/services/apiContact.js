@@ -1,7 +1,7 @@
 import supabase, { supabaseUrl } from './supabase';
 import { PAGE_SIZE } from '../utils/constants';
 
-export async function getContacts({ workspaceId, page }) {
+export async function getContacts({ workspaceId, page, search }) {
   let query = supabase
     .from('contact')
     .select(
@@ -9,14 +9,21 @@ export async function getContacts({ workspaceId, page }) {
     user_profile(*)`,
       { count: 'exact' },
     )
-    .eq('workspace_id', workspaceId)
-    .order('contact_created_at', { ascending: false });
+    .eq('workspace_id', workspaceId);
+
+  if (search) {
+    query = query.or(
+      `contact_first_name.ilike.%${search}%,contact_last_name.ilike.%${search}%`,
+    );
+  }
 
   if (page) {
     const from = (page - 1) * PAGE_SIZE;
     const to = from - 1 + PAGE_SIZE;
     query = query.range(from, to);
   }
+
+  query = query.order('contact_id', { ascending: false });
 
   const { data, error, count } = await query;
 
