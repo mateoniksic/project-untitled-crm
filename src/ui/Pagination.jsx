@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
+import { PAGE_SIZE } from '../utils/constants';
 
 const StyledPagination = styled.div`
   display: flex;
@@ -33,8 +34,6 @@ const PaginationButton = styled.button`
     background-color: var(--component-hovered-neutral);
   }
 `;
-
-const PAGE_SIZE = 10;
 
 function Pagination({ count }) {
   const [searchParams, setSearchParams] = useSearchParams();

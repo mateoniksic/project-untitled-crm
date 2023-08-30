@@ -10,7 +10,7 @@ import Button from '../ui/Button';
 import Spinner from '../ui/Spinner';
 import ContactDetails from '../features/contacts/ContactDetails';
 import DealDetails from '../features/deals/DealDetails';
-import AddDeal from '../features/deals/AddDeal';
+import DealAdd from '../features/deals/DealAdd';
 
 const StyledContact = styled.div`
   align-items: stretch;
@@ -93,7 +93,7 @@ function Contact() {
             )}'s `}
             Deals
           </Text>
-          <AddDeal />
+          <DealAdd />
         </ContactDealsHeader>
         <ContactDealsMain>
           {!deals.length && (

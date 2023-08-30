@@ -2,8 +2,8 @@ import { styled, css } from 'styled-components';
 import { useDeleteDeal } from './useDeleteDeal';
 import { formatCurrency, formatDate } from '../../utils/helpers';
 import Text from '../../ui/Text';
-import UpdateDeal from './UpdateDeal';
-import DeleteDeal from './DeleteDeal';
+import DealUpdate from './DealUpdate';
+import DealDelete from './DealDelete';
 
 const DealCardStyled = styled.div`
   align-items: stretch;
@@ -108,12 +108,12 @@ function DealDetails({ dealDetails }) {
           </Text>
         </div>
         <DealActions>
-          <UpdateDeal dealToUpdate={deal}></UpdateDeal>
-          <DeleteDeal
+          <DealUpdate dealToUpdate={deal}></DealUpdate>
+          <DealDelete
             resourceName={deal.deal_title}
             id={deal.deal_id}
             onDelete={deleteDeal}
-            disabled={isDeletingDeal}></DeleteDeal>
+            disabled={isDeletingDeal}></DealDelete>
         </DealActions>
       </DealHeader>
       <DealMain>

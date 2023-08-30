@@ -3,7 +3,7 @@ import Modal from '../../ui/Modal';
 import Button from '../../ui/Button';
 import DealForm from './DealForm';
 
-function AddDeal() {
+function DealAdd() {
   return (
     <Modal>
       <Modal.Open windowName="add-deal-form">
@@ -19,4 +19,4 @@ function AddDeal() {
   );
 }
 
-export default AddDeal;
+export default DealAdd;

@@ -8,6 +8,7 @@ const StyledFormInput = styled.input`
   font-weight: 500;
   line-height: 2rem;
   padding: 0.8rem;
+  min-width: min-content;
   width: 100%;
 `;
 

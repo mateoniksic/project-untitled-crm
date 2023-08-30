@@ -1,7 +1,8 @@
 import supabase from './supabase';
+import { PAGE_SIZE } from '../utils/constants';
 
-export async function getDeals({ workspaceId }) {
-  const { data, error } = await supabase
+export async function getDeals({ workspaceId, page, stageId, statusId }) {
+  let query = supabase
     .from('deal')
     .select(
       `*, 
@@ -9,16 +10,35 @@ export async function getDeals({ workspaceId }) {
     deal_status(deal_status_name),
     pipeline(pipeline_name),
     pipeline_stage(pipeline_stage_name), workspace(workspace_currency)`,
+      { count: 'exact' },
     )
     .eq('workspace_id', workspaceId)
     .order('deal_created_at', { ascending: false });
+
+  if (statusId) {
+    query = query.eq('deal_status_id', statusId);
+  }
+
+  if (stageId) {
+    query = query.eq('pipeline_stage_id', stageId);
+  }
+
+  if (page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from - 1 + PAGE_SIZE;
+    query = query.range(from, to);
+  }
+
+  let { data, error, count } = await query;
 
   if (error) {
     console.log(error);
     throw new Error('There was a problem while fetching deals data.');
   }
 
-  return data;
+  data = data.length ? data : [];
+
+  return { data, count };
 }
 
 export async function createDeal({ deal }) {

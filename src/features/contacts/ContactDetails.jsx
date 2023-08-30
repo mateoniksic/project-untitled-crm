@@ -4,8 +4,8 @@ import { useDeleteContact } from './useDeleteContact';
 import { formatDate } from '../../utils/helpers';
 import Text from '../../ui/Text';
 import ProfileCard from '../../ui/ProfileCard';
-import UpdateContact from './UpdateContact';
-import DeleteContact from './DeleteContact';
+import ContactUpdate from './ContactUpdate';
+import ContactDelete from './ContactDelete';
 
 const StyledContactCard = styled.div`
   background-color: var(--bg-normal);
@@ -78,8 +78,8 @@ function ContactDetails({ contactDetails }) {
       <ContactHeader>
         <ProfileCard firstName={fName} lastName={lName} avatarUrl={avatar} />
         <ContactActions>
-          <UpdateContact contactToUpdate={contact} />
-          <DeleteContact
+          <ContactUpdate contactToUpdate={contact} />
+          <ContactDelete
             id={id}
             resourceName={[fName, lName].join(' ')}
             disabled={isDeleting}

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useDeleteContact } from './useDeleteContact';
 import { formatDate } from '../../utils/helpers';
 import ProfileCard from '../../ui/ProfileCard';
-import DeleteContact from './DeleteContact';
-import UpdateContact from './UpdateContact';
+import ContactDelete from './ContactDelete';
+import ContactUpdate from './ContactUpdate';
 
 const TableRow = styled.div`
   align-items: center;
@@ -31,7 +31,7 @@ const ActionsColumn = styled.div`
   gap: 0.8rem;
 `;
 
-function ContactsTableRow({ contactDetails }) {
+function ContactTableRow({ contactDetails }) {
   const { user_profile, ...contact } = contactDetails;
   const { deleteContact, isDeletingContact } = useDeleteContact();
 
@@ -60,8 +60,8 @@ function ContactsTableRow({ contactDetails }) {
         </div>
         <div>{formatDate(contact.contact_created_at)}</div>
         <ActionsColumn>
-          <UpdateContact contactToUpdate={contact} />
-          <DeleteContact
+          <ContactUpdate contactToUpdate={contact} />
+          <ContactDelete
             id={contact.contact_id}
             resourceName={[
               contact.contact_first_name,
@@ -76,4 +76,4 @@ function ContactsTableRow({ contactDetails }) {
   );
 }
 
-export default ContactsTableRow;
+export default ContactTableRow;

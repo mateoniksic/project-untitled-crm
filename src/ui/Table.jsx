@@ -65,8 +65,16 @@ function TableColumn({ children }) {
   return <StyledTableColumn>{children}</StyledTableColumn>;
 }
 
+const StyledTableBody = styled.div`
+  padding: 2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 2rem;
+`;
+
 function TableBody({ data, render }) {
-  return <div>{data.map(render)}</div>;
+  if (data.length) return <div>{data.map(render)}</div>;
+  return <StyledTableBody>No records found.</StyledTableBody>;
 }
 
 const TableFooter = styled.header`

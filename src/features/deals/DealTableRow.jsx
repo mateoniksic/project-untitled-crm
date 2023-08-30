@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useDeleteDeal } from './useDeleteDeal';
 import { formatDate, formatCurrency } from '../../utils/helpers';
 import ProfileCard from '../../ui/ProfileCard';
-import UpdateDeal from './UpdateDeal';
-import DeleteDeal from './DeleteDeal';
+import DealUpdate from './DealUpdate';
+import DealDelete from './DealDelete';
 
 const TableRow = styled.div`
   align-items: center;
@@ -15,7 +15,7 @@ const TableRow = styled.div`
   line-height: 2rem;
   grid-template-columns:
     minmax(8rem, 0.65fr) minmax(7rem, 0.25fr) minmax(4.8rem, 0.25fr)
-    minmax(8rem, 0.3fr) minmax(16rem, 0.4fr) minmax(10rem, 0.4fr) 6.8rem;
+    minmax(8rem, 0.35fr) minmax(16rem, 0.4fr) minmax(10rem, 0.4fr) 6.8rem;
   padding: 0.8rem 2rem;
 
   &:not(:last-child) {
@@ -31,7 +31,7 @@ const ActionsColumn = styled.div`
   gap: 0.8rem;
 `;
 
-function DealsTableRow({ dealDetails }) {
+function DealTableRow({ dealDetails }) {
   const {
     contact,
     pipeline,
@@ -63,15 +63,15 @@ function DealsTableRow({ dealDetails }) {
       </div>
       <div>{formatDate(deal.deal_created_at)}</div>
       <ActionsColumn>
-        <UpdateDeal dealToUpdate={deal}></UpdateDeal>
-        <DeleteDeal
+        <DealUpdate dealToUpdate={deal}></DealUpdate>
+        <DealDelete
           resourceName={deal.deal_title}
           id={deal.deal_id}
           onDelete={deleteDeal}
-          disabled={isDeletingDeal}></DeleteDeal>
+          disabled={isDeletingDeal}></DealDelete>
       </ActionsColumn>
     </TableRow>
   );
 }
 
-export default DealsTableRow;
+export default DealTableRow;

@@ -2,8 +2,8 @@ import { styled } from 'styled-components';
 import { useState, useEffect } from 'react';
 import { useApp } from '../hooks/useApp';
 import Text from '../ui/Text';
-import DealsTable from '../features/deals/DealsTable';
-import AddDeal from '../features/deals/AddDeal';
+import DealTable from '../features/deals/DealTable';
+import DealAdd from '../features/deals/DealAdd';
 
 const StyledDeals = styled.div`
   background-color: var(--bg-normal);
@@ -31,9 +31,9 @@ function Deals() {
         <Text size="large" as="h2">
           Total deals ({totalDeals})
         </Text>
-        <AddDeal />
+        <DealAdd />
       </DealsHeader>
-      <DealsTable setTotalDeals={setTotalDeals} />
+      <DealTable setTotalDeals={setTotalDeals} />
     </StyledDeals>
   );
 }

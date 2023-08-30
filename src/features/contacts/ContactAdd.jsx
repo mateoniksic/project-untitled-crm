@@ -3,7 +3,7 @@ import Modal from '../../ui/Modal';
 import Button from '../../ui/Button';
 import ContactForm from './ContactForm';
 
-function AddContact() {
+function ContactAdd() {
   return (
     <Modal>
       <Modal.Open windowName="add-contact-form">
@@ -19,4 +19,4 @@ function AddContact() {
   );
 }
 
-export default AddContact;
+export default ContactAdd;

@@ -3,7 +3,7 @@ import Modal from '../../ui/Modal';
 import Button from '../../ui/Button';
 import ContactForm from './ContactForm';
 
-function UpdateContact({ contactToUpdate }) {
+function ContactUpdate({ contactToUpdate }) {
   return (
     <Modal>
       <Modal.Open windowName="update-contact-form">
@@ -18,4 +18,4 @@ function UpdateContact({ contactToUpdate }) {
   );
 }
 
-export default UpdateContact;
+export default ContactUpdate;

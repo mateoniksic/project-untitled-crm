@@ -3,7 +3,7 @@ import Modal from '../../ui/Modal';
 import Button from '../../ui/Button';
 import DealForm from './DealForm';
 
-function UpdateDeal({ dealToUpdate }) {
+function DealUpdate({ dealToUpdate }) {
   return (
     <Modal>
       <Modal.Open windowName="update-deal-form">
@@ -18,4 +18,4 @@ function UpdateDeal({ dealToUpdate }) {
   );
 }
 
-export default UpdateDeal;
+export default DealUpdate;

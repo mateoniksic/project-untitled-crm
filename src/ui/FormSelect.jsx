@@ -1,8 +1,10 @@
 import ReactSelect from 'react-select';
 
-function FormSelect({ field, menuPortalTarget, options, placeholder }) {
+function FormSelect({ field, ...props }) {
   return (
     <ReactSelect
+      {...props}
+      {...field}
       styles={{
         control: (baseStyles) => ({
           ...baseStyles,
@@ -40,12 +42,7 @@ function FormSelect({ field, menuPortalTarget, options, placeholder }) {
           color: 'var(--text-hc)',
         }),
       }}
-      menuPortalTarget={menuPortalTarget}
       maxMenuHeight={116}
-      isClearable
-      {...field}
-      options={options}
-      placeholder={placeholder}
     />
   );
 }

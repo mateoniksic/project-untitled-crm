@@ -1,7 +1,8 @@
 import supabase, { supabaseUrl } from './supabase';
+import { PAGE_SIZE } from '../utils/constants';
 
-export async function getContacts({ workspaceId }) {
-  const { data, error } = await supabase
+export async function getContacts({ workspaceId, page }) {
+  let query = supabase
     .from('contact')
     .select(
       `*, 
@@ -11,12 +12,20 @@ export async function getContacts({ workspaceId }) {
     .eq('workspace_id', workspaceId)
     .order('contact_created_at', { ascending: false });
 
+  if (page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from - 1 + PAGE_SIZE;
+    query = query.range(from, to);
+  }
+
+  const { data, error, count } = await query;
+
   if (error) {
     console.log(error);
     throw new Error('There was a problem while fetching contacts data.');
   }
 
-  return data;
+  return { data, count };
 }
 
 export async function getContact({ contactId, workspaceId }) {

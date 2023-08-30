@@ -1,8 +1,8 @@
 import { styled } from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useApp } from '../hooks/useApp';
-import ContactsTable from '../features/contacts/ContactsTable';
-import AddContact from '../features/contacts/AddContact';
+import ContactTable from '../features/contacts/ContactTable';
+import AddContact from '../features/contacts/ContactAdd';
 import Text from '../ui/Text';
 
 const StyledContacts = styled.div`
@@ -33,7 +33,7 @@ function Contacts() {
         </Text>
         <AddContact />
       </ContactsHeader>
-      <ContactsTable setTotalContacts={setTotalContacts} />
+      <ContactTable setTotalContacts={setTotalContacts} />
     </StyledContacts>
   );
 }

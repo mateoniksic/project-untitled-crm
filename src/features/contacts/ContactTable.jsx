@@ -4,7 +4,7 @@ import { useUser } from '../auth/useUser';
 import { useContacts } from './useContacts';
 import Spinner from '../../ui/Spinner';
 import Table from '../../ui/Table';
-import ContactsTableRow from './ContactsTableRow';
+import ContactTableRow from './ContactTableRow';
 import Text from '../../ui/Text';
 import Pagination from '../../ui/Pagination';
 import Form from '../../ui/Form';
@@ -17,12 +17,12 @@ const StyledContactsTable = styled.div`
   gap: 2.4rem;
 `;
 
-function ContactsTable({ setTotalContacts }) {
+function ContactTable({ setTotalContacts }) {
   const {
     user: { workspace_id: workspaceId },
   } = useUser();
-  const { contacts, isLoadingContacts } = useContacts({ workspaceId });
-  useEffect(() => setTotalContacts(contacts?.length));
+  const { contacts, count, isLoadingContacts } = useContacts({ workspaceId });
+  useEffect(() => setTotalContacts(count));
   const [search, setSearch] = useState('');
 
   if (isLoadingContacts)
@@ -73,14 +73,14 @@ function ContactsTable({ setTotalContacts }) {
                     .includes(search),
             )}
             render={(contact) => (
-              <ContactsTableRow
+              <ContactTableRow
                 contactDetails={contact}
                 key={contact.contact_id}
               />
             )}
           />
           <Table.Footer>
-            <Pagination count={contacts.length} />
+            <Pagination count={count} />
           </Table.Footer>
         </Table>
       </Table.Wrapper>
@@ -88,4 +88,4 @@ function ContactsTable({ setTotalContacts }) {
   );
 }
 
-export default ContactsTable;
+export default ContactTable;
