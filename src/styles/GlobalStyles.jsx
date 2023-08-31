@@ -43,20 +43,6 @@ const GlobalStyles = createGlobalStyle`
   --tomato-11: hsl(10, 82.0%, 42.0%);
   --tomato-12: hsl(8, 50.0%, 24.0%);
 
-  --indigo-1: hsl(225, 60.0%, 99.4%);
-  --indigo-2: hsl(223, 100%, 98.6%);
-  --indigo-3: hsl(223, 98.4%, 97.1%);
-  --indigo-4: hsl(223, 92.9%, 95.0%);
-  --indigo-5: hsl(224, 87.1%, 92.0%);
-  --indigo-6: hsl(224, 81.9%, 87.8%);
-  --indigo-7: hsl(225, 77.4%, 82.1%);
-  --indigo-8: hsl(226, 75.4%, 74.5%);
-  --indigo-9: hsl(226, 70.0%, 55.5%);
-  --indigo-10: hsl(226, 58.6%, 51.3%);
-  --indigo-11: hsl(226, 55.0%, 45.0%);
-  --indigo-12: hsl(226, 50.0%, 24.0%);
-
-  --backdrop-color: rgba(255, 255, 255, 0.1);
   }
   
   &.dark-mode {
@@ -100,20 +86,6 @@ const GlobalStyles = createGlobalStyle`
     --tomato-11: hsl(10, 100%, 72.0%);
     --tomato-12: hsl(10, 85.0%, 89.0%);
 
-    --indigo-1: hsl(229, 24.0%, 10.0%);
-    --indigo-2: hsl(230, 36.4%, 12.9%);
-    --indigo-3: hsl(228, 42.7%, 18.1%);
-    --indigo-4: hsl(227, 45.6%, 21.4%);
-    --indigo-5: hsl(227, 47.8%, 24.4%);
-    --indigo-6: hsl(226, 50.3%, 28.8%);
-    --indigo-7: hsl(226, 53.3%, 36.6%);
-    --indigo-8: hsl(226, 60.0%, 52.0%);
-    --indigo-9: hsl(226, 70.0%, 55.5%);
-    --indigo-10: hsl(230, 73.9%, 63.3%);
-    --indigo-11: hsl(235, 100%, 80.0%);
-    --indigo-12: hsl(235, 93.0%, 93.0%);
-
-    --backdrop-color: rgba(0, 0, 0, 0.3);
   }
 
   --bg-normal: var(--sage-1);
@@ -126,13 +98,13 @@ const GlobalStyles = createGlobalStyle`
   --border-interactive: var(--sage-6);
   --border-interactive-focus: var(--sage-6);
 
-  --component-normal-neutral: var(--sage-3);
-  --component-hovered-neutral: var(--sage-4);
-  --component-selected-neutral: var(--sage-5);
-
   --component-normal: var(--mint-3);
   --component-hovered: var(--mint-4);
   --component-selected: var(--mint-5);
+
+  --component-normal-neutral: var(--sage-3);
+  --component-hovered-neutral: var(--sage-4);
+  --component-selected-neutral: var(--sage-5);
 
   --component-normal-danger: var(--tomato-3);
   --component-hovered-danger: var(--tomato-4);
@@ -140,14 +112,9 @@ const GlobalStyles = createGlobalStyle`
 
   --text-lc: var(--mint-11);
   --text-hc: var(--mint-12);
-
   --text-hc-danger: var(--tomato-10);
 
-  --border-radius-sm: .8rem;
-
-  --component-sage-normal: var(--sage-3);
-  --component-indigo-normal: var(--indigo-3);
-  --component-tomato-normal: var(--tomato-3);
+  --border-radius-sm: 0.8rem;
 }
 
 *,
@@ -166,7 +133,7 @@ html {
 body {
   color: var(--text-hc);
   font-family: "Inter", sans-serif;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 600;
   line-height: 1.5;
   min-height: 100vh;
@@ -201,11 +168,6 @@ textarea:focus,
 select:focus {
   outline: 2px solid var(--border-interactive-focus);
   outline-offset: -1px;
-}
-
-/* Parent selector, finally 😃 */
-button:has(svg) {
-  line-height: 0;
 }
 
 a {

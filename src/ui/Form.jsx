@@ -1,9 +1,39 @@
 import { styled } from 'styled-components';
-import { FormInput } from './FormInput';
-import { FormInputFile } from './FormInputFile';
 import FormRow from './FormRow';
 import Button from './Button';
 import FormSelect from './FormSelect';
+
+const FormInput = styled.input`
+  background-color: var(--component-interactive);
+  border-radius: 0.6rem;
+  border: 1px solid var(--border-interactive);
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2rem;
+  padding: 0.8rem;
+  min-width: max-content;
+  width: 100%;
+`;
+
+const FormInputFile = styled.input.attrs({ type: 'file' })`
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 2rem;
+  outline: transparent;
+  position: absolute;
+  right: 2.9rem;
+  top: 6.4rem;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+`;
 
 const FormTextArea = styled.textarea`
   background-color: var(--component-interactive);
@@ -27,7 +57,7 @@ const Form = styled.form`
   flex-flow: column nowrap;
   gap: 1.6rem;
   justify-content: start;
-  width: 100%;
+  /* width: 100%; */
 `;
 
 const FormHeader = styled.div`

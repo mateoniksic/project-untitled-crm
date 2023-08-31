@@ -83,7 +83,7 @@ function ContactDetails({ contactDetails }) {
             id={id}
             resourceName={[fName, lName].join(' ')}
             disabled={isDeleting}
-            onDelete={() => deleteContact({ contactId: id })}
+            onDelete={() => deleteContact(contact.contact_id)}
             redirect="/workspace/contacts/"
           />
         </ContactActions>

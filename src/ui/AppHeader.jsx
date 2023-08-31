@@ -5,6 +5,8 @@ import { useUserProfile } from '../features/settings/user-profile/useUserProfile
 import Text from './Text';
 import ProfileCard from './ProfileCard';
 import Spinner from './Spinner';
+import DarkModeToggle from './DarkModeToggle';
+import Row from './Row';
 
 const StyledAppHeader = styled.header`
   align-items: center;
@@ -28,18 +30,23 @@ function AppHeader() {
   return (
     <StyledAppHeader>
       <Text size="large">{pageTitle}</Text>
-      {isLoading ? (
-        <Spinner.Wrapper>
-          <Spinner />
-        </Spinner.Wrapper>
-      ) : (
-        <ProfileCard
-          firstName={userProfile.user_profile_first_name}
-          lastName={userProfile.user_profile_last_name}
-          avatarUrl={userProfile.user_profile_avatar}
-          variation="reversed"
-        />
-      )}
+      <Row $gap="1.6rem" alignItems="center">
+        <Row>
+          {isLoading ? (
+            <Spinner.Wrapper>
+              <Spinner />
+            </Spinner.Wrapper>
+          ) : (
+            <ProfileCard
+              firstName={userProfile.user_profile_first_name}
+              lastName={userProfile.user_profile_last_name}
+              avatarUrl={userProfile.user_profile_avatar}
+              variation="reversed"
+            />
+          )}
+        </Row>
+        <DarkModeToggle />
+      </Row>
     </StyledAppHeader>
   );
 }

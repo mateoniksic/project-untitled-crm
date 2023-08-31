@@ -1,40 +1,23 @@
-import { styled } from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { PAGE_SIZE } from '../../utils/constants';
 import { useUser } from '../auth/useUser';
 import { useDeals } from './useDeals';
 import { usePipelineStages } from './usePipelineStages';
 import { useDealStatuses } from './useDealStatuses';
-import Text from '../../ui/Text';
 import Spinner from '../../ui/Spinner';
-import Table from '../../ui/Table';
-import Pagination from '../../ui/Pagination';
-import DealTableRow from './DealTableRow';
+import Row from '../../ui/Row';
+import Text from '../../ui/Text';
 import Form from '../../ui/Form';
-import { useSearchParams } from 'react-router-dom';
-import { PAGE_SIZE } from '../../utils/constants';
+import DealAdd from './DealAdd';
+import Table from '../../ui/Table';
+import DealTableRow from './DealTableRow';
+import Pagination from '../../ui/Pagination';
 
-const StyledDealTable = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: start;
-  align-items: stretch;
-  gap: 2.4rem;
-`;
-
-const TableOperationRow = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: start;
-  align-items: center;
-  gap: 2.4rem;
-`;
-
-function DealTable({ setTotalDeals }) {
+function DealTable() {
   const {
     user: { workspace_id: workspaceId },
   } = useUser();
   const { deals, count, isLoadingDeals } = useDeals({ workspaceId });
-  useEffect(() => setTotalDeals(count));
 
   const { pipelineStages, isLoadingPipelineStages } = usePipelineStages();
   const pipelineStageOptions = pipelineStages?.map((stage) => ({
@@ -64,9 +47,19 @@ function DealTable({ setTotalDeals }) {
     );
 
   return (
-    <StyledDealTable>
-      <TableOperationRow>
-        <Form.Rows>
+    <Row
+      $flexDirection="column"
+      $alignItems="stretch"
+      $border="1"
+      $borderRadius="sm"
+      $padding="3.2rem">
+      <Row
+        $justifyContent="space-between"
+        $alignItems="center"
+        $gap={'2.4rem'}
+        $margin="0 0 2.4rem 0">
+        <Text size="large">Total deals ({count})</Text>
+        <Row $gap={'1.6rem'}>
           <Form.Select
             type="text"
             id="filter-deals"
@@ -90,8 +83,6 @@ function DealTable({ setTotalDeals }) {
               }
             }}
           />
-        </Form.Rows>
-        <Form.Rows>
           <Form.Select
             type="text"
             id="filter-deals"
@@ -115,8 +106,9 @@ function DealTable({ setTotalDeals }) {
               }
             }}
           />
-        </Form.Rows>
-      </TableOperationRow>
+          <DealAdd />
+        </Row>
+      </Row>
       <Table.Wrapper>
         <Table
           role="table"
@@ -143,7 +135,7 @@ function DealTable({ setTotalDeals }) {
           )}
         </Table>
       </Table.Wrapper>
-    </StyledDealTable>
+    </Row>
   );
 }
 

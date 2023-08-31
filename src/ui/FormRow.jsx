@@ -44,7 +44,7 @@ const Label = styled.label`
   ${(props) => props.$type && labelType[props.$type]}
 `;
 
-function FormRow({ label, type, required, error, children }) {
+function FormRow({ label, type, error, children }) {
   return (
     <StyledFormRow>
       {label && (

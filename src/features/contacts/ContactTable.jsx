@@ -1,31 +1,23 @@
-import { styled } from 'styled-components';
-import { useEffect, useState } from 'react';
 import { useUser } from '../auth/useUser';
+import { useSearchParams } from 'react-router-dom';
 import { useContactsTable } from './useContactsTable';
 import Spinner from '../../ui/Spinner';
+import ContactAdd from './ContactAdd';
 import Table from '../../ui/Table';
 import ContactTableRow from './ContactTableRow';
 import Text from '../../ui/Text';
 import Pagination from '../../ui/Pagination';
 import Form from '../../ui/Form';
-import { useSearchParams } from 'react-router-dom';
+import Row from '../../ui/Row';
 
-const StyledContactsTable = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: start;
-  align-items: stretch;
-  gap: 2.4rem;
-`;
-
-function ContactTable({ setTotalContacts }) {
+function ContactTable() {
   const {
     user: { workspace_id: workspaceId },
   } = useUser();
   const { contacts, count, isLoadingContacts } = useContactsTable({
     workspaceId,
   });
-  useEffect(() => setTotalContacts(count));
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   function handleSubmit(e) {
@@ -42,25 +34,38 @@ function ContactTable({ setTotalContacts }) {
     );
 
   return (
-    <StyledContactsTable>
-      <Form onSubmit={handleSubmit}>
-        <Form.Rows>
-          <Form.Input
-            type="text"
-            id="search-contacts"
-            placeholder="Search contacts by name..."
-            defaultValue={searchParams.get('search') ?? ''}
-            onChange={(e) => {
-              const queryValue = e.target.value.trim().toLowerCase();
-              if (!queryValue) {
-                searchParams.delete('search');
-              } else {
-                searchParams.set('search', queryValue);
-              }
-            }}
-          />
-        </Form.Rows>
-      </Form>
+    <Row
+      $flexDirection="column"
+      $alignItems="stretch"
+      $border="1"
+      $borderRadius="sm"
+      $padding="3.2rem">
+      <Row
+        $justifyContent="space-between"
+        $alignItems="center"
+        $gap={'2.4rem'}
+        $margin="0 0 2.4rem 0">
+        <Text size="large">Total contacts ({count})</Text>
+        <Row $gap={'1.6rem'}>
+          <Form onSubmit={handleSubmit}>
+            <Form.Input
+              type="text"
+              id="search-contacts"
+              placeholder="Search contacts by name..."
+              defaultValue={searchParams.get('search') ?? ''}
+              onChange={(e) => {
+                const queryValue = e.target.value.trim().toLowerCase();
+                if (!queryValue) {
+                  searchParams.delete('search');
+                } else {
+                  searchParams.set('search', queryValue);
+                }
+              }}
+            />
+          </Form>
+          <ContactAdd />
+        </Row>
+      </Row>
       <Table.Wrapper>
         <Table
           role="table"
@@ -87,7 +92,7 @@ function ContactTable({ setTotalContacts }) {
           </Table.Footer>
         </Table>
       </Table.Wrapper>
-    </StyledContactsTable>
+    </Row>
   );
 }
 

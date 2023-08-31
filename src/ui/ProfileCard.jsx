@@ -12,9 +12,9 @@ const ProfileCardWrapper = styled.div`
   border-radius: 100%;
   border: 1px solid var(--border-non-interactive);
   display: inline-block;
-  height: ${(props) => (props.$size ? `${props.$size}rem` : '4rem')};
+  height: ${(props) => (props.$size ? `${props.$size}rem` : '3.6rem')};
   overflow: hidden;
-  width: ${(props) => (props.$size ? `${props.$size}rem` : '4rem')};
+  width: ${(props) => (props.$size ? `${props.$size}rem` : '3.6rem')};
 `;
 
 const Avatar = styled.img`

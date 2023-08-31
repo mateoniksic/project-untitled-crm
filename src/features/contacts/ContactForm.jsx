@@ -1,12 +1,8 @@
-import { styled } from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { PlusCircleIcon, SaveIcon, User2Icon } from 'lucide-react';
 
 import Button from '../../ui/Button';
 import FormRow from '../../ui/FormRow';
-import { FormInputFile } from '../../ui/FormInputFile';
-import { FormInput } from '../../ui/FormInput';
-import Text from '../../ui/Text';
 
 import { useCreateContact } from './useCreateContact';
 import { useUpdateContact } from './useUpdateContact';
@@ -15,46 +11,6 @@ import Form from '../../ui/Form';
 import { useUser } from '../auth/useUser';
 import { useUserProfile } from '../settings/user-profile/useUserProfile';
 import Spinner from '../../ui/Spinner';
-
-const StyledContactForm = styled.form`
-  align-items: stretch;
-  background-color: var(--bg-normal);
-  border-radius: var(--border-radius-sm);
-  border: 1px solid var(--border-non-interactive);
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: start;
-  max-width: 62rem;
-  min-width: max-content;
-  overflow: hidden;
-  width: 100%;
-`;
-
-const FormHeader = styled.div`
-  background-color: var(--bg-subtle);
-  border-bottom: 1px solid var(--border-non-interactive);
-  padding: 3.2rem;
-`;
-
-const FormMain = styled.div`
-  align-items: start;
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 1.6rem;
-  justify-content: start;
-  padding: 3.2rem;
-`;
-
-const FormFooter = styled.div`
-  align-items: center;
-  background-color: var(--bg-subtle);
-  border-top: 1px solid var(--border-non-interactive);
-  display: flex;
-  flex-flow: row wrap;
-  gap: 1.6rem;
-  justify-content: space-between;
-  padding: 2rem 3.2rem;
-`;
 
 function ContactForm({ contactToUpdate = {}, onCloseModal }) {
   const { contact_id: updateId, ...editValues } = contactToUpdate;
@@ -149,7 +105,7 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
             label="Click to upload avatar."
             type="file"
             error={errors?.contact_avatar?.message}>
-            <FormInputFile
+            <Form.InputFile
               accept=".jpg, .jpeg, .png"
               id="avatar"
               {...register('contact_avatar')}
@@ -158,7 +114,7 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
           <FormRow
             label="First name:"
             error={errors?.contact_first_name?.message}>
-            <FormInput
+            <Form.Input
               type="text"
               id="fname"
               {...register('contact_first_name', {
@@ -169,7 +125,7 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
           <FormRow
             label="Last name:"
             error={errors?.contact_last_name?.message}>
-            <FormInput
+            <Form.Input
               type="text"
               id="lname"
               {...register('contact_last_name', {
@@ -178,7 +134,7 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
             />
           </FormRow>
           <FormRow label="Email:" error={errors?.contact_email?.message}>
-            <FormInput
+            <Form.Input
               type="text"
               id="email"
               {...register('contact_email', {
@@ -187,7 +143,7 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
             />
           </FormRow>
           <FormRow label="Phone:" error={errors?.contact_phone?.message}>
-            <FormInput
+            <Form.Input
               type="text"
               id="phone"
               {...register('contact_phone', {

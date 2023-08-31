@@ -6,6 +6,18 @@ function FormSelect({ field, ...props }) {
       {...props}
       {...field}
       styles={{
+        singleValue: (baseStyles) => ({
+          ...baseStyles,
+          color: 'var(--text-hc)',
+        }),
+        placeholder: (baseStyles) => ({
+          ...baseStyles,
+          color: 'var(--text-lc)',
+        }),
+        indicatorSeparator: (baseStyles) => ({
+          ...baseStyles,
+          backgroundColor: 'var(--border-interactive)',
+        }),
         control: (baseStyles) => ({
           ...baseStyles,
           backgroundColor: 'var(--component-interactive)',
