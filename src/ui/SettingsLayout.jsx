@@ -25,8 +25,8 @@ const SettingsMain = styled.main`
 `;
 
 function Settings() {
-  const { setPageTitle } = useApp();
-  useEffect(() => setPageTitle('Settings'));
+  const { updatePageTitle } = useApp();
+  useEffect(() => updatePageTitle('Settings'), [updatePageTitle]);
 
   return (
     <StyledSettings>

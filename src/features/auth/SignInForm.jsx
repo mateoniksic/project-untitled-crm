@@ -5,8 +5,8 @@ import Text from '../../ui/Text';
 import Form from '../../ui/Form';
 
 function SignInForm() {
-  const [email, setEmail] = useState('mateo.niksic@student.uniri.hr');
-  const [password, setPassword] = useState('0000');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const { signIn, isLoadingSignIn } = useSignIn();
 

@@ -1,20 +1,6 @@
 import { styled } from 'styled-components';
 import { FilterIcon } from 'lucide-react';
-import {
-  BarChart,
-  Bar,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Sector,
-  LabelList,
-} from 'recharts';
+import { ResponsiveContainer, PieChart, Pie, LabelList } from 'recharts';
 
 import { formatCurrency } from '../../utils/helpers';
 import DashboardCard from './DashboardCard';
@@ -29,6 +15,11 @@ const StyledDashboardPipelineStats = styled.div`
   align-items: start;
   gap: 2.4rem;
   flex-flow: row wrap;
+`;
+
+const PieChartContainer = styled.div`
+  width: 45rem;
+  height: 36.8rem;
 `;
 
 function DashboardPipelineStats({ deals, currency }) {
@@ -63,7 +54,6 @@ function DashboardPipelineStats({ deals, currency }) {
     })
     .sort((s1, s2) => s1.id - s2.id);
 
-  console.log(pipelineStages);
   return (
     <StyledDashboardPipelineStats>
       <DashboardCard title="Pipeline stages" icon={<FilterIcon />}>
@@ -90,32 +80,34 @@ function DashboardPipelineStats({ deals, currency }) {
       </DashboardCard>
       <DashboardCard title="Pipeline stages distribution" icon={<FilterIcon />}>
         {pipelineStages.length ? (
-          <ResponsiveContainer height={368} width="100%">
-            <PieChart>
-              <Pie
-                data={pipelineStages}
-                nameKey="name"
-                dataKey="pipelineShare"
-                innerRadius={75}
-                outerRadius={180}
-                paddingAngle={2}
-                style={{ stroke: 'var(--border-non-interactive)' }}>
-                <LabelList
-                  dataKey={(entry) =>
-                    `${entry.name} (${entry.pipelineShare.toFixed(2)}%)`
-                  }
-                  position="inside"
-                  angle="15"
-                  style={{
-                    fontFamily: '"Inter", sans-serif',
-                    fontWeight: '400',
-                    fontSize: '0.9rem',
-                    stroke: 'var(--text-lc)',
-                  }}
-                />
-              </Pie>
-            </PieChart>
-          </ResponsiveContainer>
+          <PieChartContainer>
+            <ResponsiveContainer height="100%" width="100%">
+              <PieChart>
+                <Pie
+                  data={pipelineStages}
+                  nameKey="name"
+                  dataKey="pipelineShare"
+                  innerRadius={75}
+                  outerRadius={180}
+                  paddingAngle={2}
+                  style={{ stroke: 'var(--border-non-interactive)' }}>
+                  <LabelList
+                    dataKey={(entry) =>
+                      `${entry.name} (${entry.pipelineShare.toFixed(2)}%)`
+                    }
+                    position="inside"
+                    angle="15"
+                    style={{
+                      fontFamily: '"Inter", sans-serif',
+                      fontWeight: '400',
+                      fontSize: '0.9rem',
+                      stroke: 'var(--text-lc)',
+                    }}
+                  />
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
+          </PieChartContainer>
         ) : (
           'No records found.'
         )}

@@ -8,10 +8,11 @@ function AppProvider({ children }) {
   const [isDarkMode, setIsDarkMode] = useLocalStorageState(false, 'isDarkMode');
 
   useEffect(() => {
-    document.documentElement.classList.remove('light-mode', 'dark-mode');
     if (isDarkMode) {
+      document.documentElement.classList.remove('light-mode');
       document.documentElement.classList.add('dark-mode');
     } else {
+      document.documentElement.classList.remove('dark-mode');
       document.documentElement.classList.add('light-mode');
     }
   }, [isDarkMode]);
@@ -20,9 +21,13 @@ function AppProvider({ children }) {
     setIsDarkMode((isDarkMode) => !isDarkMode);
   }
 
+  function updatePageTitle(title) {
+    setPageTitle(title);
+  }
+
   return (
     <AppContext.Provider
-      value={{ pageTitle, setPageTitle, isDarkMode, toggleDarkMode }}>
+      value={{ pageTitle, updatePageTitle, isDarkMode, toggleDarkMode }}>
       {children}
     </AppContext.Provider>
   );

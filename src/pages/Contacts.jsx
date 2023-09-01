@@ -3,8 +3,8 @@ import { useApp } from '../hooks/useApp';
 import ContactTable from '../features/contacts/ContactTable';
 
 function Contacts() {
-  const { setPageTitle } = useApp();
-  useEffect(() => setPageTitle('Contacts'));
+  const { updatePageTitle } = useApp();
+  useEffect(() => updatePageTitle('Contacts'), [updatePageTitle]);
 
   return <ContactTable />;
 }

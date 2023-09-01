@@ -18,13 +18,12 @@ const StyledDashboard = styled.div`
     'dheader dheader dheader dheader'
     'ddstats ddstats ddstats ddstats'
     'dpstats dpstats dpstats dpstats';
-  height: 100%;
   padding: 3.2rem;
 `;
 
 function Dashboard() {
-  const { setPageTitle } = useApp();
-  useEffect(() => setPageTitle('Dashboard'));
+  const { updatePageTitle } = useApp();
+  useEffect(() => updatePageTitle('Dashboard'), [updatePageTitle]);
   const {
     user: { workspace_id: workspaceId },
     isLoadingUser,

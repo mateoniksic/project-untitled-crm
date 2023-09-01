@@ -3,8 +3,8 @@ import { useApp } from '../hooks/useApp';
 import DealTable from '../features/deals/DealTable';
 
 function Deals() {
-  const { setPageTitle } = useApp();
-  useEffect(() => setPageTitle('Deals'));
+  const { updatePageTitle } = useApp();
+  useEffect(() => updatePageTitle('Deals'), [updatePageTitle]);
 
   return <DealTable />;
 }

@@ -1,8 +1,9 @@
 import { styled } from 'styled-components';
+import { useApp } from '../hooks/useApp';
 import { Tab, Tabs, TabList, TabPanel } from '../ui/Tabs';
+import Logo from '../ui/Logo';
 import SignInForm from '../features/auth/SignInForm';
 import SignUpForm from '../features/auth/SignUpForm';
-import Logo from '../ui/Logo';
 
 const StyledSignIn = styled.div`
   background-color: var(--bg-normal);
@@ -29,7 +30,10 @@ const AuthFormDiv = styled.div`
 const AuthHeroDiv = styled.div`
   align-items: center;
   background-color: var(--bg-subtle);
-  background-image: url(/auth/dashboard.png);
+  background-image: ${(props) =>
+    props.$isDarkMode
+      ? 'url(/auth/dashboard-dark.png)'
+      : 'url(/auth/dashboard-light.png)'};
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -41,6 +45,7 @@ const AuthHeroDiv = styled.div`
 `;
 
 function SignIn() {
+  const { isDarkMode } = useApp();
   return (
     <StyledSignIn>
       <AuthFormDiv>
@@ -58,7 +63,7 @@ function SignIn() {
           </TabPanel>
         </Tabs>
       </AuthFormDiv>
-      <AuthHeroDiv />
+      <AuthHeroDiv $isDarkMode={isDarkMode} />
     </StyledSignIn>
   );
 }

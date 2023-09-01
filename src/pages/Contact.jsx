@@ -55,8 +55,8 @@ const ContactDealsMain = styled.div`
 `;
 
 function Contact() {
-  const { setPageTitle } = useApp();
-  useEffect(() => setPageTitle('Contact'));
+  const { updatePageTitle } = useApp();
+  useEffect(() => updatePageTitle('Contact'), [updatePageTitle]);
   const navigate = useNavigate();
 
   const { contactId } = useParams();
