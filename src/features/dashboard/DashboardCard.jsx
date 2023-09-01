@@ -1,17 +1,17 @@
 import { styled } from 'styled-components';
-
 import Text from '../../ui/Text';
 
 const StyledStat = styled.div`
   align-items: center;
+  align-items: start;
   background-color: var(--bg-normal);
   border-radius: var(--border-radius-sm);
   border: 1px solid var(--border-non-interactive);
   display: flex;
   flex-flow: column nowrap;
+  flex: 1;
   gap: 1.6rem;
   justify-content: start;
-  align-items: start;
   padding: 3.6rem;
 `;
 

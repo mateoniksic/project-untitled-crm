@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { PAGE_SIZE } from '../../utils/constants';
 import { useUser } from '../auth/useUser';
-import { useDeals } from './useDeals';
+import { useDealsTable } from './useDealsTable';
 import { usePipelineStages } from './usePipelineStages';
 import { useDealStatuses } from './useDealStatuses';
 import Spinner from '../../ui/Spinner';
@@ -17,7 +17,7 @@ function DealTable() {
   const {
     user: { workspace_id: workspaceId },
   } = useUser();
-  const { deals, count, isLoadingDeals } = useDeals({ workspaceId });
+  const { deals, count, isLoadingDeals } = useDealsTable({ workspaceId });
 
   const { pipelineStages, isLoadingPipelineStages } = usePipelineStages();
   const pipelineStageOptions = pipelineStages?.map((stage) => ({
@@ -50,6 +50,7 @@ function DealTable() {
     <Row
       $flexDirection="column"
       $alignItems="stretch"
+      $backgroundColor="normal"
       $border="1"
       $borderRadius="sm"
       $padding="3.2rem">

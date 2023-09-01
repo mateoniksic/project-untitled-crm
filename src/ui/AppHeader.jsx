@@ -30,7 +30,7 @@ function AppHeader() {
   return (
     <StyledAppHeader>
       <Text size="large">{pageTitle}</Text>
-      <Row $gap="1.6rem" alignItems="center">
+      <Row $gap="1.6rem" $alignItems="center">
         <Row>
           {isLoading ? (
             <Spinner.Wrapper>

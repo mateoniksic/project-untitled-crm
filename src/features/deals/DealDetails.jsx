@@ -1,6 +1,9 @@
 import { styled, css } from 'styled-components';
-import { useDeleteDeal } from './useDeleteDeal';
+import { useEffect, useMemo, useState } from 'react';
 import { formatCurrency, formatDate } from '../../utils/helpers';
+import { useDeleteDeal } from './useDeleteDeal';
+import { useWorkspace } from '../settings/workspace/useWorkspace';
+import { useUser } from '../auth/useUser';
 import Text from '../../ui/Text';
 import DealUpdate from './DealUpdate';
 import DealDelete from './DealDelete';
@@ -83,29 +86,45 @@ const DealFooter = styled.div`
 `;
 
 function DealDetails({ dealDetails }) {
-  const deal = {
-    deal_id: dealDetails.deal_id,
-    deal_title: dealDetails.deal_title,
-    deal_description: dealDetails.deal_description,
-    deal_value: dealDetails.deal_value,
-    deal_created_at: dealDetails.deal_created_at,
-    deal_status_id: dealDetails.deal_status_id,
-    pipeline_id: dealDetails.pipeline_id,
-    pipeline_stage_id: dealDetails.pipeline_stage_id,
-    workspace_id: dealDetails.workspace_id,
-    contact_id: dealDetails.contact_id,
-  };
+  const deal = useMemo(
+    () => ({
+      deal_id: dealDetails.deal_id,
+      deal_title: dealDetails.deal_title,
+      deal_description: dealDetails.deal_description,
+      deal_value: dealDetails.deal_value,
+      deal_created_at: dealDetails.deal_created_at,
+      deal_status_id: dealDetails.deal_status_id,
+      pipeline_id: dealDetails.pipeline_id,
+      pipeline_stage_id: dealDetails.pipeline_stage_id,
+      workspace_id: dealDetails.workspace_id,
+      contact_id: dealDetails.contact_id,
+    }),
+    [dealDetails],
+  );
 
   const { deleteDeal, isDeletingDeal } = useDeleteDeal();
+
+  const [dealValue, setDealValue] = useState('');
+
+  const {
+    user: { workspace_id: workspaceId },
+  } = useUser();
+  const { workspace, isLoadingWorkspace } = useWorkspace({ workspaceId });
+
+  useEffect(() => {
+    if (!isLoadingWorkspace) {
+      setDealValue(
+        formatCurrency(deal.deal_value, workspace.workspace_currency),
+      );
+    }
+  }, [deal, workspace, isLoadingWorkspace]);
 
   return (
     <DealCardStyled>
       <DealHeader>
         <div>
           <Text size="subtle">{dealDetails.deal_title}</Text>
-          <Text size="subtle-semibold">
-            {formatCurrency(dealDetails.deal_value, 'EUR')}
-          </Text>
+          <Text size="subtle-semibold">{dealValue}</Text>
         </div>
         <DealActions>
           <DealUpdate dealToUpdate={deal}></DealUpdate>

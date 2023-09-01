@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { getDeals as getDealsApi } from '../../services/apiDeal';
 import { PAGE_SIZE } from '../../utils/constants';
 
-function useDeals({ workspaceId }) {
+function useDealsTable({ workspaceId }) {
   const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
   const page = !searchParams.get('page') ? 1 : Number(searchParams.get('page'));
@@ -43,4 +43,4 @@ function useDeals({ workspaceId }) {
   };
 }
 
-export { useDeals };
+export { useDealsTable };

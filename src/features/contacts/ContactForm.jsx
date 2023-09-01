@@ -101,56 +101,58 @@ function ContactForm({ contactToUpdate = {}, onCloseModal }) {
           New contact
         </Form.ModalHeader>
         <Form.ModalMain>
-          <FormRow
-            label="Click to upload avatar."
-            type="file"
-            error={errors?.contact_avatar?.message}>
-            <Form.InputFile
-              accept=".jpg, .jpeg, .png"
-              id="avatar"
-              {...register('contact_avatar')}
-            />
-          </FormRow>
-          <FormRow
-            label="First name:"
-            error={errors?.contact_first_name?.message}>
-            <Form.Input
-              type="text"
-              id="fname"
-              {...register('contact_first_name', {
-                required: 'This field is required.',
-              })}
-            />
-          </FormRow>
-          <FormRow
-            label="Last name:"
-            error={errors?.contact_last_name?.message}>
-            <Form.Input
-              type="text"
-              id="lname"
-              {...register('contact_last_name', {
-                required: 'This field is required.',
-              })}
-            />
-          </FormRow>
-          <FormRow label="Email:" error={errors?.contact_email?.message}>
-            <Form.Input
-              type="text"
-              id="email"
-              {...register('contact_email', {
-                required: 'This field is required.',
-              })}
-            />
-          </FormRow>
-          <FormRow label="Phone:" error={errors?.contact_phone?.message}>
-            <Form.Input
-              type="text"
-              id="phone"
-              {...register('contact_phone', {
-                required: 'This field is required.',
-              })}
-            />
-          </FormRow>
+          <Form.Rows>
+            <Form.Row
+              label="Click to upload avatar."
+              type="file"
+              error={errors?.contact_avatar?.message}>
+              <Form.InputFile
+                accept=".jpg, .jpeg, .png"
+                id="avatar"
+                {...register('contact_avatar')}
+              />
+            </Form.Row>
+            <Form.Row
+              label="First name:"
+              error={errors?.contact_first_name?.message}>
+              <Form.Input
+                type="text"
+                id="fname"
+                {...register('contact_first_name', {
+                  required: 'This field is required.',
+                })}
+              />
+            </Form.Row>
+            <Form.Row
+              label="Last name:"
+              error={errors?.contact_last_name?.message}>
+              <Form.Input
+                type="text"
+                id="lname"
+                {...register('contact_last_name', {
+                  required: 'This field is required.',
+                })}
+              />
+            </Form.Row>
+            <Form.Row label="Email:" error={errors?.contact_email?.message}>
+              <Form.Input
+                type="text"
+                id="email"
+                {...register('contact_email', {
+                  required: 'This field is required.',
+                })}
+              />
+            </Form.Row>
+            <Form.Row label="Phone:" error={errors?.contact_phone?.message}>
+              <Form.Input
+                type="text"
+                id="phone"
+                {...register('contact_phone', {
+                  required: 'This field is required.',
+                })}
+              />
+            </Form.Row>
+          </Form.Rows>
         </Form.ModalMain>
         <Form.ModalFooter>
           <Button

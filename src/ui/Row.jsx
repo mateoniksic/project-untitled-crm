@@ -1,12 +1,18 @@
 import { css, styled } from 'styled-components';
 
-const border = {
+const backgroundColorStyles = {
+  normal: css`
+    background-color: var(--bg-normal);
+  `,
+};
+
+const borderStyles = {
   1: css`
     border: 0.1rem solid var(--border-non-interactive);
   `,
 };
 
-const borderRadius = {
+const borderRadiusStyles = {
   sm: css`
     border-radius: var(--border-radius-sm);
   `,
@@ -21,9 +27,15 @@ const StyledRow = styled.div`
   gap: ${(props) => props.$gap || '0'};
   ${(props) => props.$padding && `padding: ${props.$padding}`};
   ${(props) => props.$margin && `margin: ${props.$margin}`};
-  ${(props) => border[props.$border] && border[props.$border]};
+
   ${(props) =>
-    borderRadius[props.$borderRadius] && borderRadius[props.$borderRadius]};
+    backgroundColorStyles[props.$backgroundColor] &&
+    backgroundColorStyles[props.$backgroundColor]};
+
+  ${(props) => borderStyles[props.$border] && borderStyles[props.$border]};
+  ${(props) =>
+    borderRadiusStyles[props.$borderRadius] &&
+    borderRadiusStyles[props.$borderRadius]};
 `;
 
 function Row({ children, ...restProps }) {

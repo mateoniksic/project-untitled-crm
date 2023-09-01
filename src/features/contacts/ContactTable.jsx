@@ -37,6 +37,7 @@ function ContactTable() {
     <Row
       $flexDirection="column"
       $alignItems="stretch"
+      $backgroundColor="normal"
       $border="1"
       $borderRadius="sm"
       $padding="3.2rem">

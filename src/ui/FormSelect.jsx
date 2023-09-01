@@ -12,7 +12,7 @@ function FormSelect({ field, ...props }) {
         }),
         placeholder: (baseStyles) => ({
           ...baseStyles,
-          color: 'var(--text-lc)',
+          color: 'var(--text-hc)',
         }),
         indicatorSeparator: (baseStyles) => ({
           ...baseStyles,

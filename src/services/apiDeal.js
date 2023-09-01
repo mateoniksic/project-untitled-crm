@@ -1,7 +1,8 @@
 import supabase from './supabase';
+import { getToday } from '../utils/helpers';
 import { PAGE_SIZE } from '../utils/constants';
 
-export async function getDeals({ workspaceId, page, stageId, statusId }) {
+export async function getDeals({ workspaceId, page, stageId, statusId, date }) {
   let query = supabase
     .from('deal')
     .select(
@@ -26,6 +27,12 @@ export async function getDeals({ workspaceId, page, stageId, statusId }) {
     const from = (page - 1) * PAGE_SIZE;
     const to = from - 1 + PAGE_SIZE;
     query = query.range(from, to);
+  }
+
+  if (date) {
+    query = query
+      .gte('deal_created_at', date)
+      .lte('deal_created_at', getToday({ end: true }));
   }
 
   query = query.order('deal_id', { ascending: false });

@@ -57,7 +57,6 @@ const Form = styled.form`
   flex-flow: column nowrap;
   gap: 1.6rem;
   justify-content: start;
-  /* width: 100%; */
 `;
 
 const FormHeader = styled.div`
