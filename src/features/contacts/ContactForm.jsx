@@ -1,16 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { PlusCircleIcon, SaveIcon, User2Icon } from 'lucide-react';
-
-import Button from '../../ui/Button';
-import FormRow from '../../ui/FormRow';
-
-import { useCreateContact } from './useCreateContact';
-import { useUpdateContact } from './useUpdateContact';
-
-import Form from '../../ui/Form';
 import { useUser } from '../auth/useUser';
 import { useUserProfile } from '../settings/user-profile/useUserProfile';
+import { useCreateContact } from './useCreateContact';
+import { useUpdateContact } from './useUpdateContact';
 import Spinner from '../../ui/Spinner';
+import Form from '../../ui/Form';
+import Button from '../../ui/Button';
 
 function ContactForm({ contactToUpdate = {}, onCloseModal }) {
   const { contact_id: updateId, ...editValues } = contactToUpdate;
