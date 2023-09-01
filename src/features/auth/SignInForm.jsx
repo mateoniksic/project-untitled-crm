@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { Info, MailIcon } from 'lucide-react';
+import { MailIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useSignIn } from './useSignIn';
 import Text from '../../ui/Text';
