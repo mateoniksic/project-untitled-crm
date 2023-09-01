@@ -48,4 +48,6 @@ UntitledCRM is a web-based Customer Relationship Management (CRM) system meticul
 - [[ CLICK HERE TO EXPERIENCE UNTITLEDCRM IN ACTION → ]](https://project-untitled-crm.vercel.app/)
 
 # Sneak peek
-Soon...
+https://github.com/mateoniksic/project-untitled-crm/assets/57192709/df266c4c-8dc6-4c06-9cfc-60d6a18bc5f8
+
+
