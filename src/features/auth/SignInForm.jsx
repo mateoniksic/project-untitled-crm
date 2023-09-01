@@ -1,8 +1,18 @@
+import { styled } from 'styled-components';
 import { MailIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useSignIn } from './useSignIn';
 import Text from '../../ui/Text';
 import Form from '../../ui/Form';
+
+const InfoBox = styled.div`
+  background-color: var(--component-normal-neutral);
+  border: 1px solid var(--border-non-interactive);
+  border-radius: var(--border-radius-sm);
+  margin: 2rem 0;
+  padding: 2rem;
+  cursor: pointer;
+`;
 
 function SignInForm() {
   const [email, setEmail] = useState('');
@@ -33,6 +43,14 @@ function SignInForm() {
         <Text as="p" size="normal">
           Sign in to continue.
         </Text>
+        <InfoBox
+          onClick={() => {
+            setEmail('john.doe@example.com');
+            setPassword('john.doe@example.com');
+          }}>
+          Project made by Mateo Niksic (@mateoniksic). <br />
+          Click the box to fill demo account details.
+        </InfoBox>
       </Form.Header>
       <Form.Rows>
         <Form.Row label="Email">
