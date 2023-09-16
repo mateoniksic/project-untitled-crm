@@ -32,7 +32,12 @@ UntitledCRM is a web-based Customer Relationship Management (CRM) system meticul
 
 # Tech Stack
 - ReactJS *(18.2.0)*
-  - *ReactRouter, ReactContextAPI, ReactQuery, ReactHookForm, ReactErrorBoundary, ...*
+  - ReactRouter
+  - ReactContextAPI
+  - ReactQuery
+  - ReactHookForm
+  - ReactErrorBoundary
+  - Styled components
 - PostgreSQL (Supabase)
 - HTML / CSS
 - JavaScript
